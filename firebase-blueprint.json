@@ -1,0 +1,242 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Stationery, notebook or journal product in catalog",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "currency": { "type": "string" },
+        "sku": { "type": "string" },
+        "coverImageUrl": { "type": "string" },
+        "isPublished": { "type": "boolean" },
+        "inStock": { "type": "boolean" },
+        "stockQuantity": { "type": "integer" },
+        "features": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "slug", "category", "description", "price", "currency", "sku", "isPublished", "inStock", "stockQuantity", "createdAt", "updatedAt"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer order with status and line items",
+      "type": "object",
+      "properties": {
+        "orderReference": { "type": "string" },
+        "userId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerEmail": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "deliveryAddress": { "type": "string" },
+        "productId": { "type": "string" },
+        "productTitle": { "type": "string" },
+        "quantity": { "type": "integer" },
+        "unitPrice": { "type": "number" },
+        "totalPrice": { "type": "number" },
+        "currency": { "type": "string" },
+        "customizationDetails": { "type": "string" },
+        "status": { "type": "string" },
+        "paymentStatus": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["orderReference", "userId", "customerName", "customerEmail", "deliveryAddress", "productId", "productTitle", "quantity", "unitPrice", "totalPrice", "currency", "status", "paymentStatus", "createdAt", "updatedAt"]
+    },
+    "InventoryMovement": {
+      "title": "InventoryMovement",
+      "description": "Stock adjustment and fulfillment log",
+      "type": "object",
+      "properties": {
+        "productId": { "type": "string" },
+        "quantityChange": { "type": "integer" },
+        "movementType": { "type": "string" },
+        "reason": { "type": "string" },
+        "performedBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["productId", "quantityChange", "movementType", "reason", "performedBy", "createdAt"]
+    },
+    "CustomizationRequest": {
+      "title": "CustomizationRequest",
+      "description": "Personalization request for custom journal cover",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerEmail": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "productId": { "type": "string" },
+        "nameOnCover": { "type": "string" },
+        "preferredColors": { "type": "string" },
+        "motivationalQuote": { "type": "string" },
+        "customInstructions": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "customerName", "customerEmail", "productId", "nameOnCover", "status", "createdAt", "updatedAt"]
+    },
+    "BulkOrder": {
+      "title": "BulkOrder",
+      "description": "Organization and school quotation request",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "organizationName": { "type": "string" },
+        "contactPerson": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "estimatedQuantity": { "type": "integer" },
+        "customizationRequirements": { "type": "string" },
+        "deadlineDate": { "type": "string" },
+        "status": { "type": "string" },
+        "quotationAmount": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "organizationName", "contactPerson", "email", "phone", "estimatedQuantity", "status", "createdAt", "updatedAt"]
+    },
+    "ContactMessage": {
+      "title": "ContactMessage",
+      "description": "Customer message or partnership inquiry",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "subject": { "type": "string" },
+        "category": { "type": "string" },
+        "message": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "email", "subject", "category", "message", "status", "createdAt"]
+    },
+    "Ambassador": {
+      "title": "Ambassador",
+      "description": "Brand ambassador profile",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "role": { "type": "string" },
+        "biography": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "featuredProduct": { "type": "string" },
+        "isPublished": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "slug", "role", "biography", "isPublished", "createdAt"]
+    },
+    "JournalEntry": {
+      "title": "JournalEntry",
+      "description": "User journal reflection entry across life pillars",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "pillar": { "type": "string" },
+        "prompt": { "type": "string" },
+        "mood": { "type": "string" },
+        "wordCount": { "type": "integer" },
+        "readingTimeMinutes": { "type": "integer" },
+        "isFavorite": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "content", "pillar", "wordCount", "createdAt", "updatedAt"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Customer account profile, preferences, and campus affiliation",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "photoUrl": { "type": "string" },
+        "city": { "type": "string" },
+        "country": { "type": "string" },
+        "universityOrAffiliation": { "type": "string" },
+        "bio": { "type": "string" },
+        "writingInterests": { "type": "array" },
+        "emailNotifications": { "type": "boolean" },
+        "orderAlerts": { "type": "boolean" },
+        "seriesVerificationAlerts": { "type": "boolean" },
+        "preferredLanguage": { "type": "string" },
+        "preferredCurrency": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["displayName", "email", "createdAt", "updatedAt"]
+    },
+    "SavedAddress": {
+      "title": "SavedAddress",
+      "description": "Saved campus pickup and delivery location",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "recipientName": { "type": "string" },
+        "phone": { "type": "string" },
+        "addressLine": { "type": "string" },
+        "city": { "type": "string" },
+        "country": { "type": "string" },
+        "deliveryInstructions": { "type": "string" },
+        "isDefault": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "recipientName", "addressLine", "isDefault", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Public published products and catalog items"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Customer order records and status tracking"
+    },
+    "/inventory_movements/{movementId}": {
+      "schema": "InventoryMovement",
+      "description": "Auditable stock movement logs"
+    },
+    "/customization_requests/{requestId}": {
+      "schema": "CustomizationRequest",
+      "description": "Personalization and custom cover submissions"
+    },
+    "/bulk_orders/{bulkOrderId}": {
+      "schema": "BulkOrder",
+      "description": "Bulk quotation and school organization requests"
+    },
+    "/contact_messages/{messageId}": {
+      "schema": "ContactMessage",
+      "description": "Inquiries, questions and partnership requests"
+    },
+    "/ambassadors/{ambassadorId}": {
+      "schema": "Ambassador",
+      "description": "Featured brand ambassadors"
+    },
+    "/users/{userId}/journal_entries/{entryId}": {
+      "schema": "JournalEntry",
+      "description": "User private journal reflection entries"
+    },
+    "/user_profiles/{userId}": {
+      "schema": "UserProfile",
+      "description": "Customer personal profile and preferences"
+    },
+    "/users/{userId}/addresses/{addressId}": {
+      "schema": "SavedAddress",
+      "description": "Customer saved pickup and delivery addresses"
+    }
+  }
+}
+

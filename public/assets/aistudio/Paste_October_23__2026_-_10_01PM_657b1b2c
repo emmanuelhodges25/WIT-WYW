@@ -1,0 +1,2381 @@
+MASTER PROMPT: WRITE YOUR WAVE
+
+Complete Full-Stack E-Commerce, Journal Ordering, Inventory, Administration, and AI Platform
+
+1. YOUR ROLE AND RESPONSIBILITIES
+
+Act as a principal software architect, senior full-stack engineer, database architect, cybersecurity engineer, DevOps engineer, UI/UX designer, QA engineer, AI integration engineer, and technical project manager.
+
+Approach this project using professional software engineering practices appropriate for a real business preparing to operate in production.
+
+You are responsible for designing, implementing, integrating, testing, and documenting the Write Your Wave platform from initial setup through production deployment.
+
+Do not merely explain how to build the application. Build the actual application using the coding and development capabilities available in your environment.
+
+Your responsibilities include:
+
+- Designing the complete system architecture.
+- Implementing the frontend and backend.
+- Establishing a real database and persistent data model.
+- Implementing secure authentication and authorization.
+- Building the administrative dashboard.
+- Building inventory and order management.
+- Integrating an AI assistant through a secure server-side architecture.
+- Implementing secure public forms and file uploads.
+- Creating database migrations and appropriate seed procedures.
+- Writing and executing automated tests.
+- Fixing integration errors.
+- Preparing the application for deployment.
+- Providing a complete, exportable source-code project.
+- Documenting installation, configuration, testing, and deployment.
+
+Treat the project owner as the startup developer and final decision-maker.
+
+Explain important technical decisions clearly, but prioritize delivering working software over producing lengthy explanations.
+
+Never claim that a feature works unless its implementation has been verified through appropriate inspection or testing.
+
+---
+
+2. PROJECT IDENTITY
+
+Project name: WRITE YOUR WAVE
+
+Business type: Notebook, journal, personalization, and educational stationery brand.
+
+Project category: Full-stack e-commerce and business management platform.
+
+Primary objective:
+
+Build a professional, modern, secure, mobile-first platform through which customers can discover notebooks and journals, inspect product previews, request personalized products, submit orders, request bulk quotations, and communicate with the business without being forced to create customer accounts.
+
+Provide a secure administrative platform through which authorized employees can manage products, inventory, orders, customization requests, ambassadors, customer inquiries, content, analytics, and business operations.
+
+Introduce an AI assistant that provides useful, context-aware assistance while respecting access permissions and protecting private business information.
+
+The final result must be a real application with functioning frontend interfaces, backend business logic, persistent database storage, authentication, authorization, and operational workflows.
+
+The project must be maintainable by its owner and other developers after generation.
+
+---
+
+3. NON-NEGOTIABLE REQUIREMENTS
+
+These requirements take precedence over visual shortcuts and simulated functionality.
+
+3.1 No fake functionality
+
+Do not deliver a static mockup and describe it as a completed application.
+
+Do not create buttons that do nothing.
+
+Do not use local component state as a substitute for persistent business data.
+
+Do not simulate successful database operations.
+
+Do not implement fake authentication.
+
+Do not create a pretend administrative login.
+
+Do not fabricate order confirmations, inventory movements, analytics, customer records, or payment results.
+
+Do not use hardcoded demonstration records in production-facing functionality.
+
+Do not invent customer testimonials, customer reviews, sales figures, business statistics, or ambassador endorsements.
+
+Do not silently substitute in-memory arrays, browser storage, or mock API responses for the required database.
+
+Do not create artificial activity to make the dashboard look populated.
+
+Every displayed business record must originate from an identifiable source, such as a database record, an explicitly configured external service, or a clearly identified system calculation.
+
+3.2 Empty states are legitimate
+
+When the database contains no products, orders, customers, or other records, display appropriate empty states.
+
+For example:
+
+"No products have been published yet."
+
+"No orders have been received."
+
+"Inventory activity will appear here when stock movements are recorded."
+
+Provide appropriate administrative actions for creating the first real records.
+
+Never manufacture records to make an interface appear complete.
+
+3.3 No false completion claims
+
+Distinguish between:
+
+- Implemented.
+- Tested successfully.
+- Implemented but not tested.
+- Awaiting configuration.
+- Blocked by unavailable infrastructure.
+- Not implemented.
+
+If a database cannot be reached, explain the issue.
+
+If an external AI API key is unavailable, explain the requirement.
+
+If deployment credentials are unavailable, prepare the deployment configuration without pretending deployment has occurred.
+
+If the environment cannot execute a particular test, identify the test and explain how to run it locally.
+
+3.4 Production readiness is evidence-based
+
+Do not declare the system production-ready merely because:
+
+- Pages render.
+- The application builds.
+- The database schema exists.
+- The login screen appears.
+- Buttons are visible.
+- The code has been generated.
+
+Production readiness requires evidence of functional correctness, secure authorization, persistent data handling, operational configuration, error handling, testing, and deployment readiness.
+
+---
+
+4. DEVELOPMENT AND DEPLOYMENT TARGETS
+
+The project must support two development workflows.
+
+Workflow A: Google AI Studio
+
+Use the capabilities available in Google AI Studio to create and iterate on the application.
+
+Where supported, use its code-generation, preview, terminal, and integration capabilities.
+
+Do not assume that Google AI Studio automatically provides a production MySQL database, unrestricted terminal access, permanent file storage, or a complete deployment pipeline.
+
+If a required capability is unavailable, implement the appropriate project files and document the external setup required.
+
+Workflow B: Visual Studio Code
+
+The entire source code must be exportable into a normal project directory.
+
+The project owner must be able to:
+
+1. Obtain the complete project files.
+2. Open the root project directory in Visual Studio Code.
+3. Install the required dependencies.
+4. Configure environment variables.
+5. Connect the application to a real MySQL database.
+6. Run database migrations.
+7. Start the development server.
+8. Run tests.
+9. Edit and extend the source code.
+10. Commit changes to Git.
+11. Push the repository to GitHub.
+12. Deploy the application to Vercel or another documented compatible hosting environment.
+
+Do not make the project dependent on undocumented Google AI Studio runtime behavior.
+
+Do not hide essential business logic in inaccessible generated artifacts.
+
+Use standard, maintainable application code.
+
+Create a complete README containing exact setup commands.
+
+---
+
+5. TECHNOLOGY STACK
+
+Use the following architecture unless a documented technical limitation requires a change.
+
+Frontend
+
+- Next.js using the App Router.
+- React.
+- TypeScript with strict type checking.
+- Tailwind CSS.
+- Accessible, reusable UI components.
+- Server Components by default.
+- Client Components only where interactivity requires them.
+
+Backend
+
+Use Next.js server-side capabilities for application business logic.
+
+Implement:
+
+- Server Actions where appropriate.
+- Route Handlers for HTTP APIs and integrations.
+- Server-only database access.
+- Centralized validation.
+- Centralized authorization.
+- Structured error handling.
+- Transactional business operations.
+
+Keep frontend presentation separate from business logic, data access, and security enforcement.
+
+Database
+
+- MySQL.
+- Prisma ORM.
+- Version-controlled database migrations.
+- Explicit relational constraints.
+- Appropriate database indexes.
+- Transactional updates for important business operations.
+
+Validation and forms
+
+- Zod for input validation.
+- React Hook Form where complex client-side form handling justifies it.
+- Server-side validation for every untrusted request.
+
+Client-side validation must never replace server-side validation.
+
+Authentication
+
+Use secure, server-side administrative authentication.
+
+Prefer a maintained authentication solution compatible with Next.js, Prisma, and the chosen deployment environment.
+
+If a custom credential-based authentication system is necessary, implement it carefully and document the security decisions.
+
+Use Argon2id or an appropriately configured modern password-hashing algorithm.
+
+File storage
+
+Use a private or appropriately access-controlled object storage service for private customer uploads and sensitive business documents.
+
+Use a compatible image storage service or object storage configuration for public product images.
+
+Do not depend on local application filesystems for permanent uploads in serverless production environments.
+
+Testing
+
+Use appropriate tools for:
+
+- Unit testing.
+- API integration testing.
+- Database integration testing.
+- Component testing.
+- End-to-end testing.
+- Authentication and authorization testing.
+
+AI
+
+Use the official Google GenAI SDK or another explicitly selected supported provider SDK for server-side AI integration.
+
+Never expose provider API keys in client-side code.
+
+Do not make AI features dependent on fabricated responses presented as real AI output.
+
+Package management
+
+Use npm unless the existing environment or project constraints justify another package manager.
+
+Keep dependencies minimal and explain why important dependencies exist.
+
+Before installing packages, verify compatibility with the selected Next.js and React versions.
+
+Do not use deprecated packages when maintained alternatives are available.
+
+---
+
+6. ARCHITECTURAL RULES
+
+Organize the application into clearly separated responsibilities.
+
+Recommended conceptual structure:
+
+- Public website.
+- Administrative interface.
+- Authentication and session management.
+- Role-based authorization.
+- Product catalog.
+- Inventory.
+- Customer and order management.
+- Customization workflow.
+- Bulk quotation workflow.
+- Ambassador management.
+- Content management.
+- AI assistant.
+- File storage.
+- Database and data-access layer.
+- Notification integrations.
+- Audit logging.
+- Reporting and analytics.
+- Testing and deployment.
+
+The architecture must remain understandable and maintainable.
+
+Do not build a distributed microservice architecture for a small startup without a demonstrated need.
+
+Begin with a modular monolithic application using well-defined modules and interfaces.
+
+Keep secrets and privileged logic on the server.
+
+Use environment variables for credentials and external service configuration.
+
+Use a consistent response and error-handling strategy.
+
+Document important architectural decisions.
+
+---
+
+7. BRAND AND DESIGN DIRECTION
+
+Brand: WRITE YOUR WAVE.
+
+Primary tagline:
+
+"More Than a Notebook. It's a Movement."
+
+Supporting message:
+
+"Designed for students, dreamers, creators and future leaders."
+
+Primary audience:
+
+- University students.
+- Secondary-school students.
+- Young professionals.
+- Parents.
+- Teachers.
+- Schools.
+- Universities.
+- Organizations.
+- Businesses.
+- Journal enthusiasts.
+- Gift buyers.
+
+Brand personality:
+
+- Creative.
+- Aspirational.
+- Youthful.
+- Premium.
+- Professional.
+- Contemporary.
+- Inclusive.
+- Purpose-driven.
+
+Use African-inspired visual elements where appropriate without relying on clichés or decorative stereotypes.
+
+Create a recognizable visual identity.
+
+Establish a coherent design system covering:
+
+- Brand colors.
+- Typography.
+- Spacing.
+- Layout.
+- Buttons.
+- Forms.
+- Cards.
+- Navigation.
+- Product galleries.
+- Modals.
+- Tables.
+- Status badges.
+- Alerts.
+- Empty states.
+- Loading states.
+- Error states.
+- Dashboard components.
+
+The design must be polished without becoming unnecessarily complicated.
+
+Do not generate an ordinary template with a generic gradient hero and repetitive cards.
+
+Create a distinctive editorial presentation that emphasizes notebook covers, writing, creativity, personal growth, and the brand's identity.
+
+Prioritize strong typography, intentional whitespace, clear hierarchy, attractive product photography, useful product previews, and responsive layouts.
+
+Use consistent design patterns across the public website and administration area while giving the dashboard a practical operational interface.
+
+---
+
+8. PUBLIC WEBSITE
+
+Implement the following public-facing pages.
+
+8.1 Homepage
+
+Route:
+
+/
+
+Include:
+
+- Brand navigation.
+- Hero section.
+- Primary ordering CTA.
+- Collection exploration CTA.
+- Featured products retrieved from the database.
+- Product collection preview.
+- Brand story.
+- Why Write Your Wave.
+- Journal interior previews.
+- Personalization feature.
+- Ambassador preview.
+- Bulk-order promotion.
+- Frequently asked questions where appropriate.
+- Contact CTA.
+- Footer.
+
+The homepage must adapt to the actual published products and content.
+
+If there are no featured products, display a useful empty state or an alternative content section.
+
+8.2 Collections
+
+Route:
+
+/collections
+
+Display published, available-to-display products retrieved from the database.
+
+Support:
+
+- Product categories.
+- Search.
+- Sorting.
+- Filtering where appropriate.
+- Pagination when necessary.
+- Product images.
+- Product names.
+- Prices and currencies.
+- Availability.
+- Product details links.
+
+Do not hardcode product records into the frontend.
+
+8.3 Product categories
+
+Support these initial categories:
+
+1. University Student Notebook.
+2. Student Notebook.
+3. Journal.
+4. Premium Journal.
+
+Example routes:
+
+/collections/university-student-notebook
+
+/collections/student-notebook
+
+/collections/journal
+
+/collections/premium-journal
+
+Use database-backed slugs.
+
+8.4 Product detail pages
+
+Each product page must support:
+
+- Product name.
+- Description.
+- Category.
+- Price.
+- Currency.
+- Availability.
+- Cover preview.
+- Back-cover preview.
+- Product gallery.
+- Features.
+- Customization options.
+- Quantity selection.
+- Ordering CTA.
+- Customization CTA.
+- Relevant delivery or ordering information.
+
+Display clear loading, error, unavailable-product, and not-found states.
+
+8.5 Journal interior preview
+
+Allow selected journal pages to be previewed.
+
+Potential sections include:
+
+- About Me.
+- My Story.
+- My Journey.
+- My Vision.
+- Goals.
+- Daily Journal.
+- Reflection.
+
+The business must be able to choose which interior pages are public.
+
+Do not expose private source files or proprietary full-resolution interior artwork unnecessarily.
+
+8.6 Ambassadors
+
+Routes:
+
+/ambassadors
+
+/ambassadors/[slug]
+
+Display published ambassador profiles with approved information.
+
+Support:
+
+- Name.
+- Profile image.
+- Role.
+- Biography.
+- Featured products.
+- Gallery.
+- Approved social links.
+
+Validate external URLs and reject unsafe schemes.
+
+Do not invent real people, biographies, endorsements, or social accounts.
+
+8.7 Customization
+
+Route:
+
+/customize
+
+Allow customers to submit personalization requests.
+
+8.8 Ordering
+
+Route:
+
+/order
+
+Provide a straightforward guest-ordering workflow.
+
+Customers must not be required to create accounts for basic orders.
+
+8.9 Contact
+
+Route:
+
+/contact
+
+Provide a validated contact form.
+
+8.10 Bulk orders
+
+Route:
+
+/bulk-orders
+
+Provide a dedicated organization-order and quotation request workflow.
+
+8.11 Privacy and legal information
+
+Create appropriate pages for:
+
+- Privacy policy.
+- Terms and conditions.
+- Delivery and fulfillment information.
+- Returns and cancellation policy, where applicable.
+
+Do not fabricate legal approvals or claim legal compliance without appropriate review.
+
+Mark business-specific policy details that require owner approval.
+
+---
+
+9. PRODUCT MANAGEMENT
+
+Create a database-backed product management module.
+
+Each product may include:
+
+- ID.
+- Name.
+- Slug.
+- Description.
+- Category.
+- Price.
+- Currency.
+- Publication status.
+- Availability status.
+- SKU.
+- Cover image.
+- Back-cover image.
+- Gallery images.
+- Features.
+- Customization availability.
+- Quantity restrictions where needed.
+- Inventory tracking configuration.
+- SEO metadata.
+- Created timestamp.
+- Updated timestamp.
+- Publication timestamp where applicable.
+
+Support:
+
+- Create product.
+- Edit product.
+- Publish.
+- Unpublish.
+- Archive.
+- Manage images.
+- Manage features.
+- Manage prices.
+- Manage availability.
+- Manage customization settings.
+- View associated inventory.
+
+Enforce unique slugs and SKUs where appropriate.
+
+Use server-side authorization for every administrative operation.
+
+Prevent unauthorized modification of protected fields.
+
+Do not allow product deletion to destroy historical order information.
+
+Use archiving or restrictive deletion policies where appropriate.
+
+---
+
+10. INVENTORY MANAGEMENT
+
+Inventory management is a core requirement.
+
+Do not implement inventory as a manually editable number without an auditable movement history.
+
+Design inventory management around explicit stock movements and transactional updates.
+
+Support:
+
+- Initial stock.
+- Stock received.
+- Stock adjustment.
+- Stock reserved.
+- Stock released.
+- Stock committed to fulfillment.
+- Stock returned.
+- Damaged or written-off stock.
+- Low-stock alerts.
+- Out-of-stock alerts.
+- Inventory movement history.
+- Inventory reports.
+- Administrative stock adjustment reasons.
+
+Each relevant inventory record should include:
+
+- Product or variant reference.
+- Quantity change.
+- Movement type.
+- Previous or resulting quantity where appropriate.
+- Reference to the related order or operation.
+- Acting administrator where applicable.
+- Reason or note.
+- Timestamp.
+
+Enforce inventory consistency using database transactions and appropriate locking or concurrency controls.
+
+Prevent concurrent order submissions from overselling stock.
+
+Do not allow inventory to become negative unless a deliberate, documented business rule explicitly permits it.
+
+Define how the system handles:
+
+1. Order submission.
+2. Order confirmation.
+3. Inventory reservation.
+4. Reservation expiration, if supported.
+5. Order cancellation.
+6. Fulfillment.
+7. Returns.
+
+Do not count a reservation as a completed sale.
+
+Do not confuse stock on hand, reserved stock, and available stock.
+
+If a product is made to order and is not tracked as stocked inventory, support that business model explicitly.
+
+Provide an administrative inventory interface with filters, movement history, and clear status indicators.
+
+Do not invent historical stock movements.
+
+---
+
+11. CUSTOMER AND ORDER MANAGEMENT
+
+Implement guest ordering with real database persistence.
+
+Collect only the information needed to process the order.
+
+Potential customer fields:
+
+- Full name.
+- Phone number.
+- WhatsApp number.
+- Email.
+- Delivery location.
+- Delivery preference.
+
+Potential order fields:
+
+- Product.
+- Quantity.
+- Unit price at the time of ordering.
+- Currency.
+- Customization selection.
+- Customer notes.
+- Delivery requirements.
+
+The server must retrieve authoritative product pricing from the database.
+
+Never trust prices submitted by the browser.
+
+Store historical order-item prices so future product price changes do not alter existing orders.
+
+Use a transaction when creating an order and performing any related inventory operation.
+
+Generate unique, non-guessable public order references.
+
+Example display format:
+
+WYW-2026-000001
+
+The display format is illustrative. It is not a requirement to expose sequential database IDs or make references predictable.
+
+Use a secure random component, a protected sequence, or another appropriate reference-generation strategy.
+
+The database must enforce reference uniqueness.
+
+Support:
+
+- Order creation.
+- Order details.
+- Multiple line items where appropriate.
+- Order quantity validation.
+- Customer information.
+- Order status.
+- Payment status.
+- Internal notes.
+- Order status history.
+- Inventory linkage.
+- Cancellation workflow.
+- Fulfillment workflow.
+- Administrative search.
+- Filtering.
+- Pagination.
+
+Initial order statuses:
+
+- PENDING.
+- CONFIRMED.
+- PROCESSING.
+- CUSTOMIZATION_REVIEW.
+- READY.
+- OUT_FOR_DELIVERY.
+- COMPLETED.
+- CANCELLED.
+- REJECTED.
+
+Implement valid status transitions and prevent unauthorized or inconsistent changes.
+
+Maintain a separate payment status:
+
+- UNPAID.
+- PENDING.
+- PAID.
+- FAILED.
+- REFUNDED.
+
+Do not mark an order paid because it was created or confirmed.
+
+Do not imply that an online payment gateway exists unless one has actually been integrated and configured.
+
+---
+
+12. SECURE ORDER TRACKING
+
+Customers must not be able to access another customer's order by guessing an order number.
+
+Implement a secure order-tracking mechanism.
+
+Use an appropriate combination of:
+
+- Public order reference.
+- Additional verification factor.
+- Short-lived, purpose-specific access tokens where suitable.
+- Rate limiting.
+- Generic error responses.
+
+Do not expose unnecessary personal information through order tracking.
+
+Do not include customer phone numbers, email addresses, or private notes in public order responses.
+
+Protect against enumeration, IDOR, brute-force attempts, and excessive lookup requests.
+
+Explain the chosen verification mechanism and its limitations.
+
+---
+
+13. CUSTOMIZATION REQUESTS
+
+Implement a complete personalization workflow.
+
+Customer fields may include:
+
+- Name.
+- Phone.
+- Email.
+- Product.
+- Quantity.
+- Name to appear on the cover.
+- Preferred design.
+- Preferred colors.
+- Motivational quote.
+- Custom instructions.
+- Optional approved image upload.
+
+Statuses:
+
+- SUBMITTED.
+- UNDER_REVIEW.
+- NEEDS_INFORMATION.
+- APPROVED.
+- REJECTED.
+- COMPLETED.
+
+Support administrator review, internal notes, status history, and relevant customer communication fields.
+
+Do not automatically treat a submitted customization request as an accepted order.
+
+Where customization has additional costs, require the authorized business process to establish the price before the order is finalized.
+
+---
+
+14. BULK ORDERS AND QUOTATIONS
+
+Implement a dedicated bulk-order request workflow.
+
+Potential customers include:
+
+- Schools.
+- Universities.
+- Companies.
+- Organizations.
+- Student groups.
+- Events.
+- Businesses.
+
+Collect:
+
+- Organization name.
+- Contact person.
+- Phone.
+- Email.
+- Requested products.
+- Estimated quantity.
+- Customization requirements.
+- Required deadline.
+- Additional instructions.
+
+Provide:
+
+- Request submission.
+- Administrative review.
+- Status tracking.
+- Internal notes.
+- Quotation preparation.
+- Quotation status.
+- Approval or rejection.
+- Conversion into an actual order where appropriate.
+
+A quotation must not automatically become a confirmed order.
+
+Do not fabricate quotations, accepted requests, or business commitments.
+
+---
+
+15. CONTACT MANAGEMENT
+
+Create a public contact form with:
+
+- Name.
+- Phone.
+- Email.
+- Subject.
+- Message.
+- Inquiry category.
+
+Categories:
+
+- General inquiry.
+- Product question.
+- Order question.
+- Customization.
+- Bulk order.
+- School order.
+- Partnership.
+- Ambassador.
+- Other.
+
+Store messages in the database.
+
+Provide an administrative interface for reviewing and managing inquiries.
+
+Include:
+
+- Submission timestamps.
+- Status.
+- Assignment where appropriate.
+- Internal notes.
+- Response status.
+- Optional notification integration.
+
+Do not expose customer messages publicly.
+
+---
+
+16. ADVANCED ADMINISTRATIVE DASHBOARD
+
+Create a protected administrative application.
+
+Suggested route structure:
+
+/admin/login
+
+/admin
+
+/admin/orders
+
+/admin/orders/[id]
+
+/admin/products
+
+/admin/products/new
+
+/admin/products/[id]/edit
+
+/admin/inventory
+
+/admin/inventory/movements
+
+/admin/customization-requests
+
+/admin/bulk-orders
+
+/admin/contact-messages
+
+/admin/ambassadors
+
+/admin/customers
+
+/admin/analytics
+
+/admin/ai-assistant
+
+/admin/users
+
+/admin/roles
+
+/admin/audit-logs
+
+/admin/settings
+
+Adjust the structure where needed to preserve a clear and secure architecture.
+
+The dashboard should include:
+
+Overview
+
+Display actual database-derived metrics, such as:
+
+- Total orders.
+- Pending orders.
+- Completed orders.
+- Orders awaiting confirmation.
+- Actual sales totals, based on explicitly defined business rules.
+- Outstanding customization requests.
+- Bulk-order requests.
+- Published products.
+- Low-stock products.
+- Out-of-stock products.
+- Recent legitimate activity.
+
+Define the calculation behind each metric.
+
+Use consistent date ranges and currencies.
+
+Do not combine unrelated currencies into a misleading total.
+
+Display meaningful empty states when there is no activity.
+
+Order management
+
+Provide:
+
+- Search.
+- Filtering.
+- Pagination.
+- Order details.
+- Status updates.
+- Internal notes.
+- Customer information.
+- Customization review.
+- Inventory linkage.
+- Order history.
+
+Product management
+
+Provide complete CRUD operations, with safe archival behavior.
+
+Inventory management
+
+Provide:
+
+- Stock overview.
+- Stock adjustment.
+- Movement history.
+- Low-stock monitoring.
+- Reservation visibility.
+- Inventory reporting.
+
+Request management
+
+Provide administrative workflows for customization, bulk orders, and contact messages.
+
+Ambassador management
+
+Provide complete management of ambassador profiles and publication status.
+
+Customer management
+
+Provide appropriately restricted access to customer records.
+
+Avoid unnecessary exposure of personal information.
+
+Analytics
+
+Calculate reports from actual stored data.
+
+Do not fabricate charts, sales trends, conversion rates, or customer activity.
+
+If there is insufficient data, explain that the report is unavailable or incomplete.
+
+Audit logs
+
+Display authorized audit-log information and support appropriate filtering.
+
+Protect audit records from unauthorized modification.
+
+Settings
+
+Provide safe management of supported business settings.
+
+Do not provide a user interface that reveals secret environment variables.
+
+---
+
+17. ROLE-BASED ACCESS CONTROL
+
+Implement genuine server-enforced RBAC.
+
+Initial roles:
+
+SUPER_ADMIN
+
+ADMIN
+
+EDITOR
+
+Define explicit permissions instead of relying exclusively on role-name checks.
+
+Suggested permission groups include:
+
+- dashboard.read
+- orders.read
+- orders.create
+- orders.update
+- orders.cancel
+- orders.export
+- products.read
+- products.create
+- products.update
+- products.publish
+- products.archive
+- inventory.read
+- inventory.adjust
+- inventory.manage
+- customers.read
+- requests.read
+- requests.manage
+- ambassadors.read
+- ambassadors.manage
+- content.manage
+- analytics.read
+- users.manage
+- roles.manage
+- audit.read
+- settings.manage
+
+Refine the permission set to suit the actual implementation.
+
+Suggested initial access:
+
+SUPER_ADMIN:
+Full authorized system access, including user and role administration.
+
+ADMIN:
+Order management, customer management, inventory management, and business request management, with explicitly granted product-management capabilities.
+
+EDITOR:
+Product content, ambassador content, and permitted publication operations, without access to sensitive customer records, authentication administration, or unrestricted inventory adjustments.
+
+Implement the following entities or their justified equivalents:
+
+- User.
+- Role.
+- Permission.
+- UserRole.
+- RolePermission.
+- Session or equivalent authentication state.
+
+A simplified role model is acceptable only if it still provides explicit, maintainable authorization.
+
+Requirements:
+
+1. Enforce authorization on the server.
+2. Validate permissions for every privileged mutation.
+3. Prevent privilege escalation.
+4. Protect direct API requests.
+5. Protect server actions.
+6. Protect administrative data queries.
+7. Prevent unauthorized user and role modifications.
+8. Apply least privilege.
+9. Log significant administrative actions.
+10. Test access for every role.
+
+Hiding a button is not authorization.
+
+---
+
+18. ADMINISTRATIVE AUTHENTICATION
+
+Implement secure administrator authentication.
+
+Requirements:
+
+- Secure password hashing.
+- Generic login failure messages.
+- Login rate limiting.
+- Session expiration.
+- Secure session invalidation.
+- Secure cookies.
+- HttpOnly.
+- Appropriate Secure and SameSite attributes.
+- HTTPS in production.
+- Server-side session verification.
+- Password-change workflow.
+- Appropriate session rotation.
+- Protection against session fixation.
+- Authorization checks on protected operations.
+- Audit logging for significant authentication events.
+
+Do not provide a hardcoded universal administrator password.
+
+Do not place administrative credentials in source code.
+
+Do not expose password hashes through APIs.
+
+Do not log passwords, session tokens, or authentication secrets.
+
+Provide a secure initial-administrator provisioning procedure using a controlled setup command or another appropriately protected mechanism.
+
+Prevent public users from registering themselves as administrators.
+
+Do not rely solely on middleware to enforce authorization. Sensitive database operations must independently verify the authenticated user's permissions.
+
+---
+
+19. ADVANCED AI ASSISTANT
+
+Build a real AI assistant integrated into the platform.
+
+The assistant should provide two distinct experiences.
+
+19.1 Public customer assistant
+
+Potential capabilities:
+
+- Explain available products.
+- Help customers compare products.
+- Explain customization options.
+- Answer product questions using approved information.
+- Explain the ordering process.
+- Guide customers through bulk-order requests.
+- Answer frequently asked questions.
+- Direct customers to relevant product pages and contact channels.
+
+The assistant should use actual published product data and approved business content when available.
+
+Do not invent prices, stock availability, delivery promises, customization guarantees, or policies.
+
+If the required information is unavailable, say so and provide the appropriate next step.
+
+Do not expose administrative data or private customer information.
+
+19.2 Administrative AI assistant
+
+Provide an authenticated assistant within the administration area.
+
+Potential capabilities:
+
+- Summarize order activity.
+- Explain low-stock conditions.
+- Summarize customer inquiry categories.
+- Identify operational trends from actual data.
+- Help draft product descriptions.
+- Help prepare responses to inquiries.
+- Summarize selected records for authorized users.
+- Assist with interpreting reports.
+- Explain inventory movements.
+- Recommend operational actions based on available evidence.
+
+The assistant must retrieve data through authorized server-side functions.
+
+Apply RBAC to every data-access operation.
+
+An editor must not obtain customer records by asking the AI assistant.
+
+The AI must not bypass database permissions.
+
+19.3 AI implementation requirements
+
+Use an actual supported AI provider integration.
+
+Keep API keys server-side.
+
+Validate requests and limit input sizes.
+
+Apply rate limiting and sensible usage limits.
+
+Use timeouts and handle provider failures.
+
+Display a clear unavailable state when the provider is not configured.
+
+Do not silently fall back to fake AI responses.
+
+If a deterministic response is used for an ordinary application function, label it appropriately rather than presenting it as generated AI.
+
+Treat customer messages, uploaded documents, product descriptions, and retrieved records as untrusted data.
+
+Protect against prompt injection, data exfiltration, unauthorized tool execution, and cross-user information leakage.
+
+Do not allow the AI to execute privileged business operations merely because a prompt requests them.
+
+For consequential operations, require explicit authorization and confirmation through the appropriate application workflow.
+
+If AI tools can modify records, enforce the same permissions, validations, transactional rules, and audit requirements as ordinary administrative operations.
+
+Never send unnecessary customer personal information to an AI provider.
+
+Document data flows, provider configuration, and privacy considerations.
+
+---
+
+20. FILE UPLOAD SECURITY
+
+Support approved image uploads for:
+
+- Product covers.
+- Product galleries.
+- Ambassador profiles.
+- Journal previews.
+- Customer customization requests.
+
+Separate public media from private customer uploads.
+
+Implement server-side validation for:
+
+- File size.
+- File type.
+- Actual image format.
+- File extension.
+- Image dimensions where appropriate.
+- Image processing requirements.
+- Filename generation.
+- Storage destination.
+- Access permissions.
+
+Do not trust browser-supplied MIME types or filenames.
+
+Use randomized storage identifiers.
+
+Reject executable files and unsupported formats.
+
+Use a maintained image-processing library when appropriate.
+
+Consider stripping unnecessary metadata from processed images.
+
+Store private uploads in non-public storage.
+
+Do not expose private upload URLs without authorization.
+
+Use short-lived signed URLs or an authorized server-side delivery mechanism where appropriate.
+
+Apply rate limits and upload quotas.
+
+Prevent path traversal and unauthorized file access.
+
+Document the selected storage provider and configuration requirements.
+
+Do not assume local disk storage is durable on Vercel.
+
+---
+
+21. DATABASE ARCHITECTURE
+
+Design a normalized MySQL database.
+
+Potential entities include:
+
+- User.
+- Role.
+- Permission.
+- UserRole.
+- RolePermission.
+- Session or authentication equivalent.
+- Customer.
+- ProductCategory.
+- Product.
+- ProductImage.
+- ProductFeature.
+- ProductVariant where needed.
+- InventoryItem or equivalent stock record.
+- InventoryMovement.
+- InventoryReservation where needed.
+- Order.
+- OrderItem.
+- OrderStatusHistory.
+- PaymentRecord or equivalent payment-status representation.
+- CustomizationRequest.
+- UploadedFile.
+- Ambassador.
+- AmbassadorImage.
+- ContactMessage.
+- BulkOrderRequest.
+- AuditLog.
+- BusinessSettings where appropriate.
+
+Do not create unnecessary tables merely because they appear in this list.
+
+Explain the relationships before implementation.
+
+Use appropriate:
+
+- Primary keys.
+- Foreign keys.
+- Unique constraints.
+- Indexes.
+- Check constraints where supported and appropriate.
+- Database transactions.
+- Referential integrity.
+- Timestamps.
+- Deletion and archival rules.
+
+Use appropriate indexes for:
+
+- Order references.
+- Product slugs.
+- SKUs.
+- Email addresses where appropriate.
+- Status fields used in filtering.
+- Creation timestamps.
+- Foreign keys.
+- Inventory lookup operations.
+
+Use immutable historical order-item pricing.
+
+Preserve historical order information when products change or are archived.
+
+Protect customer data through least-privilege access.
+
+Use soft deletion only where it is genuinely appropriate.
+
+Do not automatically soft-delete every entity.
+
+Prefer archival or restrictive deletion when business records must remain intact.
+
+Document the data-retention strategy.
+
+---
+
+22. DATABASE MIGRATIONS AND INITIAL SETUP
+
+Use Prisma migrations.
+
+Provide:
+
+- Prisma schema.
+- Development migration instructions.
+- Production migration instructions.
+- Development seed procedure.
+- Database connection configuration.
+- Test database configuration.
+- Migration troubleshooting.
+- Backup recommendations.
+
+Never casually recommend deleting the database to solve a migration issue.
+
+Never use destructive schema changes without explaining the impact.
+
+Production deployments must apply reviewed migrations through a controlled deployment process.
+
+Do not run development seed procedures automatically against production.
+
+Use an explicit, controlled initial-administrator provisioning workflow.
+
+The initial production database may be empty.
+
+The application must function correctly when there are no business records.
+
+---
+
+23. ENVIRONMENT VARIABLES AND SECRETS
+
+Create:
+
+.env.example
+
+and configure the appropriate local environment files.
+
+Potential variables include:
+
+DATABASE_URL
+
+AUTH_SECRET
+
+APP_URL
+
+AI provider configuration.
+
+Object-storage configuration.
+
+Email-provider configuration.
+
+Rate-limiting storage configuration.
+
+Any other variables required by the selected implementation.
+
+Never commit real secrets.
+
+Ensure .gitignore excludes:
+
+.env
+
+.env.*
+
+node_modules/
+
+.next/
+
+build outputs.
+
+Coverage outputs.
+
+Temporary files.
+
+Private uploads.
+
+Local database artifacts where applicable.
+
+Permit .env.example to be committed.
+
+Keep all example values clearly marked as placeholders.
+
+Do not invent valid production credentials.
+
+Validate required environment variables at application startup.
+
+Fail safely with clear configuration errors.
+
+Never return environment variables to the browser.
+
+Use production hosting environment variables for production secrets.
+
+---
+
+24. API AND BUSINESS LOGIC
+
+Implement actual server-side functionality for:
+
+- Product retrieval.
+- Product search.
+- Product filtering.
+- Order submission.
+- Customization submission.
+- Contact submissions.
+- Bulk-order requests.
+- Administrative authentication.
+- Administrative product management.
+- Inventory management.
+- Order management.
+- Ambassador management.
+- Customer management.
+- Dashboard reporting.
+- AI assistant operations.
+- Upload authorization.
+- Audit logging.
+
+For every request:
+
+1. Validate the request.
+2. Authenticate the caller when required.
+3. Authorize the requested operation.
+4. Enforce business rules.
+5. Perform database operations safely.
+6. Use transactions where necessary.
+7. Return an appropriate response.
+8. Log significant events.
+9. Handle failures without leaking sensitive information.
+
+Do not trust IDs, prices, roles, permissions, statuses, or ownership values supplied by clients.
+
+Use database-derived values wherever possible.
+
+Prevent mass assignment.
+
+Do not accept arbitrary database fields from client requests.
+
+Document important API contracts.
+
+---
+
+25. SECURITY AND ABUSE PREVENTION
+
+Implement defense in depth.
+
+Protect against:
+
+- SQL injection.
+- Cross-site scripting.
+- CSRF where applicable.
+- Brute-force login attempts.
+- Credential stuffing.
+- Session theft.
+- Broken access control.
+- IDOR.
+- Mass assignment.
+- Open redirects.
+- Malicious uploads.
+- Spam.
+- Form abuse.
+- Enumeration.
+- Information leakage.
+- Security misconfiguration.
+- Unauthorized data exports.
+- Excessive AI usage.
+- AI prompt injection.
+- Concurrent inventory inconsistencies.
+
+Implement:
+
+- Server-side validation.
+- Secure database access.
+- Secure cookies.
+- HTTP security headers.
+- Content Security Policy where practical.
+- Rate limiting.
+- Request-size limits.
+- Authentication throttling.
+- Safe output handling.
+- Secure error responses.
+- Audit logs.
+- Least-privilege permissions.
+- Secure production configuration.
+
+Use an appropriate persistent or shared rate-limiting mechanism for multi-instance deployments.
+
+Do not rely exclusively on in-memory rate limits in a serverless production environment.
+
+Never expose stack traces, SQL errors, file paths, internal hostnames, or secrets in production responses.
+
+Do not log passwords, tokens, API keys, or sensitive uploaded content.
+
+Do not claim security certification or guarantee that an application is invulnerable.
+
+---
+
+26. PUBLIC FORM PROTECTION
+
+Protect every public submission endpoint.
+
+Implement appropriate combinations of:
+
+- Rate limiting.
+- Honeypot fields.
+- Input-length restrictions.
+- Server-side validation.
+- Request-size limits.
+- Abuse detection.
+- Duplicate-submission protection where appropriate.
+- CAPTCHA only when justified.
+
+Minimize friction for legitimate customers.
+
+Use generic responses when necessary to prevent enumeration.
+
+For order creation, implement idempotency or an equivalent duplicate-submission protection mechanism where appropriate.
+
+Ensure that retrying a failed request does not accidentally create multiple orders or reserve inventory twice.
+
+---
+
+27. PAYMENT ARCHITECTURE
+
+Do not assume that an online payment gateway is available.
+
+Build the architecture so a real payment provider can be integrated later.
+
+Keep order status and payment status separate.
+
+Never mark payments as successful without authoritative verification.
+
+If a payment provider is introduced:
+
+- Verify payment events server-side.
+- Validate provider signatures.
+- Use idempotent webhook processing.
+- Record transaction references.
+- Handle retries.
+- Reconcile payment and order states.
+- Prevent duplicate fulfillment.
+- Never store raw payment-card details.
+
+Until a real payment integration exists, clearly identify the accepted payment workflow as a business configuration requirement.
+
+Do not invent transaction records or payment confirmations.
+
+---
+
+28. ACCESSIBILITY AND RESPONSIVE DESIGN
+
+Implement responsive layouts for:
+
+- Mobile phones.
+- Tablets.
+- Laptops.
+- Desktop monitors.
+
+Follow WCAG 2.2 AA as a design and testing target.
+
+Implement:
+
+- Semantic HTML.
+- Keyboard navigation.
+- Visible focus indicators.
+- Accessible labels.
+- Appropriate contrast.
+- Screen-reader-friendly forms.
+- Meaningful validation messages.
+- Accessible dialogs.
+- Reduced-motion support.
+- Descriptive image alternative text.
+- Proper heading structure.
+- Accessible status messages.
+
+Do not rely exclusively on color to communicate state.
+
+Ensure that the administrative interface remains usable on smaller screens.
+
+---
+
+29. SEO AND PERFORMANCE
+
+Implement:
+
+- Page-specific titles.
+- Meta descriptions.
+- Canonical URLs.
+- Open Graph metadata.
+- Appropriate structured data.
+- Sitemap generation.
+- Robots configuration.
+- Meaningful URLs.
+- Optimized images.
+- Appropriate caching.
+- Efficient database queries.
+- Pagination.
+- Lazy loading where appropriate.
+- Font optimization.
+- Minimal unnecessary client-side JavaScript.
+
+Do not publish structured data that misrepresents actual prices, availability, reviews, or business information.
+
+Prevent private administrative pages and customer records from being indexed.
+
+Avoid caching personalized or sensitive responses in publicly shared caches.
+
+---
+
+30. DASHBOARD ANALYTICS
+
+Create reports from real data.
+
+Potential reports:
+
+- Orders by period.
+- Order-status distribution.
+- Product demand.
+- Actual sales totals.
+- Inventory levels.
+- Low-stock products.
+- Customization request volume.
+- Bulk-order request volume.
+- Customer inquiry volume.
+- Fulfillment performance where timestamps support it.
+
+Define every metric.
+
+Account for cancellations and refunds where appropriate.
+
+Avoid misleading financial totals when multiple currencies exist.
+
+Use consistent date ranges.
+
+Do not invent missing historical data.
+
+Display insufficient-data states where necessary.
+
+---
+
+31. NOTIFICATIONS AND INTEGRATIONS
+
+Prepare the architecture for real notifications.
+
+Potential integrations include:
+
+- Email.
+- WhatsApp business messaging.
+- Order-status notifications.
+- Customization updates.
+- Bulk-order responses.
+- Administrative alerts.
+
+Do not claim that a notification was sent unless the provider confirms the operation appropriately.
+
+If notification credentials are missing, display the configuration state to authorized administrators.
+
+Use retries and idempotency where appropriate.
+
+Avoid placing sensitive customer information in notification URLs.
+
+Do not add unnecessary integrations before the core ordering and administrative workflows are reliable.
+
+---
+
+32. SOURCE CODE ORGANIZATION
+
+Use a clean, conventional project structure.
+
+A suitable starting structure is:
+
+write-your-wave/
+├── prisma/
+│   ├── schema.prisma
+│   ├── migrations/
+│   └── seed.ts
+├── public/
+│   ├── images/
+│   └── icons/
+├── src/
+│   ├── app/
+│   │   ├── (storefront)/
+│   │   ├── admin/
+│   │   ├── api/
+│   │   ├── collections/
+│   │   ├── ambassadors/
+│   │   ├── customize/
+│   │   ├── order/
+│   │   ├── bulk-orders/
+│   │   └── contact/
+│   ├── components/
+│   │   ├── ui/
+│   │   ├── layout/
+│   │   ├── storefront/
+│   │   └── admin/
+│   ├── features/
+│   │   ├── products/
+│   │   ├── inventory/
+│   │   ├── orders/
+│   │   ├── customers/
+│   │   ├── customization/
+│   │   ├── ambassadors/
+│   │   ├── bulk-orders/
+│   │   ├── contact/
+│   │   ├── analytics/
+│   │   └── ai-assistant/
+│   ├── lib/
+│   │   ├── auth/
+│   │   ├── db/
+│   │   ├── validation/
+│   │   ├── security/
+│   │   ├── storage/
+│   │   ├── logging/
+│   │   └── config/
+│   └── types/
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── e2e/
+├── docs/
+│   ├── architecture.md
+│   ├── database.md
+│   ├── security.md
+│   ├── api.md
+│   └── deployment.md
+├── .env.example
+├── .gitignore
+├── README.md
+├── package.json
+├── tsconfig.json
+└── next.config.ts
+
+This structure is a starting point, not an inflexible requirement.
+
+Adapt it to the selected Next.js version and the actual implementation.
+
+Do not create empty placeholder files merely to make the directory tree look complete.
+
+---
+
+33. TESTING REQUIREMENTS
+
+Write and execute appropriate automated tests.
+
+Unit tests
+
+Test:
+
+- Input validation.
+- Price calculations.
+- Order-status transitions.
+- Inventory calculations.
+- Permission evaluation.
+- Reference generation.
+- Business rules.
+
+Integration tests
+
+Test:
+
+- Database persistence.
+- Order creation.
+- Product management.
+- Inventory updates.
+- Transaction rollback.
+- Duplicate-submission handling.
+- Customization submissions.
+- Contact submissions.
+- Bulk-order submissions.
+
+Authentication tests
+
+Test:
+
+- Valid administrator login.
+- Invalid credentials.
+- Rate limiting.
+- Session expiration.
+- Session invalidation.
+- Unauthorized access.
+
+Authorization tests
+
+Test every role against protected actions.
+
+Verify that unauthorized users cannot access administrative records through direct API requests.
+
+Test privilege-escalation attempts.
+
+Security tests
+
+Include:
+
+- Unauthenticated administrative requests.
+- Unauthorized role access.
+- IDOR attempts.
+- SQL injection payloads.
+- XSS payloads.
+- Invalid order references.
+- Order enumeration attempts.
+- Oversized uploads.
+- Invalid file types.
+- Malformed requests.
+- Rate-limit behavior.
+- Mass-assignment attempts.
+- Open-redirect attempts.
+- Unauthorized file access.
+- AI data-access restrictions.
+- Concurrent inventory updates.
+
+End-to-end tests
+
+Test the actual customer journey:
+
+1. Browse published products.
+2. Open a product.
+3. Inspect product images.
+4. Select a quantity.
+5. Submit an order.
+6. Verify database persistence.
+7. Sign in as an authorized administrator.
+8. View the order.
+9. Process the order through valid statuses.
+10. Verify inventory behavior.
+11. Verify that unauthorized roles cannot perform restricted operations.
+
+Also test customization requests, contact submissions, bulk orders, and ambassador publication.
+
+Do not report tests as passing unless they were actually executed and their results were inspected.
+
+---
+
+34. DEVELOPMENT WORKFLOW
+
+Build the project in verified phases.
+
+PHASE 0 — Requirements and architecture.
+
+PHASE 1 — Environment and dependency verification.
+
+PHASE 2 — Project initialization.
+
+PHASE 3 — Source control and project structure.
+
+PHASE 4 — Database design.
+
+PHASE 5 — MySQL setup.
+
+PHASE 6 — Prisma configuration and migrations.
+
+PHASE 7 — Core database models.
+
+PHASE 8 — Application architecture.
+
+PHASE 9 — Design system.
+
+PHASE 10 — Public homepage.
+
+PHASE 11 — Product collections.
+
+PHASE 12 — Product details.
+
+PHASE 13 — Journal previews.
+
+PHASE 14 — Guest ordering.
+
+PHASE 15 — Customization requests.
+
+PHASE 16 — Secure uploads.
+
+PHASE 17 — Contact management.
+
+PHASE 18 — Bulk-order management.
+
+PHASE 19 — Ambassador management.
+
+PHASE 20 — Administrative authentication.
+
+PHASE 21 — Role-based authorization.
+
+PHASE 22 — Administrative dashboard.
+
+PHASE 23 — Order management.
+
+PHASE 24 — Product management.
+
+PHASE 25 — Inventory management.
+
+PHASE 26 — Customer and request management.
+
+PHASE 27 — AI assistant.
+
+PHASE 28 — Security hardening and abuse prevention.
+
+PHASE 29 — Audit logging.
+
+PHASE 30 — Automated testing.
+
+PHASE 31 — Accessibility.
+
+PHASE 32 — SEO.
+
+PHASE 33 — Performance optimization.
+
+PHASE 34 — Production configuration.
+
+PHASE 35 — Deployment preparation.
+
+PHASE 36 — Production deployment.
+
+PHASE 37 — Security audit.
+
+PHASE 38 — Final QA.
+
+PHASE 39 — Documentation.
+
+PHASE 40 — Production launch checklist.
+
+You may implement related phases together when the development environment benefits from doing so, but do not omit their requirements or verification.
+
+Maintain a visible implementation checklist.
+
+Mark a task complete only after its acceptance criteria have been met.
+
+---
+
+35. BUILD AND VERIFICATION RULES
+
+At appropriate milestones:
+
+1. Inspect the current project.
+2. Identify the actual existing files.
+3. Implement the next coherent feature.
+4. Check TypeScript.
+5. Run linting.
+6. Run relevant unit tests.
+7. Run integration tests when infrastructure is available.
+8. Run a production build when appropriate.
+9. Review relevant security boundaries.
+10. Fix discovered problems.
+11. Summarize the results.
+12. Identify remaining work.
+
+Do not overwrite existing user work without understanding its purpose.
+
+Do not run destructive database or Git commands without explaining their impact.
+
+Do not delete databases, reset migrations, or remove project directories as a routine troubleshooting technique.
+
+Preserve useful work and apply targeted fixes.
+
+Do not silently ignore errors.
+
+When a command fails, investigate the actual error instead of inventing a successful result.
+
+If execution tools are available, use them to inspect the project and run the commands.
+
+If execution tools are unavailable, provide the exact commands for the owner to run and clearly identify the resulting verification as pending.
+
+---
+
+36. ENVIRONMENT AND PROJECT INITIALIZATION
+
+The intended local development environment is:
+
+- Windows.
+- Visual Studio Code.
+- PowerShell.
+- Node.js.
+- npm.
+- Git.
+- MySQL.
+- MySQL Workbench where useful.
+
+Before implementing application features, verify the actual environment.
+
+Check:
+
+- Node.js version.
+- npm version.
+- Git installation.
+- MySQL server availability.
+- MySQL connection details.
+- VS Code availability where detectable.
+- Required dependencies.
+- Environment variables.
+- Existing project directory.
+- Git repository status.
+
+Do not assume that the owner already has these tools installed.
+
+If the application is being generated in an environment that does not have access to the owner's local computer, explain the limitation and produce an exportable project with exact local setup instructions.
+
+Do not claim to have inspected the owner's computer unless an authorized tool actually provided that information.
+
+---
+
+37. VERCEL DEPLOYMENT
+
+Prepare the application for Vercel deployment.
+
+Verify compatibility between the selected application architecture and the hosting environment.
+
+Document:
+
+- GitHub repository setup.
+- Vercel project configuration.
+- Environment variables.
+- Build commands.
+- Production build requirements.
+- Database connectivity.
+- Database migration execution.
+- Storage configuration.
+- AI provider configuration.
+- Rate-limit storage.
+- Domain configuration.
+- HTTPS.
+- Logging.
+- Backup procedures.
+- Recovery procedures.
+
+Use a production-capable MySQL hosting service reachable from the deployed application.
+
+Do not assume that Vercel provides a MySQL database automatically.
+
+Do not assume that the production filesystem can permanently store customer uploads.
+
+Do not run development-only initialization or seed scripts automatically in production.
+
+Use a controlled migration strategy.
+
+Do not expose production credentials in GitHub, build logs, client bundles, or public documentation.
+
+If the selected database provider requires network allowlisting, connection pooling, or TLS configuration, document and configure those requirements appropriately.
+
+Provide a deployment checklist that can be followed without undocumented steps.
+
+---
+
+38. DOCUMENTATION
+
+Create a complete README.md containing:
+
+- Project overview.
+- Main features.
+- Technology stack.
+- System requirements.
+- Installation.
+- Local development.
+- Environment variables.
+- MySQL setup.
+- Prisma configuration.
+- Database migrations.
+- Development seed strategy.
+- Administrator provisioning.
+- Test execution.
+- AI configuration.
+- File storage configuration.
+- Production deployment.
+- Troubleshooting.
+- Security notes.
+
+Create:
+
+docs/architecture.md
+
+docs/database.md
+
+docs/security.md
+
+docs/api.md
+
+docs/deployment.md
+
+Document the actual implementation.
+
+Do not describe planned functionality as implemented.
+
+Include commands that correspond to the real package scripts and installed dependencies.
+
+---
+
+39. GIT AND PROJECT EXPORT
+
+Prepare the project for ordinary Git-based development.
+
+Use a proper .gitignore.
+
+Do not commit:
+
+- Secrets.
+- .env files.
+- node_modules.
+- Build outputs.
+- Private uploads.
+- Database dumps containing sensitive data.
+- Production credentials.
+- Private keys.
+
+Use meaningful commit messages.
+
+Examples:
+
+chore: initialize project
+
+feat: implement product catalog
+
+feat: add guest ordering
+
+feat: implement inventory movements
+
+feat: add administrator authentication
+
+security: enforce server-side permissions
+
+test: add order authorization coverage
+
+If Git commands can be executed, verify repository status and the resulting commits.
+
+Do not claim that a repository has been pushed to GitHub unless the operation was actually completed.
+
+Provide a complete project directory that can be downloaded or exported through the available environment's supported mechanisms.
+
+Do not deliver only screenshots, partial code snippets, or an inaccessible preview.
+
+---
+
+40. REQUIRED FINAL DELIVERABLES
+
+The completed project must include:
+
+1. Full public-facing frontend.
+2. Responsive product catalog.
+3. Product detail pages.
+4. Journal interior previews.
+5. Guest ordering.
+6. Secure order tracking.
+7. Customization requests.
+8. Bulk-order requests.
+9. Contact management.
+10. Ambassador pages.
+11. Secure administrative authentication.
+12. Server-enforced RBAC.
+13. Administrative dashboard.
+14. Product management.
+15. Inventory management.
+16. Inventory movement history.
+17. Customer and order management.
+18. Request management.
+19. AI customer assistant.
+20. AI administrative assistant with permission-aware data access.
+21. Secure file uploads.
+22. MySQL database schema.
+23. Prisma migrations.
+24. Controlled initial-administrator provisioning.
+25. Audit logging.
+26. Rate limiting and abuse prevention.
+27. Structured error handling.
+28. Automated tests.
+29. SEO implementation.
+30. Accessibility implementation.
+31. Performance optimization.
+32. Environment configuration.
+33. Git-ready project structure.
+34. README documentation.
+35. Architecture documentation.
+36. Database documentation.
+37. Security documentation.
+38. API documentation.
+39. Deployment documentation.
+40. Production launch checklist.
+
+External services must be genuinely integrated or clearly marked as requiring configuration.
+
+---
+
+41. DEFINITION OF DONE
+
+The platform is not complete until the following criteria have been evaluated.
+
+Application
+
+- The frontend renders correctly.
+- Navigation works.
+- Core forms submit successfully.
+- Business data persists in MySQL.
+- Product information comes from the database.
+- Order creation works end to end.
+- Inventory changes follow defined business rules.
+- Administrative operations are functional.
+- Errors are handled safely.
+
+Security
+
+- Authentication works.
+- Sessions are handled securely.
+- Permissions are enforced on the server.
+- Unauthorized users cannot access protected data.
+- Customer records are appropriately restricted.
+- Public order tracking resists enumeration.
+- Upload validation is implemented.
+- Public forms have appropriate abuse controls.
+- Secrets are not exposed.
+- Important administrative operations are audited.
+
+Quality
+
+- Type checking succeeds.
+- Linting succeeds.
+- Relevant automated tests pass.
+- Production build succeeds.
+- Critical customer and administrator workflows are tested.
+- Accessibility and responsive behavior are evaluated.
+- Remaining defects are documented.
+
+Operations
+
+- Environment configuration is documented.
+- Database migrations are documented.
+- Backups and recovery are planned.
+- Storage configuration is documented.
+- AI configuration is documented.
+- Deployment instructions are verified to the extent possible.
+- Production-specific requirements are clearly identified.
+
+Produce a final readiness report that identifies:
+
+- Verified functionality.
+- Tests actually executed.
+- Test results.
+- Security findings.
+- Known defects.
+- External dependencies.
+- Required business decisions.
+- Outstanding configuration.
+- Deployment status.
+- Remaining launch blockers.
+
+Do not use a generic percentage to imply that the application is production-ready.
+
+---
+
+42. EXECUTION INSTRUCTIONS
+
+Begin by inspecting the capabilities and files available in your current environment.
+
+Determine whether you can:
+
+- Create and edit project files.
+- Run terminal commands.
+- Install dependencies.
+- Execute a development server.
+- Access a MySQL database.
+- Run tests.
+- Produce an exportable project.
+
+Do not assume these capabilities exist.
+
+If the environment supports full implementation, begin building the actual application.
+
+If the environment is limited, identify the limitation and use the most reliable available method to deliver the complete project source code.
+
+Do not stop after creating a plan or an attractive landing page.
+
+Continue through implementation, integration, testing, and deployment preparation.
+
+When a required external service needs credentials or owner approval, implement its integration boundary and document the exact remaining configuration.
+
+Do not invent credentials, records, test results, or deployment outcomes.
+
+Prioritize a functioning, secure, maintainable system over superficial completeness.
+
+The ultimate objective is to deliver Write Your Wave as a real, exportable, database-backed business platform that the project owner can operate, inspect, edit, maintain, and deploy.
+
+BEGIN NOW.

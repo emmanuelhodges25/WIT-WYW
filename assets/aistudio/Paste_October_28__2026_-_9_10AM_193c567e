@@ -1,0 +1,1616 @@
+WRITE YOUR WAVE
+
+ADVANCED BUSINESS MANAGEMENT SYSTEM
+
+Admin Dashboard • Inventory Management • Sales & Profits • User Management • Ambassador Portal • Security Architecture
+
+Act as a senior full-stack software architect, enterprise inventory management engineer, financial systems analyst, UI/UX designer, database architect, and application security specialist with over 15 years of professional experience.
+
+Your assignment is to upgrade the EXISTING WRITE YOUR WAVE website into a professional, secure, data-driven business platform with three distinct experiences:
+
+1. Customer Platform: The public website and registered customer account.
+2. Administrator Platform: A protected business management dashboard.
+3. Ambassador Platform: A separate, protected portal for approved brand ambassadors.
+
+The platform belongs to WRITE YOUR WAVE, a notebook, journal, and personalized stationery brand.
+
+The objective is to build a reliable system that can manage real inventory, monitor business activities, calculate financial performance, manage administrators, coordinate ambassadors, and support business growth.
+
+This must be a functional application backed by real data, not a static dashboard with decorative cards.
+
+---
+
+1. NON-NEGOTIABLE DEVELOPMENT RULES
+
+Before writing or changing code:
+
+- Inspect the complete existing repository.
+- Identify the actual framework, dependencies, routing architecture, authentication provider, database, and deployment configuration.
+- Determine which features already exist and which are missing.
+- Reuse and improve existing components wherever appropriate.
+- Preserve the current WRITE YOUR WAVE branding, homepage, product pages, collections, checkout, customer profiles, WaveGuide AI, and existing features.
+- Do not rebuild the application from scratch.
+- Do not replace working functionality with mock implementations.
+- Do not create a second database or authentication system unnecessarily.
+- Do not assume that a backend, database, or authentication provider exists until you verify it.
+- Do not expose API keys, privileged credentials, session tokens, or sensitive customer information.
+- Never trust client-side role checks as the actual security boundary.
+- Do not claim that a feature works until its implementation and relevant tests have been verified.
+- Make changes in logical, testable phases.
+- Keep the application compatible with the existing GitHub and Vercel workflow.
+
+If an essential service or configuration is missing, explain what is required and provide the exact setup instructions.
+
+Begin by auditing the project and presenting a short implementation plan. Then proceed with the implementation in manageable phases.
+
+---
+
+2. APPLICATION ARCHITECTURE: THREE SEPARATE EXPERIENCES
+
+Create a clear separation between the public customer application, the administration system, and the ambassador portal.
+
+Use the existing routing conventions and adapt these proposed routes to the actual project.
+
+Customer platform
+
+Potential routes:
+
+- "/"
+- "/products"
+- "/collections"
+- "/products/[slug]"
+- "/account"
+- "/account/orders"
+- "/account/profile"
+
+Customers must not be able to access administrator functions or another customer's private information.
+
+Administrator platform
+
+Potential routes:
+
+- "/admin/login"
+- "/admin/dashboard"
+- "/admin/inventory"
+- "/admin/products"
+- "/admin/orders"
+- "/admin/sales"
+- "/admin/finance"
+- "/admin/users"
+- "/admin/activities"
+- "/admin/ambassadors"
+- "/admin/referrals"
+- "/admin/tasks"
+- "/admin/administrators"
+- "/admin/reports"
+- "/admin/audit-logs"
+- "/admin/settings"
+
+These are proposed routes, not permission to create duplicate pages. Reuse existing routes and components if the application already has an equivalent structure.
+
+Ambassador platform
+
+Potential routes:
+
+- "/ambassador/login"
+- "/ambassador/dashboard"
+- "/ambassador/profile"
+- "/ambassador/referrals"
+- "/ambassador/sales"
+- "/ambassador/commissions"
+- "/ambassador/payouts"
+- "/ambassador/resources"
+- "/ambassador/settings"
+
+The ambassador portal must use a separate navigation layout and appropriate permissions.
+
+A separate URL path does not itself provide security. Every protected page, API route, database operation, and sensitive action must enforce authorization on the server.
+
+---
+
+3. ADVANCED ADMIN DASHBOARD
+
+Design a premium, business-oriented administration dashboard.
+
+The interface should feel like a modern business management platform: clean, organized, responsive, analytical, and efficient.
+
+Avoid excessive animations, unnecessary decorative graphics, and overcrowded layouts.
+
+Dashboard header
+
+Include:
+
+- WRITE YOUR WAVE branding.
+- Dashboard title and current section.
+- Search interface.
+- Date-range selector.
+- Notifications.
+- Current administrator profile.
+- Role indicator.
+- Account settings.
+- Secure logout.
+- Optional quick-action menu.
+
+Use the user's authorized role and permissions to determine which controls appear.
+
+Dashboard KPI cards
+
+Display the following metrics from actual database records:
+
+1. Total registered users.
+2. New registrations during the selected period.
+3. Active users, using a clearly defined activity window.
+4. Total products.
+5. Total inventory units.
+6. Low-stock products.
+7. Out-of-stock products.
+8. Total orders.
+9. Units sold.
+10. Gross sales revenue.
+11. Discounts and refunds.
+12. Net sales.
+13. Cost of goods sold.
+14. Gross profit.
+15. Operating expenses, where recorded.
+16. Net profit, when all required expense data is available.
+17. Pending orders.
+18. Active ambassadors.
+19. Ambassador-attributed sales.
+20. Outstanding ambassador commissions.
+
+Each metric must have a clear definition.
+
+Provide meaningful comparisons with the previous equivalent period when sufficient data exists.
+
+Do not show fabricated numbers. If there is no data, display an appropriate empty state.
+
+Distinguish unavailable data from a genuine zero.
+
+Dashboard charts
+
+Include useful charts such as:
+
+- Sales over time.
+- Units sold by product.
+- Revenue by product category.
+- Inventory value over time, if historical data is available.
+- Top-selling products.
+- Low-stock inventory.
+- Customer registration trends.
+- Ambassador referral conversions.
+- Commission liabilities.
+- Profit trends.
+
+Charts must use real query results and respect the selected date range.
+
+Provide accessible labels, appropriate tooltips, loading states, and empty states.
+
+Recent activity feed
+
+Show authorized, useful business events, including:
+
+- New customer registrations.
+- New orders.
+- Order status changes.
+- Inventory adjustments.
+- Products created or updated.
+- Low-stock alerts.
+- Ambassador applications and approvals.
+- Referral conversions.
+- Commission approvals.
+- Task creation and completion.
+- Administrator invitations and permission changes.
+
+Display timestamps and actor information when appropriate.
+
+Never expose passwords, authentication tokens, private payment data, or unnecessary personal information.
+
+---
+
+4. ADVANCED INVENTORY MANAGEMENT
+
+Build inventory management as a core business module.
+
+It must support the physical products sold by WRITE YOUR WAVE, including notebooks, journals, personalized products, and future stationery products.
+
+A. Inventory overview
+
+Provide summary cards for:
+
+- Total unique SKUs.
+- Total units in stock.
+- Units reserved for pending orders.
+- Available-to-sell units.
+- Low-stock SKUs.
+- Out-of-stock SKUs.
+- Inventory cost value.
+- Estimated retail value.
+- Potential gross margin.
+- Inventory requiring review.
+
+Define the calculations carefully and avoid double-counting reserved inventory.
+
+B. Product inventory table
+
+Create a searchable, sortable, filterable, paginated inventory table.
+
+Recommended columns:
+
+1. Product image.
+2. Product name.
+3. SKU.
+4. Product category.
+5. Variant.
+6. Supplier.
+7. Quantity on hand.
+8. Reserved quantity.
+9. Available quantity.
+10. Reorder level.
+11. Unit cost.
+12. Selling price.
+13. Inventory cost value.
+14. Estimated retail value.
+15. Stock status.
+16. Last updated.
+17. Actions.
+
+Support:
+
+- Search by name, SKU, or barcode when available.
+- Filter by category.
+- Filter by stock status.
+- Filter by supplier.
+- Filter by product variant.
+- Sort by quantity, value, name, and update date.
+- Paginate large datasets.
+- Export authorized inventory reports to CSV.
+- Open detailed product records.
+- View inventory movement history.
+
+Use a responsive table on desktop and an appropriate mobile layout.
+
+C. Add a product
+
+Create a professional product creation workflow with fields such as:
+
+- Product name.
+- SKU.
+- Barcode, if supported.
+- Description.
+- Category.
+- Product type.
+- Product images.
+- Variants.
+- Size.
+- Color.
+- Supplier.
+- Initial quantity.
+- Reorder threshold.
+- Unit cost.
+- Selling price.
+- Tax configuration, if applicable.
+- Active or inactive status.
+
+Validate every field on the server.
+
+Require unique SKUs within the appropriate scope.
+
+If the application supports personalized products, allow the product to be marked as customizable.
+
+Do not expose internal cost information to ordinary customers.
+
+D. Update inventory
+
+Provide controlled inventory operations:
+
+- Receive new stock.
+- Increase stock.
+- Record damaged units.
+- Record lost units.
+- Record returns.
+- Correct a stock-count discrepancy.
+- Transfer stock between locations, if multiple locations are supported.
+- Record stock write-offs.
+- Adjust reorder levels.
+- View stock movement history.
+
+Every stock movement must create an immutable inventory transaction record.
+
+Record:
+
+- Product or variant ID.
+- Quantity change.
+- Previous quantity.
+- New quantity.
+- Reason.
+- Reference number.
+- Related purchase order or order, if applicable.
+- Acting administrator.
+- Timestamp.
+- Optional notes.
+
+Never silently overwrite inventory history.
+
+For stock corrections, require an adjustment reason and record both the previous and resulting quantities.
+
+Use database transactions or equivalent atomic operations to prevent concurrent orders or adjustments from corrupting stock quantities.
+
+E. Inventory statuses
+
+Implement clear statuses:
+
+- In Stock.
+- Low Stock.
+- Out of Stock.
+- Reserved.
+- Discontinued, where appropriate.
+
+Determine status using defined rules.
+
+For example:
+
+- Out of Stock: available quantity is zero.
+- Low Stock: available quantity is at or below the configured reorder threshold.
+- In Stock: available quantity exceeds the reorder threshold.
+
+A reserved product must not automatically be considered available for another order.
+
+F. Low-stock alerts
+
+Create a low-stock notification system.
+
+Administrators should be able to:
+
+- View low-stock products.
+- View out-of-stock products.
+- Configure reorder thresholds.
+- Acknowledge alerts.
+- Review historical stock alerts.
+- Create replenishment tasks.
+
+Do not claim that notifications were sent unless the notification service actually executed successfully.
+
+G. Suppliers and purchasing
+
+If compatible with the existing business model, create a supplier management module.
+
+Include:
+
+- Supplier name.
+- Contact details.
+- Supplier reference.
+- Products supplied.
+- Purchase orders.
+- Purchase order status.
+- Order date.
+- Expected delivery date.
+- Received quantities.
+- Supplier invoice reference.
+- Purchase costs.
+- Notes.
+
+Suggested purchase order statuses:
+
+- Draft.
+- Submitted.
+- Partially Received.
+- Received.
+- Cancelled.
+
+Receiving a purchase order must update stock and record the inventory movement atomically.
+
+Do not mark a purchase order as received before the relevant stock operation succeeds.
+
+If supplier purchasing is outside the current implementation scope, structure the architecture so it can be added later without rebuilding inventory.
+
+---
+
+5. SALES, REVENUE, COSTS, AND PROFIT CALCULATIONS
+
+Create a financial reporting module that uses real order and expense records.
+
+Financial figures must be auditable and derived from stored transactions.
+
+Do not use product selling price alone as proof of actual revenue or profit.
+
+Required financial metrics
+
+Gross sales
+
+The sum of eligible item sales before discounts and refunds, following a clearly documented business rule.
+
+Exclude cancelled or test orders as appropriate.
+
+Net sales
+
+Calculate net sales using a documented rule such as:
+
+Net Sales = Gross Sales - Discounts - Refunds
+
+Handle tax and shipping consistently according to the selected reporting convention. Show whether tax and shipping are included or excluded.
+
+Cost of goods sold
+
+For each sold item:
+
+Cost of Goods Sold = Quantity Sold × Recorded Unit Cost
+
+Use a consistent inventory costing method.
+
+Prefer a properly implemented weighted-average cost or another clearly documented costing method appropriate to the existing data model.
+
+Where unit costs change over time, preserve historical cost information so later changes to a product's cost do not rewrite the cost of earlier sales.
+
+If historical cost records are missing, clearly flag affected calculations as estimates or unavailable rather than inventing costs.
+
+Gross profit
+
+Gross Profit = Net Sales - Cost of Goods Sold
+
+Apply the same reporting scope and currency conventions to both amounts.
+
+Gross profit margin
+
+Gross Profit Margin = (Gross Profit ÷ Net Sales) × 100
+
+If net sales are zero, handle the calculation safely without division-by-zero errors.
+
+Net profit
+
+Net Profit = Gross Profit - Recorded Operating Expenses
+
+Only label a figure "Net Profit" when the application contains the necessary expense data and accounting assumptions.
+
+Otherwise, show Gross Profit and clearly state that operating expenses are not yet included.
+
+Inventory cost value
+
+Calculate inventory cost value from eligible inventory quantities and their recorded costs.
+
+Document how reserved units, damaged units, and inventory write-offs are treated.
+
+Potential gross profit
+
+Estimated Retail Value - Inventory Cost Value may be displayed as an estimate of potential gross profit.
+
+Clearly distinguish this estimate from realized profit.
+
+Financial controls
+
+- Use integer minor currency units or a suitable decimal-safe monetary representation.
+- Do not rely on binary floating-point arithmetic for financial calculations.
+- Store the currency code with monetary records.
+- Do not mix currencies in the same total without an explicit conversion mechanism.
+- Store timestamps consistently.
+- Make refunds and discounts visible in reports.
+- Preserve transaction history.
+- Restrict financial data to authorized roles.
+- Log sensitive financial adjustments.
+- Make reports filterable by date, product, category, and order status.
+
+Support exportable reports with appropriate authorization.
+
+---
+
+6. ORDER MANAGEMENT AND REFERENCE NUMBERS
+
+Create an order management interface connected to the actual order data.
+
+Display:
+
+- Order reference.
+- Customer reference.
+- Order date.
+- Items purchased.
+- Quantities.
+- Unit selling price.
+- Recorded unit cost where authorized.
+- Discounts.
+- Tax.
+- Shipping charges.
+- Refunds.
+- Total.
+- Payment status.
+- Fulfillment status.
+- Ambassador attribution, if applicable.
+- Order notes.
+- Activity history.
+
+Support the actual order lifecycle implemented by the application.
+
+Suggested fulfillment statuses:
+
+- Pending.
+- Confirmed.
+- Processing.
+- Ready for Dispatch.
+- Shipped.
+- Delivered.
+- Cancelled.
+- Returned, where appropriate.
+
+Payment and fulfillment statuses must be managed separately.
+
+Do not mark an order as paid merely because an administrator changes its fulfillment status.
+
+If payment processing is connected, verify payment status through trusted server-side payment records or verified provider webhooks.
+
+Reference number generation
+
+Provide a secure reference-number generation system for:
+
+- Customer orders.
+- Inventory adjustments.
+- Purchase orders.
+- Ambassador referrals.
+- Commission records.
+- Internal tasks.
+
+Requirements:
+
+- Generate references on the server.
+- Enforce uniqueness in the database.
+- Handle concurrent requests safely.
+- Avoid exposing sensitive internal database identifiers unnecessarily.
+- Make references searchable.
+- Record the reference type and associated record.
+- Do not rely only on timestamps or random strings without collision protection.
+
+Example display formats:
+
+- Order: "WYW-ORD-2026-000001"
+- Inventory adjustment: "WYW-INV-2026-000001"
+- Purchase order: "WYW-PO-2026-000001"
+- Referral: "WYW-REF-2026-000001"
+- Task: "WYW-TSK-2026-000001"
+
+These are examples. Implement a collision-safe approach and avoid claiming sequential numbers unless the database actually guarantees the sequence.
+
+Do not reuse references after deletion. Prefer archiving over deleting business records.
+
+---
+
+7. CUSTOMER AND USER MANAGEMENT
+
+Create an administrator-only user management module.
+
+User overview
+
+Show authorized administrators:
+
+- Total registered users.
+- New registrations.
+- Active and inactive accounts, where defined.
+- Registration dates.
+- Recent customer activity.
+- Order counts.
+- Total purchase value using the chosen reporting convention.
+- Account status.
+- Ambassador status, if applicable.
+
+User directory
+
+Provide:
+
+- Search.
+- Filtering.
+- Pagination.
+- User detail pages.
+- Registration date filters.
+- Account status filters.
+- Order history summaries.
+- Account activity history.
+
+Protect private customer information and apply data minimization.
+
+User activity monitoring
+
+Record relevant events such as:
+
+- Registration.
+- Successful login.
+- Failed login, with appropriate privacy safeguards.
+- Profile changes.
+- Orders created.
+- Orders cancelled.
+- Password reset requests.
+- Ambassador applications.
+- Consent changes where relevant.
+
+Do not collect or display passwords, raw authentication tokens, or unnecessary sensitive information.
+
+Use defined activity windows for active-user metrics.
+
+Do not confuse a registration with an active user.
+
+Administrative actions
+
+Depending on permissions, administrators may:
+
+- View customer details.
+- Review customer orders.
+- Suspend or reactivate accounts when the authentication system supports it.
+- Add internal notes with appropriate controls.
+- Review account activity.
+- Export approved reports.
+
+Require confirmation for high-impact actions.
+
+Log who performed each administrative action and when.
+
+---
+
+8. ADMINISTRATOR MANAGEMENT — FACEBOOK BUSINESS-STYLE ACCESS
+
+Build a secure administrator invitation and permissions system inspired by the way business platforms manage team access.
+
+The goal is to allow authorized business owners to add team members without sharing passwords.
+
+Administrator roles
+
+Implement role-based access control with the following roles as a starting point:
+
+Super Admin / Business Owner
+
+Can manage:
+
+- All permitted administrative modules.
+- Administrator invitations.
+- Role assignments.
+- Business configuration.
+- Financial reports.
+- Inventory.
+- Users.
+- Ambassadors.
+- Audit logs.
+- Security settings.
+
+There must be a protected recovery and ownership-transfer process.
+
+Do not allow an ordinary administrator to promote themselves to Super Admin.
+
+Operations Admin
+
+Can manage:
+
+- Inventory.
+- Products.
+- Orders.
+- Operational tasks.
+- Stock adjustments within assigned permissions.
+- Operational reports.
+
+Sales Manager
+
+Can manage:
+
+- Sales.
+- Orders.
+- Customer purchase summaries.
+- Sales reports.
+- Approved promotional activities.
+
+Finance Manager
+
+Can view and manage authorized:
+
+- Revenue reports.
+- Cost records.
+- Refund records.
+- Expense records.
+- Profit calculations.
+- Commission records.
+- Financial exports.
+
+Customer Support Admin
+
+Can manage authorized customer support workflows, customer orders, and customer activity records.
+
+This role must not automatically gain access to confidential financial information or administrator security settings.
+
+Ambassador Manager
+
+Can manage:
+
+- Ambassador applications.
+- Ambassador status.
+- Referral campaigns.
+- Approved commission workflows.
+- Ambassador performance reports.
+
+Read-Only Analyst
+
+Can view explicitly permitted dashboards and reports without modifying business records.
+
+These roles are a proposed starting point. Implement the smallest sensible role set and use explicit permissions for sensitive operations.
+
+Permission model
+
+Use granular permissions such as:
+
+- "inventory.read"
+- "inventory.create"
+- "inventory.adjust"
+- "inventory.receive"
+- "products.manage"
+- "orders.read"
+- "orders.update"
+- "users.read"
+- "users.manage"
+- "sales.read"
+- "finance.read"
+- "finance.manage"
+- "ambassadors.read"
+- "ambassadors.manage"
+- "commissions.approve"
+- "tasks.read"
+- "tasks.manage"
+- "admins.invite"
+- "admins.manage_roles"
+- "audit_logs.read"
+- "settings.manage"
+
+The actual permission names can follow the project's conventions.
+
+Invitation workflow
+
+An authorized administrator should be able to:
+
+1. Open Administrator Management.
+2. Select Invite Administrator.
+3. Enter the invitee's email address.
+4. Assign an approved role.
+5. Review the role's permissions.
+6. Send an invitation through a real configured email service.
+7. Allow the invitee to accept the invitation through a secure, expiring, single-use token.
+8. Require the invitee to authenticate using the application's supported authentication provider.
+9. Record the acceptance.
+10. Notify the inviting administrator when appropriate.
+
+If email delivery is not configured, show that invitation delivery is blocked. Do not display a fake "Email sent" confirmation.
+
+Never ask administrators to share passwords.
+
+Never allow public registration to automatically grant administrator privileges.
+
+Administrator security
+
+- Enforce authorization on every protected server-side operation.
+- Use least privilege.
+- Deny by default.
+- Require recent authentication or re-authentication for sensitive actions where supported.
+- Support revoking administrator access.
+- Invalidate or refresh sessions appropriately when roles change.
+- Log invitations, role changes, suspensions, and access revocations.
+- Prevent unauthorized promotion of privileges.
+- Protect against account enumeration and invitation abuse.
+- Do not expose invitation tokens in analytics or logs.
+- Require a secure, verified process for bootstrapping the initial owner account.
+
+---
+
+9. TASK MANAGEMENT SYSTEM
+
+Create a dedicated Task Management module.
+
+Administrators should be able to create, assign, update, track, and complete business tasks.
+
+Task fields
+
+Each task should support:
+
+- Unique task reference.
+- Title.
+- Description.
+- Task category.
+- Priority.
+- Status.
+- Assigned administrator or authorized team member.
+- Created by.
+- Creation date.
+- Due date.
+- Completion date.
+- Related product.
+- Related inventory adjustment.
+- Related order.
+- Related ambassador.
+- Comments or internal notes.
+- Activity history.
+
+Task statuses
+
+- Backlog.
+- To Do.
+- In Progress.
+- Blocked.
+- Under Review.
+- Completed.
+- Cancelled.
+
+Task priorities
+
+- Low.
+- Normal.
+- High.
+- Urgent.
+
+Task operations
+
+Administrators with appropriate permissions can:
+
+- Create tasks.
+- Edit tasks.
+- Assign tasks.
+- Change priorities.
+- Update statuses.
+- Add comments.
+- Set due dates.
+- Filter tasks.
+- Search tasks.
+- Review overdue tasks.
+- View tasks by assignee.
+- View completed tasks.
+- Archive tasks when appropriate.
+
+Show task activity history.
+
+Record who created, edited, reassigned, and completed each task.
+
+Support dashboard widgets for overdue tasks, urgent tasks, and tasks assigned to the current administrator.
+
+Do not grant task access to users who do not have permission to view that task.
+
+---
+
+10. AMBASSADOR PROGRAM AND PORTAL
+
+Build an advanced ambassador system for people approved to promote WRITE YOUR WAVE products.
+
+The ambassador experience must be distinct from both the ordinary customer account and the administrator dashboard.
+
+A. Ambassador login
+
+Create a branded ambassador login page.
+
+Requirements:
+
+- Email and password or the existing supported authentication method.
+- Password reset through a real configured authentication flow.
+- Secure session handling.
+- Loading and error states.
+- Responsive mobile and desktop layouts.
+- Clear branding.
+- Secure logout.
+- Access denied screen for accounts without an approved ambassador role.
+
+Do not create a separate password database if the application already has a suitable authentication provider.
+
+Ambassador accounts must not automatically receive administrative access.
+
+B. Ambassador application and approval
+
+If the business wants public applications, provide an application workflow.
+
+Application fields may include:
+
+- Full name.
+- Email address.
+- Social media or promotional channel.
+- Audience description.
+- Why the applicant wants to represent WRITE YOUR WAVE.
+- Relevant optional information.
+- Agreement to ambassador terms and privacy information.
+
+Application statuses:
+
+- Draft, where supported.
+- Submitted.
+- Under Review.
+- Approved.
+- Rejected.
+- Suspended.
+
+An application must not grant ambassador privileges until an authorized administrator approves it.
+
+C. Ambassador dashboard
+
+Create a professional dashboard with real data for the authenticated ambassador.
+
+Show:
+
+- Welcome message.
+- Application or account status.
+- Unique ambassador reference.
+- Referral code.
+- Referral link.
+- Total clicks, if click tracking is implemented.
+- Total referrals.
+- Attributed orders.
+- Confirmed sales.
+- Pending commissions.
+- Approved commissions.
+- Paid commissions.
+- Conversion rate.
+- Recent referral activity.
+- Recent attributed orders.
+- Available promotional resources.
+
+Do not show information belonging to other ambassadors.
+
+If click tracking or analytics are not implemented, mark those metrics as unavailable rather than generating fictional values.
+
+D. Referral tracking
+
+Create a unique referral code and, where supported, a referral URL for each approved ambassador.
+
+Example display format:
+
+"https://write-your-wave.vercel.app/?ref=AMBASSADORCODE"
+
+The actual referral mechanism must be implemented and tested.
+
+Requirements:
+
+- Generate codes on the server.
+- Enforce uniqueness.
+- Validate referral codes.
+- Record eligible referral attribution.
+- Define an attribution window.
+- Define how repeat customers are handled.
+- Define whether discounts can be combined.
+- Prevent obvious self-referrals.
+- Avoid double-counting the same order.
+- Preserve attribution records for audit purposes.
+- Avoid exposing private customer data in the ambassador dashboard.
+
+A referral click alone must not count as a sale.
+
+A sale must be attributed only after the application's documented eligibility conditions are met.
+
+E. Commission engine
+
+Create a configurable commission system.
+
+Support a documented commission policy, such as:
+
+- Percentage of eligible net merchandise sales.
+- Fixed commission for a qualifying order.
+- Campaign-specific commission rules, if needed.
+
+Store the applicable commission rule and calculation basis with each commission record.
+
+For percentage-based commissions:
+
+Commission = Eligible Commissionable Sales × Commission Rate
+
+Define how discounts, cancellations, refunds, shipping, and tax affect the commission base.
+
+Commission states:
+
+- Pending.
+- Approved.
+- Payable.
+- Paid.
+- Reversed.
+- Disputed.
+
+Avoid generating commission twice for the same eligible order.
+
+If an order is refunded or cancelled, adjust or reverse the commission according to the documented policy.
+
+Do not mark commissions as paid unless an authorized administrator records a genuine payout or the payment integration confirms it.
+
+F. Ambassador sales and referrals
+
+Ambassadors can view:
+
+- Their own referral activity.
+- Their own eligible attributed orders.
+- Their own sales totals.
+- Their own commission records.
+- Their own payout history.
+- Their own referral performance.
+
+Protect customer privacy. Use minimal order information, such as an order reference, date, eligible amount, and status where appropriate.
+
+Do not expose full customer addresses, contact details, or payment information.
+
+G. Ambassador resources
+
+Provide an optional resource library containing approved:
+
+- Product images.
+- Brand guidelines.
+- Campaign information.
+- Promotional copy.
+- Referral instructions.
+- Approved downloadable resources.
+
+Only authorized administrators should manage protected ambassador resources.
+
+If file uploads are implemented, validate file type, size, and permissions and use safe storage.
+
+H. Ambassador profile and settings
+
+Allow ambassadors to manage permitted information, such as:
+
+- Display name.
+- Profile image, if supported.
+- Promotional channels.
+- Contact preferences.
+- Password or authentication settings through the existing authentication provider.
+- Notification preferences.
+- Payout preferences through a secure workflow, if payouts are supported.
+
+Sensitive payout details must not be exposed in ordinary profile responses or logs.
+
+---
+
+11. ADVANCED SIDEBAR NAVIGATION
+
+Build a polished, expandable administrator sidebar with clear icons, section labels, and active states.
+
+Suggested administrator sidebar
+
+OVERVIEW
+
+- Dashboard
+
+CATALOG & INVENTORY
+
+- Inventory Overview
+- All Products
+- Add Product
+- Inventory Movements
+- Low Stock Alerts
+- Suppliers
+- Purchase Orders
+
+SALES & ORDERS
+
+- All Orders
+- Pending Orders
+- Order Fulfillment
+- Sales Analytics
+- Reference Numbers
+
+FINANCE
+
+- Revenue
+- Cost of Goods Sold
+- Gross Profit
+- Operating Expenses
+- Ambassador Commissions
+- Financial Reports
+
+CUSTOMERS
+
+- All Users
+- User Activity
+- Customer Orders
+
+AMBASSADOR PROGRAM
+
+- Ambassador Overview
+- Applications
+- Approved Ambassadors
+- Referral Analytics
+- Commission Management
+- Campaigns
+- Promotional Resources
+
+OPERATIONS
+
+- Task Board
+- My Tasks
+- Overdue Tasks
+- Activity Feed
+
+ADMINISTRATION
+
+- Administrators
+- Invitations
+- Roles & Permissions
+- Audit Logs
+- Reports
+- Settings
+
+Show only the sections and actions the current administrator is authorized to access.
+
+Include:
+
+- Collapsible sidebar.
+- Mobile drawer.
+- Active navigation state.
+- Accessible tooltips.
+- Optional badges for pending tasks or alerts.
+- Keyboard accessibility.
+- Responsive content area.
+- Breadcrumbs.
+- Consistent page headings.
+- Clear empty states.
+
+Do not expose unauthorized sections merely because they are hidden in the interface. The backend must independently enforce all permissions.
+
+---
+
+12. SECURITY ARCHITECTURE
+
+Security is a core requirement, not a visual feature.
+
+Follow established secure-development practices and review the official OWASP Authorization Cheat Sheet:
+
+https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html
+
+A. Authentication
+
+Reuse the application's existing authentication provider where appropriate.
+
+If authentication is not implemented, propose and implement a suitable solution compatible with the existing framework and deployment architecture.
+
+Use:
+
+- Secure session management.
+- HttpOnly cookies where applicable.
+- Secure cookie attributes in production.
+- Appropriate SameSite settings.
+- Session expiry and revocation.
+- Secure password reset through the authentication provider.
+- Multi-factor authentication for administrators when supported.
+- Rate limiting for authentication endpoints.
+
+Do not implement custom cryptography.
+
+Do not store plaintext passwords.
+
+B. Role-based access control
+
+Create a centralized server-side authorization layer.
+
+For each request, verify:
+
+1. The requester is authenticated.
+2. The account is active.
+3. The current role and permissions are valid.
+4. The requested action is permitted.
+5. The requested record is within the requester's authorized scope.
+
+Use deny-by-default behavior.
+
+An ordinary customer must never be able to access "/admin" data or privileged API operations.
+
+An ambassador must never gain administrative access simply by modifying a URL, request body, browser storage, or client-side state.
+
+An administrator must not automatically receive every permission unless their assigned role explicitly grants those permissions.
+
+Check authorization for every protected request, not only during initial page rendering.
+
+C. Database security
+
+Use the existing database if it is suitable.
+
+If the project uses Supabase, apply proper Row Level Security policies and ensure server-side operations enforce the intended authorization model.
+
+Do not expose service-role credentials in browser code.
+
+If the project uses another database, implement equivalent access controls using its supported mechanisms.
+
+Protect:
+
+- User profiles.
+- Orders.
+- Inventory.
+- Costs.
+- Sales records.
+- Ambassador records.
+- Commission records.
+- Administrator records.
+- Tasks.
+- Audit logs.
+
+Enforce foreign keys, appropriate uniqueness constraints, and transactional integrity where supported.
+
+D. Audit logs
+
+Create a protected audit log for sensitive administrative actions.
+
+Record:
+
+- Actor ID.
+- Actor role at the time of the event, where useful.
+- Action.
+- Target record type.
+- Target record ID.
+- Timestamp.
+- Outcome.
+- Safe metadata.
+- Request or correlation ID, where supported.
+
+Log events such as:
+
+- Administrator invitations.
+- Role changes.
+- Permission changes.
+- Access revocations.
+- Inventory adjustments.
+- Cost changes.
+- Financial adjustments.
+- Commission approvals.
+- Commission reversals.
+- Order status changes.
+- Sensitive data exports.
+- Account suspension.
+
+Never log passwords, access tokens, private API keys, or full payment credentials.
+
+Audit records should not be editable through ordinary application workflows.
+
+E. Additional protections
+
+Where applicable, implement:
+
+- Server-side input validation.
+- Output encoding.
+- Safe rendering of user-generated content.
+- CSRF protection where required by the authentication architecture.
+- Appropriate CORS configuration.
+- Rate limiting.
+- Request size limits.
+- Secure error handling.
+- Safe file uploads.
+- Database transaction protection.
+- Protection against unauthorized object references.
+- Appropriate security headers.
+- Dependency vulnerability review.
+- Privacy-conscious activity logging.
+- Confirmation for destructive or high-impact actions.
+
+Never rely on the secrecy of a URL as a security control.
+
+---
+
+13. DATABASE DESIGN
+
+Inspect the existing schema before making changes.
+
+Create or extend a normalized, maintainable schema that supports the required workflows.
+
+Potential entities include:
+
+- Users or Profiles.
+- Roles.
+- Permissions.
+- Role Permissions.
+- User Role Assignments.
+- Administrator Invitations.
+- Products.
+- Product Variants.
+- Inventory Balances.
+- Inventory Movements.
+- Suppliers.
+- Purchase Orders.
+- Purchase Order Items.
+- Orders.
+- Order Items.
+- Payments or Payment Events, if supported.
+- Refunds.
+- Expenses.
+- Financial Transactions.
+- Ambassador Profiles.
+- Ambassador Applications.
+- Referral Codes.
+- Referral Clicks, if implemented.
+- Referral Attributions.
+- Commission Rules.
+- Commission Records.
+- Payout Records.
+- Tasks.
+- Task Comments.
+- Audit Logs.
+- Notifications.
+
+These are proposed entities, not instructions to duplicate existing tables.
+
+Establish correct relationships, foreign keys, constraints, indexes, and appropriate deletion or archival behavior.
+
+Use migrations for schema changes.
+
+Avoid destructive migrations that erase existing customer, order, or inventory data.
+
+Preserve existing data and provide safe migration or backfill strategies when required.
+
+---
+
+14. BUSINESS RULES AND DATA INTEGRITY
+
+Implement and test the following rules:
+
+1. One product variant must not have multiple conflicting inventory balances for the same stock location.
+2. SKU uniqueness must be enforced.
+3. An order must not reserve more stock than is available.
+4. Concurrent orders must not cause inventory overselling.
+5. Every stock change must have an associated inventory movement.
+6. A cancelled order must release its stock reservation when the order lifecycle requires it.
+7. Refunds must be reflected in appropriate financial reports.
+8. Product cost changes must not silently rewrite historical cost calculations.
+9. Every ambassador commission must have a traceable basis.
+10. Duplicate order processing must not create duplicate stock movements or commissions.
+11. Reference numbers must be unique.
+12. Only authorized users may change financial records.
+13. An ambassador must only see records within their own permitted scope.
+14. An ordinary user must never assign themselves an administrator or ambassador role.
+15. Failed operations must not leave partially updated business records.
+16. A successful UI message must correspond to a confirmed successful backend operation.
+
+Use database transactions, uniqueness constraints, idempotency mechanisms, or equivalent protections where appropriate.
+
+---
+
+15. REPORTING AND EXPORTS
+
+Provide useful reports for authorized administrators.
+
+Potential reports:
+
+- Inventory valuation.
+- Stock movement history.
+- Low-stock report.
+- Product performance.
+- Units sold.
+- Sales by period.
+- Sales by product.
+- Sales by category.
+- Gross profit.
+- Recorded expenses.
+- Net profit when calculable.
+- Customer registration trends.
+- Ambassador performance.
+- Commission liabilities.
+- Task completion.
+- Administrative activity.
+
+Support CSV exports where appropriate.
+
+Exports must respect authorization and selected filters.
+
+Do not include sensitive information that the requesting role is not allowed to access.
+
+Large exports should use pagination, streaming, or a suitable background process rather than loading unlimited records into memory.
+
+---
+
+16. DESIGN SYSTEM AND USER EXPERIENCE
+
+Build a coherent, premium administration interface.
+
+Use the existing WRITE YOUR WAVE brand system where possible.
+
+The administration interface should prioritize usability over decoration.
+
+Design characteristics:
+
+- Clear typography.
+- Consistent spacing.
+- Well-defined visual hierarchy.
+- Restrained color palette.
+- Professional data tables.
+- Accessible status indicators.
+- Useful charts.
+- Clear forms.
+- Confirmation dialogs.
+- Helpful validation messages.
+- Responsive layouts.
+- Accessible keyboard navigation.
+- Loading skeletons where appropriate.
+- Error states and retry options.
+- Empty states that explain the next step.
+
+Use red or other warning styles for critical stock or security alerts, but do not rely on color alone to communicate status.
+
+Do not overload every page with cards.
+
+Keep complex operations easy to understand.
+
+Make the inventory, financial, user, task, and ambassador modules feel like parts of one consistent business system.
+
+---
+
+17. TESTING REQUIREMENTS
+
+Write or update tests using the existing testing framework.
+
+At minimum, test:
+
+Access control
+
+- A logged-out visitor cannot access protected administration APIs.
+- A normal customer cannot access administrator data.
+- An ambassador cannot access administrator functions.
+- An ambassador cannot read another ambassador's private records.
+- An operations administrator cannot access financial functions without permission.
+- A read-only analyst cannot modify records.
+- A user cannot grant themselves a privileged role.
+- Revoked administrator access is enforced.
+- Unauthorized requests are denied on the server.
+
+Inventory
+
+- Stock can be received.
+- Stock can be adjusted with a reason.
+- Every adjustment produces a movement record.
+- Negative stock is prevented where the business rule requires it.
+- Reserved quantities are handled correctly.
+- Concurrent stock operations preserve integrity.
+- Low-stock calculations are correct.
+- Historical inventory movements remain intact.
+
+Finance
+
+- Sales totals are calculated correctly.
+- Discounts and refunds are handled consistently.
+- Cost of goods sold uses the appropriate historical cost basis.
+- Gross profit and margin are correct.
+- Zero-revenue calculations do not crash.
+- Missing cost data is clearly identified.
+- Mixed currencies are not silently combined.
+
+Ambassadors
+
+- Applications cannot approve themselves.
+- Referral codes are unique.
+- Eligible orders are attributed according to the policy.
+- Duplicate processing does not duplicate commissions.
+- Refunds follow the commission reversal rules.
+- Ambassadors only see their own authorized records.
+- Commissions cannot be falsely marked as paid.
+
+Tasks and administrators
+
+- Tasks can be created and updated by authorized roles.
+- Unauthorized users cannot edit protected tasks.
+- Invitations expire.
+- Invitations cannot be reused.
+- Role changes are audited.
+- Administrative actions respect permissions.
+
+Quality
+
+- Existing customer functionality remains operational.
+- Existing product pages remain operational.
+- Existing authentication remains operational.
+- Existing WaveGuide AI remains operational.
+- Linting passes where configured.
+- Type checking passes where configured.
+- Production build succeeds.
+
+Do not report unexecuted tests as passing.
+
+---
+
+18. IMPLEMENTATION PLAN
+
+Implement the project in the following order.
+
+Phase 1 — Audit and foundation
+
+- Inspect the repository.
+- Identify existing authentication and database systems.
+- Document the current routing architecture.
+- Identify the required migrations.
+- Identify security risks.
+- Create a detailed implementation plan.
+
+Phase 2 — Authorization and role separation
+
+- Establish the role and permission model.
+- Protect administrator routes and APIs.
+- Protect ambassador routes and APIs.
+- Verify that customer permissions remain unchanged.
+- Add authorization tests.
+
+Do not proceed with privileged business operations until the access-control foundation is in place.
+
+Phase 3 — Inventory and product operations
+
+- Inventory overview.
+- Product management.
+- Stock movements.
+- Low-stock alerts.
+- Inventory valuation.
+- Supplier and purchase-order functionality where feasible.
+
+Phase 4 — Orders, financial reporting, and references
+
+- Order management.
+- Stock reservation integration.
+- Reference number generation.
+- Sales analytics.
+- Cost of goods sold.
+- Gross profit.
+- Expense tracking and net profit when supported.
+
+Phase 5 — User and administrator management
+
+- User directory.
+- Activity monitoring.
+- Administrator invitations.
+- Roles and permissions.
+- Audit logs.
+
+Phase 6 — Task management
+
+- Task creation.
+- Assignment.
+- Status updates.
+- Due dates.
+- Task history.
+- Dashboard integration.
+
+Phase 7 — Ambassador portal
+
+- Ambassador login.
+- Application and approval workflow.
+- Dashboard.
+- Referral attribution.
+- Commission calculations.
+- Payout tracking.
+- Promotional resources.
+
+Phase 8 — Testing and deployment
+
+- Run the relevant tests.
+- Review security.
+- Run the production build.
+- Resolve implementation errors.
+- Prepare database migrations.
+- Prepare environment configuration.
+- Document GitHub and Vercel deployment steps.
+- Provide a final verification report.
+
+If the entire scope cannot be implemented safely in one pass, complete each phase incrementally without replacing working functionality with placeholders.
+
+---
+
+19. FINAL ACCEPTANCE CRITERIA
+
+The implementation is ready for production review only when:
+
+- The customer experience still works.
+- The administrator and ambassador experiences are separate.
+- Protected routes and server operations enforce authorization.
+- Inventory operations update real persistent records.
+- Inventory changes have a traceable history.
+- Sales and profit calculations follow documented rules.
+- Reference numbers are unique.
+- Administrator invitations use a real secure workflow.
+- Tasks persist and enforce permissions.
+- Ambassador referral and commission records use real data.
+- Sensitive records are properly restricted.
+- Critical business operations preserve data integrity.
+- Tests have been executed and their results documented.
+- The production build result is known.
+- Remaining blockers are explicitly listed.
+
+Do not invent products, sales, customers, commissions, inventory quantities, or financial results.
+
+Do not display fake success messages.
+
+Do not state that the system is production-ready if important security, data-integrity, or deployment requirements remain unverified.
+
+---
+
+YOUR FIRST ACTION
+
+Start by inspecting the existing WRITE YOUR WAVE repository.
+
+Report:
+
+1. The framework and current architecture.
+2. Existing authentication and database systems.
+3. Existing administrator and ambassador functionality.
+4. Existing inventory and order-management functionality.
+5. Missing database tables or business logic.
+6. Security risks.
+7. The safest implementation order.
+
+Then begin Phase 1 and proceed incrementally, preserving all working functionality.

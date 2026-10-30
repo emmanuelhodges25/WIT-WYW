@@ -1,0 +1,286 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global safety net: default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        (request.auth.token.email == 'emmanuelhodges17@gmail.com' && request.auth.token.email_verified == true) ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    function isValidProduct(data) {
+      return data.title is string && data.title.size() > 0 && data.title.size() <= 150 &&
+             data.slug is string && data.slug.size() > 0 && data.slug.size() <= 150 &&
+             data.category is string && data.category.size() > 0 && data.category.size() <= 100 &&
+             data.description is string && data.description.size() <= 5000 &&
+             (data.price is int || data.price is float) && data.price >= 0 &&
+             data.currency is string && data.currency.size() <= 10 &&
+             data.sku is string && data.sku.size() <= 50 &&
+             data.isPublished is bool &&
+             data.inStock is bool &&
+             data.stockQuantity is int &&
+             (!('coverImageUrl' in data) || data.coverImageUrl == null || (data.coverImageUrl is string && data.coverImageUrl.size() <= 1000)) &&
+             (!('features' in data) || (data.features is list && data.features.size() <= 20)) &&
+             data.createdAt is timestamp && data.createdAt <= request.time &&
+             data.updatedAt is timestamp && data.updatedAt <= request.time;
+    }
+
+    function isValidOrder(data) {
+      return data.orderReference is string && data.orderReference.size() >= 5 && data.orderReference.size() <= 50 &&
+             data.userId is string && data.userId.size() > 0 && data.userId.size() <= 128 &&
+             data.customerName is string && data.customerName.size() > 0 && data.customerName.size() <= 100 &&
+             data.customerEmail is string && data.customerEmail.size() > 0 && data.customerEmail.size() <= 150 &&
+             data.deliveryAddress is string && data.deliveryAddress.size() > 0 && data.deliveryAddress.size() <= 300 &&
+             data.productId is string && data.productId.size() <= 128 &&
+             data.productTitle is string && data.productTitle.size() <= 150 &&
+             data.quantity is int && data.quantity > 0 && data.quantity <= 1000 &&
+             (data.unitPrice is int || data.unitPrice is float) && data.unitPrice >= 0 &&
+             (data.totalPrice is int || data.totalPrice is float) && data.totalPrice >= 0 &&
+             data.currency is string && data.currency.size() <= 10 &&
+             data.status is string && data.status.size() <= 50 &&
+             data.paymentStatus is string && data.paymentStatus.size() <= 50 &&
+             (!('customerPhone' in data) || data.customerPhone == null || (data.customerPhone is string && data.customerPhone.size() <= 50)) &&
+             (!('customizationDetails' in data) || data.customizationDetails == null || (data.customizationDetails is string && data.customizationDetails.size() <= 1000)) &&
+             data.createdAt is timestamp && data.createdAt <= request.time &&
+             data.updatedAt is timestamp && data.updatedAt <= request.time;
+    }
+
+    function isValidCustomizationRequest(data) {
+      return data.userId is string && data.userId.size() <= 128 &&
+             data.customerName is string && data.customerName.size() > 0 && data.customerName.size() <= 100 &&
+             data.customerEmail is string && data.customerEmail.size() > 0 && data.customerEmail.size() <= 150 &&
+             data.productId is string && data.productId.size() <= 128 &&
+             data.nameOnCover is string && data.nameOnCover.size() > 0 && data.nameOnCover.size() <= 100 &&
+             data.status is string && data.status.size() <= 50 &&
+             (!('customerPhone' in data) || data.customerPhone == null || (data.customerPhone is string && data.customerPhone.size() <= 50)) &&
+             (!('preferredColors' in data) || data.preferredColors == null || (data.preferredColors is string && data.preferredColors.size() <= 100)) &&
+             (!('motivationalQuote' in data) || data.motivationalQuote == null || (data.motivationalQuote is string && data.motivationalQuote.size() <= 500)) &&
+             (!('customInstructions' in data) || data.customInstructions == null || (data.customInstructions is string && data.customInstructions.size() <= 1000)) &&
+             data.createdAt is timestamp && data.createdAt <= request.time &&
+             data.updatedAt is timestamp && data.updatedAt <= request.time;
+    }
+
+    function isValidBulkOrder(data) {
+      return data.userId is string && data.userId.size() <= 128 &&
+             data.organizationName is string && data.organizationName.size() > 0 && data.organizationName.size() <= 150 &&
+             data.contactPerson is string && data.contactPerson.size() > 0 && data.contactPerson.size() <= 100 &&
+             data.email is string && data.email.size() > 0 && data.email.size() <= 150 &&
+             data.phone is string && data.phone.size() > 0 && data.phone.size() <= 50 &&
+             data.estimatedQuantity is int && data.estimatedQuantity > 0 &&
+             data.status is string && data.status.size() <= 50 &&
+             (!('customizationRequirements' in data) || data.customizationRequirements == null || (data.customizationRequirements is string && data.customizationRequirements.size() <= 2000)) &&
+             (!('deadlineDate' in data) || data.deadlineDate == null || (data.deadlineDate is string && data.deadlineDate.size() <= 50)) &&
+             (!('quotationAmount' in data) || (data.quotationAmount is int || data.quotationAmount is float)) &&
+             data.createdAt is timestamp && data.createdAt <= request.time &&
+             data.updatedAt is timestamp && data.updatedAt <= request.time;
+    }
+
+    function isValidContactMessage(data) {
+      return data.userId is string && data.userId.size() <= 128 &&
+             data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+             data.email is string && data.email.size() > 0 && data.email.size() <= 150 &&
+             data.subject is string && data.subject.size() > 0 && data.subject.size() <= 150 &&
+             data.category is string && data.category.size() > 0 && data.category.size() <= 100 &&
+             data.message is string && data.message.size() > 0 && data.message.size() <= 3000 &&
+             data.status is string && data.status.size() <= 50 &&
+             data.createdAt is timestamp && data.createdAt <= request.time;
+    }
+
+    function isValidMovement(data) {
+      return data.productId is string && data.productId.size() <= 128 &&
+             data.quantityChange is int &&
+             data.movementType is string && data.movementType.size() <= 50 &&
+             data.reason is string && data.reason.size() <= 200 &&
+             data.performedBy is string && data.performedBy.size() <= 128 &&
+             data.createdAt is timestamp && data.createdAt <= request.time;
+    }
+
+    function isValidAmbassador(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+             data.slug is string && data.slug.size() > 0 && data.slug.size() <= 100 &&
+             data.role is string && data.role.size() > 0 && data.role.size() <= 100 &&
+             data.biography is string && data.biography.size() <= 2000 &&
+             data.isPublished is bool &&
+             (!('imageUrl' in data) || data.imageUrl == null || (data.imageUrl is string && data.imageUrl.size() <= 1000)) &&
+             (!('featuredProduct' in data) || data.featuredProduct == null || (data.featuredProduct is string && data.featuredProduct.size() <= 150)) &&
+             data.createdAt is timestamp && data.createdAt <= request.time;
+    }
+
+    function isValidJournalEntry(data) {
+      return data.userId is string && data.userId.size() > 0 && data.userId.size() <= 128 &&
+             data.title is string && data.title.size() > 0 && data.title.size() <= 200 &&
+             data.content is string && data.content.size() <= 50000 &&
+             data.pillar is string && data.pillar.size() > 0 && data.pillar.size() <= 100 &&
+             (!('prompt' in data) || data.prompt == null || (data.prompt is string && data.prompt.size() <= 1000)) &&
+             (!('mood' in data) || data.mood == null || (data.mood is string && data.mood.size() <= 50)) &&
+             (data.wordCount is int) && data.wordCount >= 0 &&
+             (!('readingTimeMinutes' in data) || (data.readingTimeMinutes is int && data.readingTimeMinutes >= 0)) &&
+             (!('isFavorite' in data) || data.isFavorite is bool) &&
+             data.createdAt is timestamp && data.createdAt <= request.time &&
+             data.updatedAt is timestamp && data.updatedAt <= request.time;
+    }
+
+    // --- PRODUCTS ---
+    match /products/{productId} {
+      allow get, list: if resource.data.isPublished == true || isAdmin();
+      allow create: if isAdmin() && isValidProduct(incoming());
+      allow update: if isAdmin() && isValidProduct(incoming()) && incoming().createdAt == existing().createdAt;
+      allow delete: if isAdmin();
+    }
+
+    // --- ORDERS ---
+    match /orders/{orderId} {
+      allow get: if isAdmin() || (isSignedIn() && resource.data.userId == request.auth.uid);
+      allow list: if isAdmin() || (isSignedIn() && resource.data.userId == request.auth.uid);
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid && isValidOrder(incoming());
+      allow update: if isAdmin() && isValidOrder(incoming()) && incoming().createdAt == existing().createdAt;
+      allow delete: if isAdmin();
+    }
+
+    // --- INVENTORY MOVEMENTS ---
+    match /inventory_movements/{movementId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin() && isValidMovement(incoming());
+      allow update, delete: if false;
+    }
+
+    // --- CUSTOMIZATION REQUESTS ---
+    match /customization_requests/{requestId} {
+      allow get: if isAdmin() || (isSignedIn() && resource.data.userId == request.auth.uid);
+      allow list: if isAdmin() || (isSignedIn() && resource.data.userId == request.auth.uid);
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid && isValidCustomizationRequest(incoming());
+      allow update: if isAdmin() && isValidCustomizationRequest(incoming()) && incoming().createdAt == existing().createdAt;
+      allow delete: if isAdmin();
+    }
+
+    // --- BULK ORDERS ---
+    match /bulk_orders/{bulkOrderId} {
+      allow get: if isAdmin() || (isSignedIn() && resource.data.userId == request.auth.uid);
+      allow list: if isAdmin() || (isSignedIn() && resource.data.userId == request.auth.uid);
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid && isValidBulkOrder(incoming());
+      allow update: if isAdmin() && isValidBulkOrder(incoming()) && incoming().createdAt == existing().createdAt;
+      allow delete: if isAdmin();
+    }
+
+    // --- CONTACT MESSAGES ---
+    match /contact_messages/{messageId} {
+      allow get: if isAdmin() || (isSignedIn() && resource.data.userId == request.auth.uid);
+      allow list: if isAdmin() || (isSignedIn() && resource.data.userId == request.auth.uid);
+      allow create: if isValidContactMessage(incoming()) && (
+        (isSignedIn() && request.resource.data.userId == request.auth.uid) ||
+        (!isSignedIn() && request.resource.data.userId.matches('^guest_[0-9]+$'))
+      );
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // --- AMBASSADORS ---
+    match /ambassadors/{ambassadorId} {
+      allow get, list: if resource.data.isPublished == true || isAdmin();
+      allow create: if isAdmin() && isValidAmbassador(incoming());
+      allow update: if isAdmin() && isValidAmbassador(incoming()) && incoming().createdAt == existing().createdAt;
+      allow delete: if isAdmin();
+    }
+
+    // --- USER JOURNAL ENTRIES ---
+    match /users/{userId}/journal_entries/{entryId} {
+      allow get, list: if isSignedIn() && request.auth.uid == userId;
+      allow create: if isSignedIn() && request.auth.uid == userId && incoming().userId == userId && isValidJournalEntry(incoming());
+      allow update: if isSignedIn() && request.auth.uid == userId && incoming().userId == userId && isValidJournalEntry(incoming()) && incoming().createdAt == existing().createdAt;
+      allow delete: if isSignedIn() && request.auth.uid == userId;
+    }
+
+    match /users/{userId}/journalEntries/{entryId} {
+      allow get, list: if isSignedIn() && request.auth.uid == userId;
+      allow create: if isSignedIn() && request.auth.uid == userId && incoming().userId == userId && isValidJournalEntry(incoming());
+      allow update: if isSignedIn() && request.auth.uid == userId && incoming().userId == userId && isValidJournalEntry(incoming()) && incoming().createdAt == existing().createdAt;
+      allow delete: if isSignedIn() && request.auth.uid == userId;
+    }
+
+    // --- USER PROFILES ---
+    match /user_profiles/{userId} {
+      allow get: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      allow list: if isAdmin();
+      allow create, update: if isSignedIn() && request.auth.uid == userId;
+      allow delete: if isAdmin();
+    }
+
+    // --- USER ADDRESSES ---
+    match /users/{userId}/addresses/{addressId} {
+      allow read, write: if isSignedIn() && request.auth.uid == userId;
+    }
+
+    // --- ADMINS ---
+    match /admins/{adminId} {
+      allow get: if isSignedIn() && request.auth.uid == adminId;
+      allow list, write: if false;
+    }
+
+    // --- AUDIT LOGS ---
+    match /audit_logs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isSignedIn();
+      allow update, delete: if false; // immutable audit log
+    }
+
+    // --- ADMIN INVITATIONS ---
+    match /admin_invitations/{invitationId} {
+      allow read, write: if isAdmin();
+    }
+
+    // --- BUSINESS TASKS ---
+    match /tasks/{taskId} {
+      allow read, write: if isAdmin();
+    }
+
+    // --- AMBASSADOR PROFILES ---
+    match /ambassador_profiles/{ambassadorId} {
+      allow get: if isAdmin() || (isSignedIn() && request.auth.uid == ambassadorId);
+      allow list: if isAdmin();
+      allow create: if isSignedIn() && request.auth.uid == ambassadorId;
+      allow update: if isAdmin() || (isSignedIn() && request.auth.uid == ambassadorId);
+      allow delete: if isAdmin();
+    }
+
+    // --- AMBASSADOR REFERRALS ---
+    match /ambassador_referrals/{referralId} {
+      allow get: if isAdmin() || (isSignedIn() && resource.data.ambassadorId == request.auth.uid);
+      allow list: if isAdmin() || (isSignedIn() && resource.data.ambassadorId == request.auth.uid);
+      allow create: if isSignedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    // --- AMBASSADOR PAYOUTS ---
+    match /ambassador_payouts/{payoutId} {
+      allow get: if isAdmin() || (isSignedIn() && resource.data.ambassadorId == request.auth.uid);
+      allow list: if isAdmin() || (isSignedIn() && resource.data.ambassadorId == request.auth.uid);
+      allow create, update, delete: if isAdmin();
+    }
+
+    // --- PURCHASE ORDERS ---
+    match /purchase_orders/{poId} {
+      allow read, write: if isAdmin();
+    }
+  }
+}

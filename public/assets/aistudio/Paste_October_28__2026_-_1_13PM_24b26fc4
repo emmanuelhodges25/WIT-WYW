@@ -1,0 +1,1405 @@
+WRITE YOUR WAVE
+
+COMPLETE PRODUCTION READINESS & REAL-USER LAUNCH
+
+ROLE AND RESPONSIBILITY
+
+Act as a principal full-stack software architect, senior frontend engineer, backend engineer, database architect, authentication and application security specialist, QA automation engineer, accessibility specialist, and DevOps engineer.
+
+You have extensive experience taking existing web applications from development into reliable production environments.
+
+Your responsibility is to upgrade the EXISTING WRITE YOUR WAVE application so it can support genuine customer registration, secure authentication, customer profiles, separate administration and ambassador portals, persistent business data, functional APIs, and a professional user experience.
+
+You must work with the existing codebase rather than create a new application.
+
+Production website:
+https://write-your-wave.vercel.app
+
+Source control:
+The existing GitHub repository connected to this project.
+
+Deployment platform:
+Vercel.
+
+Development environment:
+Google AI Studio, with VS Code available for local inspection and debugging when necessary.
+
+---
+
+1. THE MOST IMPORTANT REQUIREMENT: PRESERVE EXISTING CONTENT
+
+The existing project contains images, brand information, product information, design assets, and other content that I have already imported.
+
+ALL EXISTING CONTENT MUST BE PRESERVED.
+
+Do not generate replacement content or invent examples to make the website look complete.
+
+Specifically:
+
+- Preserve existing product images.
+- Preserve existing notebook and journal images.
+- Preserve the existing logo and brand assets.
+- Preserve existing product descriptions.
+- Preserve existing product names.
+- Preserve existing prices.
+- Preserve existing collection information.
+- Preserve existing customer-facing content.
+- Preserve existing page designs wherever they are already correct.
+- Preserve existing customization information.
+- Preserve existing WaveGuide AI functionality.
+- Preserve existing customer profiles and account-related functionality.
+- Preserve existing working routes.
+- Preserve existing database records.
+- Preserve existing business information and configuration.
+- Preserve existing SEO metadata where appropriate.
+- Preserve existing imported files and assets.
+
+Before changing anything, inspect the current repository and establish which assets, records, pages, and features already exist.
+
+Do not overwrite imported content with generated content.
+
+Do not replace real images with stock images or AI-generated images.
+
+Do not invent products, prices, customers, orders, inventory quantities, sales, reviews, testimonials, or financial figures.
+
+Do not populate production databases with sample users, fake orders, demonstration transactions, or fabricated ambassador activity.
+
+Do not insert mock data into production APIs.
+
+Do not display fabricated dashboard statistics.
+
+Do not use fake success messages.
+
+If a metric has no real records, display a clear empty state or a genuine zero, depending on the metric's meaning.
+
+If information is unavailable, display an appropriate unavailable state rather than inventing a value.
+
+If existing content cannot be migrated safely, stop the destructive operation and explain the problem.
+
+Existing user data and imported assets take priority over cosmetic improvements.
+
+---
+
+2. START WITH A COMPLETE PROJECT AUDIT
+
+Before editing code, inspect the entire repository.
+
+Identify:
+
+- Frontend framework and version.
+- Backend framework and runtime.
+- Package manager.
+- Existing routes.
+- Existing page components.
+- Existing desktop navigation.
+- Existing mobile navigation.
+- Existing login and signup pages.
+- Existing authentication provider.
+- Existing customer profile.
+- Existing administrator dashboard.
+- Existing ambassador functionality.
+- Existing database and schema.
+- Existing API routes.
+- Existing product catalog.
+- Existing product images and asset paths.
+- Existing cart and checkout.
+- Existing order management.
+- Existing WaveGuide AI integration.
+- Existing environment variables.
+- Existing automated tests.
+- Existing GitHub configuration.
+- Existing Vercel configuration.
+- Current build and runtime errors.
+
+Determine whether the application currently uses real persistent storage or temporary in-memory state.
+
+Determine whether authentication is implemented or merely represented by a frontend interface.
+
+Determine whether protected routes are secured by the backend or only hidden by the frontend.
+
+Inspect the latest available deployment and available build logs if the connected tools permit it.
+
+Do not assume the current application uses a specific framework, database, or authentication provider until you inspect the code.
+
+Do not replace the existing architecture simply because another stack is available.
+
+Required audit report
+
+Produce a concise report covering:
+
+1. Current architecture.
+2. Existing working features.
+3. Broken or incomplete features.
+4. Authentication status.
+5. Database status.
+6. API status.
+7. Existing user profile implementation.
+8. Existing administrator implementation.
+9. Existing mobile and desktop navigation.
+10. Existing imported assets and content.
+11. Security vulnerabilities.
+12. Build and deployment problems.
+13. Missing configuration.
+14. Recommended repair order.
+
+After the audit, proceed with implementation in controlled phases.
+
+Do not stop after providing recommendations unless the environment genuinely prevents code changes.
+
+---
+
+3. CORE APPLICATION ARCHITECTURE
+
+Maintain three distinct application experiences.
+
+A. Public customer website
+
+This is the main WRITE YOUR WAVE storefront.
+
+Customers should be able to browse the real catalog, discover products, use supported customization features, register, sign in, manage their profiles, and use the existing purchasing workflow.
+
+Preserve the current public routes and adapt them only where necessary.
+
+Potential routes include:
+
+- "/"
+- "/products"
+- "/collections"
+- "/products/[slug]"
+- "/cart"
+- "/checkout"
+- "/login"
+- "/signup"
+- "/account"
+- "/account/profile"
+- "/account/orders"
+- "/account/addresses"
+- "/account/settings"
+
+Use the actual routing conventions and existing pages found in the repository.
+
+Do not create duplicate pages where equivalent routes already exist.
+
+B. Administrator application
+
+The administrator experience must have its own protected entry point, authentication flow, layout, navigation, and authorization rules.
+
+Potential routes:
+
+- "/admin/login"
+- "/admin/dashboard"
+- "/admin/inventory"
+- "/admin/products"
+- "/admin/orders"
+- "/admin/sales"
+- "/admin/finance"
+- "/admin/users"
+- "/admin/activities"
+- "/admin/ambassadors"
+- "/admin/referrals"
+- "/admin/tasks"
+- "/admin/administrators"
+- "/admin/reports"
+- "/admin/audit-logs"
+- "/admin/settings"
+
+These routes must use the existing application architecture.
+
+Only authorized administrators can access the relevant resources.
+
+C. Ambassador application
+
+The ambassador experience must have its own protected entry point and portal.
+
+Potential routes:
+
+- "/ambassador/login"
+- "/ambassador/dashboard"
+- "/ambassador/profile"
+- "/ambassador/referrals"
+- "/ambassador/sales"
+- "/ambassador/commissions"
+- "/ambassador/payouts"
+- "/ambassador/resources"
+- "/ambassador/settings"
+
+Only approved ambassadors should receive ambassador privileges.
+
+An ordinary customer must not receive administrator or ambassador permissions simply by registering.
+
+An ambassador must not gain administrator permissions by changing a URL or editing browser storage.
+
+Separate layouts and routes are not sufficient security by themselves. Enforce authorization in the backend and database.
+
+---
+
+4. CUSTOMER LOGIN AND SIGNUP
+
+Implement a complete customer authentication experience using the application's existing authentication provider if one exists.
+
+Do not create a second authentication system unnecessarily.
+
+If authentication is not implemented, choose an appropriate production-compatible provider and configure it according to the existing stack.
+
+A. Customer signup page
+
+Create or improve the customer signup page.
+
+Fields should match the supported authentication and profile model.
+
+Possible fields:
+
+- Full name.
+- Email address.
+- Password.
+- Password confirmation, if appropriate.
+- Acceptance of applicable terms and privacy information.
+
+Do not request unnecessary personal information.
+
+Requirements:
+
+- Client-side validation for usability.
+- Server-side validation for security.
+- Correct email validation.
+- Strong password handling through the supported authentication provider.
+- Clear validation messages.
+- Duplicate-account handling without exposing sensitive account information.
+- Loading state.
+- Error state.
+- Successful signup behavior.
+- Email verification where supported and appropriate.
+- Accessible form labels.
+- Keyboard accessibility.
+- Mobile-friendly design.
+- Clear navigation to the login page.
+
+A signup success message must reflect the actual authentication result.
+
+If email verification is required, explain that the account needs verification instead of incorrectly claiming that the customer is ready to use every feature.
+
+B. Customer login page
+
+Implement a functional login page.
+
+Requirements:
+
+- Email and password or the existing supported sign-in method.
+- Authentication through the real configured provider.
+- Loading state.
+- Invalid-credentials handling.
+- Rate limiting where appropriate.
+- Password reset workflow.
+- Secure session establishment.
+- Redirect to the appropriate customer destination.
+- Return to an originally requested customer page when appropriate and safe.
+- Logout.
+- Mobile responsiveness.
+- Accessible error messages.
+
+Never store passwords in plaintext.
+
+Never build a fake authentication mechanism based only on local storage.
+
+Never grant access because the user changes a frontend variable.
+
+C. Password reset
+
+Implement a genuine password-reset workflow supported by the authentication provider.
+
+The workflow must:
+
+1. Accept the user's email address.
+2. Trigger the actual provider-supported reset process.
+3. Avoid unnecessarily revealing whether an account exists.
+4. Provide the appropriate recovery link or instructions.
+5. Validate the reset flow securely.
+6. Allow the user to establish a new password through the provider.
+7. Handle expired or invalid recovery links.
+8. Avoid logging reset tokens.
+
+Do not claim an email was sent unless the provider confirms the operation.
+
+D. Authentication persistence
+
+Verify that:
+
+- Sessions persist appropriately.
+- Reloading a page does not unexpectedly sign out an authenticated customer.
+- Logout invalidates or ends the session correctly.
+- Protected pages require a valid session.
+- Expired sessions are handled safely.
+- Session state is not trusted solely from browser storage.
+
+---
+
+5. SEGREGATE CUSTOMER, ADMINISTRATOR, AND AMBASSADOR AUTHENTICATION
+
+Implement a secure role-aware authentication architecture.
+
+Customers, administrators, and ambassadors must have distinct authorization boundaries.
+
+They may share the underlying authentication provider if appropriate, but they must not share unrestricted access to protected business data.
+
+Customer access
+
+Customers can access their own:
+
+- Profile.
+- Orders.
+- Addresses, if supported.
+- Saved items, if supported.
+- Customization requests, if supported.
+- Account settings.
+
+Customers must never access another customer's private information.
+
+Administrator access
+
+Administrator access must be granted through an authorized administrative process.
+
+Public signup must never grant administrator permissions.
+
+Do not create a publicly accessible form that allows users to select "Administrator" as a registration role.
+
+Ambassador access
+
+Ambassador access must be granted through a verified application and approval workflow, an authorized invitation, or another documented administrative process.
+
+Public signup must not automatically approve an ambassador application.
+
+Protected access behavior
+
+When an ordinary customer opens an administrator URL:
+
+- Do not expose administrator data.
+- Deny the request on the server.
+- Redirect to an appropriate access-denied or login page when appropriate.
+
+When an ambassador opens an administrator URL:
+
+- Deny access unless the account has separately been granted the relevant administrator permissions.
+
+When an administrator opens the customer-facing website:
+
+- Preserve ordinary browsing functionality.
+- Provide an appropriate administrator entry point based on their authorized role.
+- Do not expose privileged controls to ordinary customers.
+
+Do not rely on a hidden navigation link to protect a page.
+
+Every protected API operation must verify authorization independently.
+
+---
+
+6. SECURE ROLE-BASED ACCESS CONTROL
+
+Create a centralized authorization layer that works with the existing authentication provider and database.
+
+Use deny-by-default permissions.
+
+Possible roles include:
+
+- Customer.
+- Ambassador.
+- Customer Support Admin.
+- Operations Admin.
+- Sales Manager.
+- Finance Manager.
+- Ambassador Manager.
+- Read-Only Analyst.
+- Super Admin / Business Owner.
+
+Use the smallest practical set of roles and support granular permissions where necessary.
+
+Possible permissions include:
+
+- "inventory.read"
+- "inventory.adjust"
+- "products.manage"
+- "orders.read"
+- "orders.update"
+- "users.read"
+- "users.manage"
+- "sales.read"
+- "finance.read"
+- "finance.manage"
+- "ambassadors.read"
+- "ambassadors.manage"
+- "commissions.approve"
+- "tasks.manage"
+- "admins.invite"
+- "admins.manage_roles"
+- "audit_logs.read"
+- "settings.manage"
+
+These are examples of permission names, not permission grants.
+
+Verify the actual permissions for every request.
+
+Prevent users from:
+
+- Promoting themselves.
+- Changing their role through a request body.
+- Editing protected role assignments.
+- Accessing records by guessing IDs.
+- Bypassing permissions through alternate API routes.
+- Calling administrative endpoints directly.
+- Reusing revoked sessions to maintain privileges.
+
+Implement a secure process for creating the first authorized owner account.
+
+Do not hardcode an administrator password into the repository.
+
+Do not automatically promote the first person who signs up unless a deliberate, secure bootstrap process explicitly authorizes that account.
+
+---
+
+7. UPDATE THE EXISTING CUSTOMER PROFILE
+
+Upgrade the customer profile using the previously requested advanced profile concept.
+
+Inspect the existing profile first and preserve all working functionality.
+
+Do not create a second profile system.
+
+The profile must be connected to the authenticated user's actual records.
+
+A. Profile overview
+
+Display available information such as:
+
+- Customer name.
+- Profile image, if configured.
+- Verified email status, where available.
+- Member since date, if recorded.
+- Order count.
+- Recent orders.
+- Saved items, if implemented.
+- Customization requests, if implemented.
+- Profile completion information based on actual fields.
+
+Do not generate missing information to make the profile look complete.
+
+B. Personal information
+
+Allow customers to update permitted fields, such as:
+
+- Full name.
+- Display name, if supported.
+- Profile image, if supported.
+- Contact preferences.
+- Other existing profile fields.
+
+Validate updates on the server.
+
+Restrict each customer to editing their own profile.
+
+Sensitive fields must use the authentication provider's supported workflows when appropriate.
+
+C. Order history
+
+Display actual orders associated with the authenticated customer.
+
+Include the information supported by the existing order schema:
+
+- Order reference.
+- Order date.
+- Items.
+- Quantities.
+- Total.
+- Payment status, if available.
+- Fulfillment status.
+- Available order details.
+
+Do not fabricate previous purchases.
+
+If a customer has no orders, display an honest empty state.
+
+D. Addresses
+
+If the application already supports customer addresses, preserve and improve that functionality.
+
+If address management is missing but required for the existing checkout, implement it using the actual data model.
+
+Allow customers to manage only their own addresses.
+
+Do not expose addresses to other users.
+
+E. Saved items and personalization
+
+Preserve existing saved-item and customization functionality.
+
+If these features are not implemented, do not present nonfunctional controls as complete.
+
+Clearly distinguish features that are implemented from those that remain unavailable.
+
+F. Account security
+
+Provide access to supported account-security features:
+
+- Password change or reset.
+- Session logout.
+- Account recovery.
+- Security settings.
+- Account deletion request, if supported by the business and applicable legal requirements.
+
+Do not store authentication secrets in ordinary profile records.
+
+G. Profile UI/UX
+
+Create a modern, polished, responsive profile interface.
+
+Use:
+
+- Clear section hierarchy.
+- Accessible forms.
+- Consistent spacing.
+- Useful loading states.
+- Inline validation.
+- Success and error feedback.
+- Empty states.
+- Mobile-friendly navigation.
+- Accessible keyboard focus.
+
+Preserve the WRITE YOUR WAVE brand identity.
+
+Do not add unnecessary decoration or duplicate navigation.
+
+---
+
+8. UPGRADE THE ADMINISTRATOR DASHBOARD
+
+Preserve the existing administrator dashboard and integrate the previously requested business-management capabilities.
+
+Inspect the current dashboard before modifying it.
+
+Do not invent data to populate KPI cards or charts.
+
+Use real database records.
+
+Potential dashboard metrics include:
+
+- Registered users.
+- New registrations.
+- Product count.
+- Inventory quantities.
+- Low-stock products.
+- Orders.
+- Units sold.
+- Gross sales.
+- Net sales.
+- Cost of goods sold.
+- Gross profit.
+- Recorded operating expenses.
+- Net profit when calculable.
+- Active ambassadors.
+- Referral-attributed sales.
+- Pending commissions.
+- Outstanding tasks.
+
+Every metric must have a documented definition.
+
+If the database does not contain the necessary records, show a clear empty or unavailable state.
+
+Administrator sidebar
+
+Create or improve a responsive sidebar with authorized sections for:
+
+- Dashboard.
+- Inventory.
+- Products.
+- Orders.
+- Sales.
+- Finance.
+- Users.
+- User Activity.
+- Ambassadors.
+- Referrals.
+- Commissions.
+- Tasks.
+- Administrators.
+- Roles and Permissions.
+- Reports.
+- Audit Logs.
+- Settings.
+
+Show only the sections the current administrator is permitted to access.
+
+Enforce all permissions on the server, even when a sidebar section is hidden.
+
+Administrator management
+
+Where supported, provide:
+
+- Administrator invitations.
+- Role assignment.
+- Permission review.
+- Invitation acceptance.
+- Access revocation.
+- Administrative activity logs.
+
+Do not implement fake email delivery.
+
+If an email service is missing, identify the required configuration.
+
+Never allow ordinary users to assign themselves administrator privileges.
+
+---
+
+9. AMBASSADOR LOGIN AND DASHBOARD
+
+Preserve any existing ambassador implementation and upgrade it as necessary.
+
+Create or improve:
+
+- Ambassador login.
+- Password recovery.
+- Application and approval workflow.
+- Ambassador profile.
+- Dashboard.
+- Referral tracking.
+- Attributed orders.
+- Commission records.
+- Payout history, if supported.
+- Promotional resources.
+
+The ambassador dashboard must use the authenticated ambassador's actual data.
+
+Do not display another ambassador's information.
+
+Do not invent clicks, referrals, sales, commissions, or payout records.
+
+Do not mark an application as approved without an authorized action.
+
+Do not mark a commission as paid unless the relevant payout has actually been recorded or verified.
+
+If a feature depends on a missing external service, explain the dependency instead of faking the feature.
+
+---
+
+10. UPGRADE DESKTOP NAVIGATION UI/UX
+
+Inspect the existing desktop navigation before modifying it.
+
+Preserve the current logo, imagery, and brand styling.
+
+Improve the public navigation so it feels like a premium, modern ecommerce platform.
+
+The navigation may include:
+
+- Existing brand logo.
+- Home.
+- Shop.
+- Collections.
+- Personalization, if implemented.
+- About, if implemented.
+- Contact, if implemented.
+- Search.
+- Customer account.
+- Shopping bag.
+- WaveGuide AI, if implemented.
+
+Use actual routes and existing product collections.
+
+Do not create fake destinations.
+
+Desktop requirements
+
+- Balanced header layout.
+- Responsive spacing.
+- Clear typography.
+- Premium visual hierarchy.
+- Accessible focus states.
+- Correct active-page indicators.
+- Functional mega menus where appropriate.
+- Search connected to real catalog data.
+- Actual cart quantity.
+- Correct authentication-aware account controls.
+- Functional WaveGuide entry point.
+- Appropriate sticky-header behavior if suitable.
+
+Avoid overlapping elements at intermediate desktop widths.
+
+Do not replace existing assets unnecessarily.
+
+---
+
+11. UPGRADE MOBILE NAVIGATION UI/UX
+
+Inspect the current mobile navigation and repair or upgrade it.
+
+The mobile experience must be as functional as the desktop experience.
+
+Requirements:
+
+- Accessible menu trigger.
+- Well-structured navigation drawer or panel.
+- Clear close button.
+- Functional links.
+- Search access.
+- Account access.
+- Shopping bag access.
+- WaveGuide access where appropriate.
+- Correct submenu behavior.
+- Touch-friendly controls.
+- Keyboard accessibility.
+- Escape key handling.
+- Appropriate focus management.
+- No unintended background scrolling.
+- No overlapping content.
+- No horizontal overflow.
+- No broken page scrolling.
+- Responsive behavior on narrow screens.
+- Correct active-page indicators.
+
+Use the same underlying navigation destinations as desktop.
+
+Do not create separate fake mobile pages.
+
+Test the mobile navigation at common viewport widths.
+
+Check that the navigation does not cover critical checkout or account controls unexpectedly.
+
+---
+
+12. BACKEND AND DATABASE REPAIR
+
+Inspect the current backend and database implementation.
+
+Repair incomplete functionality and remove unnecessary duplicate logic.
+
+Requirements:
+
+- Real persistent storage.
+- Correct authentication integration.
+- Correct user-to-record relationships.
+- Server-side validation.
+- Database constraints.
+- Appropriate indexes.
+- Safe error handling.
+- Transactional operations where necessary.
+- Correct authorization.
+- Consistent response formats.
+- Pagination for large collections.
+- Proper timestamp handling.
+- Safe environment-variable usage.
+- No hardcoded production secrets.
+
+If the current project uses Supabase, review its Row Level Security policies, authentication configuration, database relationships, and server-side privileges.
+
+If the project uses Firebase, review Authentication rules, Firestore security rules, data access patterns, and server-side privileges.
+
+If another database or backend exists, use the corresponding security model.
+
+Do not migrate databases merely for convenience.
+
+Do not introduce a second database unless there is a demonstrated technical requirement.
+
+Do not delete or overwrite existing records.
+
+Use version-controlled migrations for schema changes.
+
+Review migrations before applying them to production.
+
+Never disable security policies merely to make a request succeed.
+
+---
+
+13. API REPAIR AND TESTING
+
+Inspect every API route or backend endpoint used by the customer, administrator, ambassador, inventory, order, and WaveGuide systems.
+
+For each endpoint, document:
+
+- Method.
+- Route.
+- Purpose.
+- Authentication requirement.
+- Required permissions.
+- Input validation.
+- Response format.
+- Error handling.
+- Database operations.
+- Rate limits, where appropriate.
+
+Repair broken routes and incorrect response handling.
+
+Use appropriate HTTP status codes.
+
+Do not expose stack traces or internal secrets to clients.
+
+Validate untrusted input on the server.
+
+Enforce authorization independently for every protected operation.
+
+Implement request-size limits and sensible pagination.
+
+Prevent unauthorized object access.
+
+Prevent duplicate processing of sensitive business operations.
+
+Where financial or inventory operations can be retried, use idempotency controls or equivalent safeguards.
+
+API tests
+
+Create and execute tests for:
+
+- Successful requests.
+- Invalid input.
+- Missing authentication.
+- Expired sessions.
+- Insufficient permissions.
+- Missing records.
+- Duplicate requests.
+- Database failures.
+- External service failures.
+- Rate limiting.
+- Unauthorized record access.
+- Error responses.
+- Correct data persistence.
+
+Test the actual implemented routes rather than writing tests for hypothetical endpoints.
+
+Do not claim an API is tested merely because its code compiles.
+
+If tests cannot run in Google AI Studio, explain which commands I should execute locally in VS Code.
+
+---
+
+14. REAL DATA ONLY
+
+This is a production-bound application.
+
+Do not use sample or fabricated production data.
+
+Do not create fake customers, fake orders, fake products, fake inventory, fake sales, fake profits, fake ambassador activity, or fake reviews.
+
+Do not use hardcoded arrays to simulate backend records in production pages.
+
+Do not generate default product information to fill missing catalog fields.
+
+Do not replace real imported images.
+
+Do not insert sample records into the production database.
+
+Do not treat placeholder content as a successful integration.
+
+If test fixtures are required for automated tests, isolate them in the test environment and ensure they cannot be inserted into production data.
+
+Use separate test databases or isolated test records when appropriate.
+
+Dashboard cards, tables, search results, and reports must use real application data.
+
+If no real records exist, render honest empty states.
+
+If a required API is unavailable, show a clear service-unavailable state.
+
+If a feature is incomplete, do not falsely label it as complete.
+
+---
+
+15. SECURITY HARDENING
+
+Review the complete application for:
+
+- Broken access control.
+- Insecure direct object references.
+- Missing server-side role checks.
+- Exposed environment variables.
+- Exposed API keys.
+- Weak session handling.
+- Unsafe redirects.
+- Cross-site scripting.
+- CSRF risks where applicable.
+- Injection vulnerabilities.
+- Insecure file uploads.
+- Excessive API permissions.
+- Sensitive information in logs.
+- Missing rate limits.
+- Unsafe error messages.
+- Public access to administrative data.
+- Unauthorized ambassador access.
+- Cross-user profile access.
+- Cross-user order access.
+- Missing database security policies.
+
+Use established security practices appropriate to the actual stack.
+
+Private keys must remain server-side.
+
+Never expose "GEMINI_API_KEY" or other private credentials in frontend bundles.
+
+If WaveGuide AI uses Gemini, keep the production API call on the server unless an explicitly supported secure architecture is used.
+
+For production environments, configure secrets through the appropriate hosting platform rather than committing them to GitHub.
+
+Review the actual environment variable names already used in the project before changing configuration.
+
+Do not print secret values in diagnostic reports.
+
+---
+
+16. ERROR FIXING AND BUG REPAIR
+
+Inspect the existing project for errors and regressions.
+
+Check:
+
+- Compilation errors.
+- Type errors.
+- Lint errors.
+- Missing imports.
+- Invalid route definitions.
+- Broken links.
+- Missing image assets.
+- Incorrect asset paths.
+- React rendering errors.
+- Hydration errors.
+- Authentication failures.
+- API errors.
+- Database errors.
+- Invalid environment-variable usage.
+- Incorrect redirects.
+- Mobile layout bugs.
+- Desktop layout bugs.
+- Console errors.
+- Duplicate event handlers.
+- State synchronization problems.
+- Form submission problems.
+- Cart problems.
+- Profile update problems.
+- Authorization bypasses.
+- Production build errors.
+
+Fix root causes.
+
+Do not simply suppress warnings or disable checks to make the project appear healthy.
+
+Do not delete working features to resolve unrelated errors.
+
+Do not make broad destructive changes without understanding their effects.
+
+If an error depends on an external credential or service, identify the exact dependency and provide configuration instructions.
+
+---
+
+17. AUTOMATED TESTING AND END-TO-END VERIFICATION
+
+Use the testing framework already present in the repository.
+
+Add missing tests only where necessary.
+
+At minimum, verify the following scenarios.
+
+Customer authentication
+
+1. A new customer can register through the actual authentication provider.
+2. Invalid signup data is rejected.
+3. Duplicate registrations are handled correctly.
+4. A customer can sign in.
+5. Incorrect credentials do not grant access.
+6. Password recovery uses the real supported workflow.
+7. Logout works.
+8. Protected customer pages require authentication.
+
+Customer profile
+
+1. The customer can read their own profile.
+2. The customer can update permitted profile fields.
+3. The customer cannot update another user's profile.
+4. Existing order history remains associated with the correct user.
+5. Empty profiles display correct empty states.
+6. Profile updates persist after refreshing the page.
+
+Administrator security
+
+1. A logged-out visitor cannot access protected admin APIs.
+2. A customer cannot access administrator data.
+3. An ambassador cannot access administrator data without separate authorization.
+4. An unauthorized role cannot execute privileged operations.
+5. A user cannot promote themselves.
+6. Revoked access is enforced.
+7. Sensitive administrative operations are audited where supported.
+
+Backend and data
+
+1. Valid records persist.
+2. Invalid requests are rejected.
+3. Database failures are handled safely.
+4. Unauthorized access is blocked.
+5. Pagination works where implemented.
+6. Duplicate operations do not corrupt records.
+7. Existing imported content remains intact.
+
+Navigation
+
+1. Desktop navigation works.
+2. Mobile navigation works.
+3. All visible destinations are valid.
+4. Search works with actual product data.
+5. Account controls reflect actual authentication state.
+6. Cart counts use real cart data.
+7. Menus support keyboard interaction.
+8. The layout does not overflow common screen sizes.
+
+Production quality
+
+- Run linting.
+- Run type checking.
+- Run unit tests.
+- Run integration tests where configured.
+- Run end-to-end tests where available.
+- Run the production build.
+- Review the deployment logs.
+- Test the deployed site after deployment.
+
+Record each result as:
+
+- PASS.
+- FAIL.
+- BLOCKED.
+- NOT RUN.
+
+Do not report unexecuted tests as passing.
+
+---
+
+18. ENVIRONMENT AND DEPLOYMENT CONFIGURATION
+
+The existing website is deployed through Vercel and connected to GitHub.
+
+Inspect the existing configuration before changing it.
+
+Verify:
+
+- Framework preset.
+- Project root directory.
+- Build command.
+- Output configuration.
+- Node.js compatibility.
+- Environment variables.
+- Database connection.
+- Authentication callback URLs.
+- Public application URL.
+- API routes.
+- Image and asset configuration.
+- Redirects and rewrites.
+- Production runtime behavior.
+
+Do not replace the existing deployment setup unnecessarily.
+
+Environment variables
+
+Inventory the required variables without printing their values.
+
+For each variable, report:
+
+- Variable name.
+- Purpose.
+- Whether it is required.
+- Where it should be configured.
+- Whether it must remain server-only.
+
+Use the appropriate Vercel environment settings for development, preview, and production.
+
+Do not expose private credentials through "NEXT_PUBLIC_" or another client-exposed prefix.
+
+Do not commit ".env.local" or secret files to GitHub.
+
+If an environment variable is missing, identify it and explain how to configure it.
+
+Database migrations
+
+If migrations are required:
+
+1. Review the migration.
+2. Confirm that existing data is preserved.
+3. Test the migration in a safe environment.
+4. Document how to apply it to production.
+5. Confirm the resulting schema before declaring the feature operational.
+
+Never run a destructive production migration merely to resolve a build error.
+
+Deployment
+
+Prepare the application for Vercel.
+
+Confirm that the configured project builds using the actual production build command.
+
+Use the existing GitHub connection and branch strategy.
+
+Do not create a duplicate Vercel project unless there is a clear technical reason.
+
+---
+
+19. GITHUB WORKFLOW
+
+The existing GitHub repository is the source of truth for the deployed application.
+
+Before committing changes:
+
+- Inspect the current branch.
+- Inspect pending modifications.
+- Preserve unrelated user changes.
+- Avoid overwriting files without review.
+- Ensure secrets are not staged.
+- Ensure generated artifacts are not committed unnecessarily.
+- Ensure required migrations and configuration templates are included.
+
+Run the relevant checks before pushing.
+
+Use meaningful commit messages.
+
+Push the repaired code to the correct existing branch.
+
+Do not claim changes were pushed unless the operation succeeded and the repository reflects the new commit.
+
+If you cannot access GitHub directly from the current environment, provide exact instructions for me to complete the operation.
+
+Do not fabricate commit IDs, push results, or repository states.
+
+---
+
+20. VERCEL DEPLOYMENT AND PREVIEW VERIFICATION
+
+The target website is:
+
+https://write-your-wave.vercel.app
+
+After changes are committed and pushed:
+
+1. Confirm that the intended Vercel deployment is created.
+2. Inspect the build logs.
+3. Confirm that the build completes.
+4. Resolve build errors.
+5. Confirm the deployment status.
+6. Open the deployed website.
+7. Verify the homepage.
+8. Verify the public product pages.
+9. Verify login and signup.
+10. Verify customer profile access.
+11. Verify protected administrator access.
+12. Verify ambassador access.
+13. Verify API health and functionality through appropriate non-sensitive tests.
+14. Check browser console errors.
+15. Check server logs where available.
+16. Test responsive desktop and mobile navigation.
+17. Confirm that existing imported images and information remain visible.
+18. Confirm that existing data has not been overwritten.
+
+A successful deployment status does not by itself prove that the application works correctly.
+
+Test actual routes and workflows.
+
+Do not expose private customer information during testing.
+
+Use dedicated test accounts with the minimum necessary permissions.
+
+Do not use real customers' credentials for automated tests.
+
+If the deployment is protected or a route cannot be reached, document the blocker instead of pretending the test succeeded.
+
+---
+
+21. CUSTOMER-READY ACCEPTANCE CHECKLIST
+
+The application must not be declared ready for public customer testing until the following conditions have been reviewed.
+
+Public website
+
+- Homepage loads.
+- Existing images load.
+- Existing product information remains intact.
+- Product routes work.
+- Navigation works.
+- Search behaves correctly.
+- Cart behaves correctly.
+- Existing checkout behavior works as intended.
+
+Authentication
+
+- Signup uses real authentication.
+- Login uses real authentication.
+- Logout works.
+- Password recovery is configured.
+- Sessions behave correctly.
+- Protected pages enforce authentication.
+
+Customer profiles
+
+- Customers can access their own profiles.
+- Profile changes persist.
+- Order history uses the correct user's records.
+- Another customer's private information cannot be accessed.
+
+Administrator system
+
+- Administrator access is restricted.
+- Permissions are enforced on the server.
+- Unauthorized operations are denied.
+- Existing business data remains intact.
+- Privileged operations are traceable where required.
+
+Ambassador system
+
+- Ambassador access is restricted.
+- Approval rules are enforced.
+- Ambassador data is properly scoped.
+- Referral and commission records are genuine.
+
+Backend
+
+- Required API routes work.
+- Database operations persist.
+- Validation works.
+- Errors are handled safely.
+- Critical operations preserve data integrity.
+
+Responsive design
+
+- Desktop navigation works.
+- Mobile navigation works.
+- Forms are usable on mobile.
+- Profiles are responsive.
+- No critical layout overflow exists.
+
+Production
+
+- Production build passes.
+- Required environment variables are configured.
+- Database configuration is valid.
+- Authentication callback URLs are correct.
+- Vercel deployment is successful.
+- Critical live workflows have been tested.
+
+Any failed or blocked critical item must be disclosed.
+
+---
+
+22. REQUIRED FINAL REPORT
+
+When the implementation and verification work is complete, provide a concise but comprehensive report containing:
+
+A. Existing project findings
+
+- Architecture.
+- Authentication.
+- Database.
+- Existing imported assets.
+- Existing user profile.
+- Existing administrator and ambassador features.
+
+B. Changes made
+
+- Files changed.
+- Routes changed.
+- Components updated.
+- Backend changes.
+- Database migrations.
+- Authentication changes.
+- Navigation changes.
+- Security changes.
+
+C. Test results
+
+For every relevant test, show:
+
+- Test name.
+- Result.
+- Actual evidence or failure reason.
+- Remaining action.
+
+D. Deployment status
+
+- GitHub push status.
+- Commit reference, if available.
+- Vercel deployment status.
+- Build result.
+- Live routes verified.
+- API routes verified.
+- Any blocked live checks.
+
+E. Required configuration
+
+- Missing environment variables.
+- Authentication provider settings.
+- Database settings.
+- Email settings, if required.
+- Other external services.
+
+Never print secret values.
+
+F. Remaining problems
+
+List any known defects, incomplete features, external dependencies, or security concerns.
+
+G. Readiness decision
+
+Choose one:
+
+1. NOT READY — Critical implementation or security problems remain.
+2. READY FOR CONTROLLED TESTING — Core workflows pass, but further verification or operational configuration remains.
+3. READY FOR PUBLIC LAUNCH REVIEW — Required workflows, security checks, deployment checks, and operational prerequisites have been verified.
+
+Do not declare the application ready merely because the build passes.
+
+Do not claim the website is running independently if required credentials, external services, database configuration, email delivery, payment integration, or other dependencies remain incomplete.
+
+---
+
+23. EXECUTION STRATEGY
+
+Proceed in this order:
+
+PHASE 1: Inspect the repository and preserve existing content.
+
+PHASE 2: Identify and repair build errors and critical defects.
+
+PHASE 3: Establish secure authentication and role-based access control.
+
+PHASE 4: Complete customer login, signup, and profile functionality.
+
+PHASE 5: Separate and secure administrator and ambassador access.
+
+PHASE 6: Repair backend routes, database operations, and API validation.
+
+PHASE 7: Upgrade desktop and mobile navigation.
+
+PHASE 8: Verify existing products, images, cart, checkout, and WaveGuide AI.
+
+PHASE 9: Run automated tests and fix failures.
+
+PHASE 10: Verify production configuration, GitHub integration, and Vercel deployment.
+
+PHASE 11: Test actual live workflows and provide the final report.
+
+Work incrementally.
+
+After each phase, verify that previously working functionality remains operational.
+
+If a phase depends on missing credentials or an external service, identify the blocker and continue with independent work where safe.
+
+Do not introduce fake functionality as a substitute for missing infrastructure.
+
+---
+
+FINAL COMMAND
+
+Begin by inspecting the EXISTING WRITE YOUR WAVE repository and its current deployment configuration.
+
+Preserve all existing imported images, brand assets, product information, and business data.
+
+Identify and fix actual errors and bugs.
+
+Implement genuine authentication, customer profiles, secure role separation, backend functionality, API tests, and modern responsive navigation.
+
+Prepare the existing application for a real customer-testing phase.
+
+Push changes through the existing GitHub workflow and verify the Vercel deployment only when the required tools and permissions are available.
+
+Do not fabricate test results, deployment results, user records, product records, or success messages.
+
+Do not stop at a visual redesign.
+
+Deliver the actual code changes, verified functionality, security controls, test results, deployment evidence, and a transparent list of anything that remains incomplete.

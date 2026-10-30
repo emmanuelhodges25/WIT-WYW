@@ -1,0 +1,1041 @@
+MASTER PROMPT: WRITE YOUR WAVE — ADVANCED USER PROFILE SYSTEM
+
+1. YOUR ROLE
+
+Act as a Senior Full-Stack Software Engineer, Product Designer, UX Architect, Database Engineer, and Application Security Specialist with more than 15 years of experience building premium e-commerce platforms, personalized customer dashboards, and secure web applications.
+
+Your task is to design and implement an advanced, production-oriented user profile system for my existing project, WRITE YOUR WAVE.
+
+Do not build a generic profile page.
+
+Build a sophisticated, functional, responsive, secure, and maintainable profile experience that complements the existing brand and connects correctly to the application's backend.
+
+You must work with the existing project rather than replacing it with a new application.
+
+---
+
+2. PROJECT CONTEXT
+
+Brand: WRITE YOUR WAVE
+
+Business: A notebook, journal, stationery, and personalized writing-products brand.
+
+Platform: A web application for discovering products, personalizing notebooks, placing orders, tracking purchases, and managing customer preferences.
+
+Primary objective: Give each registered customer a central place to manage their account, personal information, orders, saved products, customization requests, preferences, and security.
+
+The platform may also support guest checkout. Do not force guest customers to create accounts merely to place orders.
+
+Important requirements
+
+- Preserve the existing website's design system.
+- Reuse existing components, layouts, routes, and design tokens.
+- Follow the project's current framework and coding conventions.
+- Connect to the existing backend where available.
+- Use the existing database schema where appropriate.
+- Do not create duplicate tables, endpoints, components, or authentication systems unnecessarily.
+- Do not replace functioning features with mock implementations.
+- Do not introduce fake data into production functionality.
+- Do not claim that an integration works until it has been implemented and tested.
+
+If the current architecture differs from the assumptions in this prompt, adapt the implementation intelligently and explain the differences.
+
+---
+
+3. PHASE ONE: INSPECT THE EXISTING APPLICATION
+
+Before changing any files, inspect the project.
+
+Identify:
+
+1. The frontend framework and version.
+2. The routing system.
+3. The current page structure and navigation.
+4. Existing authentication and session management.
+5. The backend architecture and API endpoints.
+6. The database and current user-related models.
+7. Existing UI components and design tokens.
+8. Existing profile, account, order, or settings pages.
+9. Form validation and error-handling conventions.
+10. Existing security measures.
+11. The deployment environment and environment variables.
+12. Any existing tests that cover authentication or account functionality.
+
+Create a concise implementation plan based on the actual codebase.
+
+Do not assume that Next.js, Prisma, MySQL, Supabase, or any other specific technology is being used until the project confirms it.
+
+If a required backend capability is missing, identify the gap and implement it using the project's established architecture.
+
+Do not expose secrets, credentials, private environment variables, or sensitive customer information during inspection.
+
+---
+
+4. PHASE TWO: CREATE THE PROFILE EXPERIENCE
+
+Implement a dedicated authenticated customer profile area.
+
+Suggested route structure, adapted to the existing routing system:
+
+- "/profile" — Profile overview.
+- "/profile/personal-information" — Personal information.
+- "/profile/orders" — Order history.
+- "/profile/saved-items" — Saved products.
+- "/profile/customization-requests" — Personalization requests.
+- "/profile/addresses" — Saved delivery addresses, if supported.
+- "/profile/preferences" — Account and communication preferences.
+- "/profile/security" — Password, sessions, and security settings.
+
+These are proposed routes, not mandatory duplicate pages. Reuse existing routes if equivalent functionality already exists.
+
+The profile must be accessible through the existing navigation, account menu, or customer dashboard entry point.
+
+If a user is not authenticated, protect private profile routes and direct the user to the appropriate sign-in flow.
+
+After successful authentication, return the user to the intended destination safely.
+
+Never trust a client-supplied user ID to determine which account data can be accessed.
+
+---
+
+5. PHASE THREE: PREMIUM PROFILE OVERVIEW
+
+Create a polished profile dashboard that serves as the customer's personal command center.
+
+A. Profile header
+
+Include:
+
+- Profile avatar.
+- Customer's display name.
+- Email address with appropriate verification status.
+- Optional phone number.
+- Account creation date, if available.
+- Profile completion indicator.
+- Edit Profile action.
+- Account settings shortcut.
+
+The header should look refined and intentional.
+
+Use a consistent layout, readable typography, subtle borders, balanced whitespace, and restrained animation.
+
+Do not overcrowd the interface with unnecessary gradients, excessive cards, or decorative effects.
+
+Avatar functionality
+
+Support:
+
+- Uploading a profile picture.
+- Previewing the selected image.
+- Replacing the existing image.
+- Removing the current image.
+- Showing a generated initials avatar when no image exists.
+- Displaying a clear upload progress or failure state.
+
+Validate image uploads on the server.
+
+Restrict accepted file types and file sizes. Verify actual file content rather than trusting the filename or browser-provided MIME type.
+
+Use secure object storage when available. Do not depend on local filesystem persistence in a serverless production deployment.
+
+Prevent uploaded files from being interpreted or executed as application code.
+
+If avatar upload infrastructure is not configured, implement the interface and clearly identify the remaining backend requirement. Do not pretend that uploads are functional.
+
+B. Personalized welcome section
+
+Display an appropriate welcome message using the customer's available profile information.
+
+Include a short brand-aligned message that reflects WRITE YOUR WAVE's writing and journaling identity.
+
+Example concept:
+
+"Your space. Your stories. Your next chapter."
+
+This is a design example, not a hardcoded claim about a customer's activity.
+
+C. Account summary cards
+
+Create summary cards for:
+
+- Total orders.
+- Active orders.
+- Completed orders.
+- Saved products.
+- Pending customization requests.
+
+Every metric must come from the authenticated customer's actual records.
+
+Define each metric clearly to avoid counting the same order in multiple incompatible categories.
+
+Do not generate arbitrary numbers to make the dashboard appear populated.
+
+If no data exists, display an appropriate empty state.
+
+If a request fails, show an error state instead of presenting fabricated values.
+
+D. Recent activity
+
+Display a limited, useful history of account activity, where supported.
+
+Potential entries include:
+
+- Order placed.
+- Order status updated.
+- Customization request submitted.
+- Profile information updated.
+- Saved item added.
+
+Only show events supported by the application's actual data model.
+
+Do not expose administrator-only events, internal notes, private operational details, or another customer's activity.
+
+Provide a link to the relevant record when appropriate.
+
+E. Quick actions
+
+Provide clear shortcuts for:
+
+- Browse notebooks and journals.
+- View orders.
+- Track an order.
+- Customize a notebook.
+- Edit profile information.
+- Manage security settings.
+- Contact customer support.
+
+Only show actions supported by the existing application. Connect each action to the correct page or workflow.
+
+---
+
+6. PHASE FOUR: PERSONAL INFORMATION MANAGEMENT
+
+Implement a complete personal information form.
+
+Suggested fields
+
+- First name.
+- Last name.
+- Display name.
+- Email address.
+- Phone number.
+- Profile image.
+- Country.
+- City.
+- Optional biography or personal writing interests, if appropriate to the brand.
+
+Only collect information that has a clear purpose.
+
+Do not require a biography, birth date, gender, or other unnecessary personal information.
+
+Do not ask customers to enter information that is already available and reliably managed elsewhere unless editing it is necessary.
+
+Form behavior
+
+Implement:
+
+- Prefilled fields using the authenticated user's current data.
+- Client-side validation for usability.
+- Server-side validation for security.
+- Clear required and optional field indicators.
+- Inline validation messages.
+- Saving and loading states.
+- Success and failure feedback.
+- Unsaved-change warnings when appropriate.
+- Cancel and reset actions.
+- Duplicate-submission prevention.
+- Accessible labels and keyboard navigation.
+
+Use the project's existing validation library or conventions.
+
+If Zod is already used, use it consistently where appropriate.
+
+Email changes
+
+Changing an email address must not automatically mark the new address as verified.
+
+Implement a verification workflow if supported by the authentication system.
+
+If verification infrastructure does not exist, identify the missing functionality instead of silently bypassing verification.
+
+Avoid account lockout caused by poorly designed email-change flows.
+
+Phone changes
+
+Normalize and validate phone numbers using an appropriate strategy.
+
+Do not claim a phone number is verified unless the system actually verifies it.
+
+Data integrity
+
+The server must determine the identity of the authenticated user from a trusted session or verified token.
+
+The client must not be allowed to modify protected fields such as:
+
+- User ID.
+- Account role.
+- Permission level.
+- Email verification status.
+- Administrative privileges.
+- Account creation timestamp.
+- Security audit information.
+
+---
+
+7. PHASE FIVE: ORDER HISTORY AND ORDER TRACKING
+
+Integrate the profile with WRITE YOUR WAVE's existing order system.
+
+Create an order history experience that allows customers to view their own orders.
+
+Order list information
+
+Where available, display:
+
+- Order reference.
+- Order date.
+- Product names and thumbnails.
+- Quantity.
+- Order total and currency.
+- Payment status.
+- Fulfillment or delivery status.
+- Available order actions.
+
+Support pagination or another appropriate scalable loading strategy.
+
+Include:
+
+- Loading skeletons.
+- Empty states.
+- Error states.
+- Retry functionality.
+- Responsive layouts.
+
+Order details
+
+Each order should have a detail view showing:
+
+- Order reference.
+- Items ordered.
+- Selected notebook or journal options.
+- Personalization details where appropriate.
+- Pricing breakdown.
+- Payment status.
+- Fulfillment status.
+- Shipping information, if available.
+- Relevant timestamps.
+- Support contact action.
+
+Display payment status and fulfillment status as separate concepts.
+
+Never mark an order as paid merely because it was created.
+
+Only trusted payment-provider verification or another explicitly configured, authorized payment workflow may establish successful payment.
+
+Order access security
+
+A customer must only access orders they are authorized to view.
+
+Enforce authorization on the server for every order-detail request.
+
+Do not rely on hidden buttons, frontend filters, predictable URLs, or client-side checks.
+
+Prevent insecure direct object references and cross-customer data exposure.
+
+Guest orders
+
+If the platform supports guest checkout, do not automatically expose guest orders to every registered customer.
+
+Connect a guest order to an account only through a verified and authorized linking workflow.
+
+Guest order tracking must use the existing secure tracking mechanism.
+
+Never create a weak tracking system that exposes order details through sequential IDs or easily guessed references.
+
+---
+
+8. PHASE SIX: SAVED PRODUCTS AND PERSONALIZATION
+
+Build a customer experience aligned with the WRITE YOUR WAVE product catalog.
+
+A. Saved products
+
+Allow authenticated customers to:
+
+- Save a notebook or journal.
+- Remove a saved item.
+- View saved products.
+- Open the corresponding product page.
+- Add a saved product to the cart, if supported.
+
+Prevent duplicate saved records for the same customer and product.
+
+Persist saved items in the database.
+
+Use a unique constraint or equivalent integrity mechanism where appropriate.
+
+If the catalog product becomes unavailable, display its current status and offer a suitable alternative action.
+
+Do not show invented prices, product images, availability, or stock counts.
+
+B. Customization requests
+
+Display the customer's existing customization requests.
+
+Where supported, show:
+
+- Request reference.
+- Associated product.
+- Requested customization.
+- Submission date.
+- Current request status.
+- Relevant customer-visible updates.
+- Next available action.
+
+Allow customers to open request details.
+
+Only permit editing or cancellation when the request's actual workflow and status allow it.
+
+Do not allow customers to change administrative approval decisions or internal staff notes.
+
+Do not invent customization progress or promise that a request has been approved.
+
+C. Personalization continuity
+
+If the application already supports a notebook customization flow, connect the customer's saved or recent configurations where technically appropriate.
+
+Preserve validated customization data when a customer moves between the product and profile areas.
+
+Never store sensitive payment details as part of customization data.
+
+---
+
+9. PHASE SEVEN: SAVED ADDRESSES
+
+Implement saved delivery addresses only if the application's business requirements and data model support them.
+
+Suggested fields:
+
+- Recipient name.
+- Phone number, if needed for delivery.
+- Address line.
+- City.
+- Region or state.
+- Postal code, when applicable.
+- Country.
+- Optional delivery instructions.
+- Default-address designation.
+
+Support creating, editing, deleting, and selecting addresses.
+
+Validate fields according to the supported delivery regions.
+
+Allow at most one default address per customer, using an appropriate transaction or database constraint strategy.
+
+Deleting an address must not silently corrupt historical orders that reference it.
+
+Where historical order records require a shipping snapshot, preserve the relevant order-time delivery information separately from the customer's editable address book.
+
+Do not assume that Liberia or any other country is the only supported delivery region unless the existing business requirements confirm it.
+
+Do not collect payment-card information in the address form.
+
+---
+
+10. PHASE EIGHT: ACCOUNT PREFERENCES
+
+Create a clean preferences page.
+
+Potential settings include:
+
+- Preferred display name.
+- Preferred language, if supported.
+- Preferred currency display, if supported.
+- Marketing email preferences.
+- Product announcement preferences.
+- Order notification preferences.
+- Interface appearance, if the application supports it.
+
+Clearly distinguish transactional notifications from optional marketing communications.
+
+Changing marketing preferences must not disable necessary security or order-related communications.
+
+Store preferences persistently.
+
+Apply them consistently across the application where relevant.
+
+Do not create switches that visually change state but have no backend effect.
+
+If a preference is not implemented, either implement it fully or label it as unavailable rather than pretending it works.
+
+---
+
+11. PHASE NINE: SECURITY AND SESSIONS
+
+Build a dedicated security page using the project's existing authentication infrastructure.
+
+A. Password management
+
+If password authentication is supported, allow the customer to change their password through a secure workflow.
+
+Requirements:
+
+- Verify the current password where appropriate.
+- Validate the new password on the server.
+- Use the authentication system's secure password-hashing implementation.
+- Never return password hashes to the frontend.
+- Never log plaintext passwords.
+- Never store passwords in local storage or session storage.
+- Avoid revealing whether an arbitrary email belongs to an account.
+
+If the project uses an external authentication provider, follow its supported password-management flow instead of implementing a competing password system.
+
+B. Active sessions
+
+If supported by the authentication provider, allow customers to inspect and revoke their active sessions.
+
+Do not claim to provide session management if the provider does not expose the necessary functionality.
+
+A session-revocation action must invalidate the relevant server-side session or token according to the application's architecture.
+
+C. Account deletion
+
+Provide a clearly labeled account deletion or deactivation workflow only after implementing the relevant backend and business rules.
+
+Requirements:
+
+- Require appropriate reauthentication or confirmation.
+- Explain the consequences before final confirmation.
+- Protect against accidental submission.
+- Preserve records that must legally or operationally remain, where applicable.
+- Avoid destroying order history or accounting records that must be retained.
+- Handle personal data according to applicable retention and privacy requirements.
+- Revoke active sessions as appropriate.
+- Avoid leaving orphaned records or broken relationships.
+
+Do not permanently delete an account immediately when the user merely opens the deletion dialog.
+
+Do not claim that account data has been deleted until the backend operation has succeeded.
+
+D. Authentication and authorization
+
+Enforce access control server-side.
+
+Use the project's established session or token verification process.
+
+Do not trust:
+
+- User IDs supplied in request bodies.
+- Roles supplied by the browser.
+- Client-side route guards alone.
+- Local storage as proof of authentication.
+- Hidden form fields as authorization controls.
+
+Implement appropriate protections against unauthorized access, CSRF where applicable, session misuse, and mass assignment.
+
+Use secure cookie settings when cookie-based sessions are used.
+
+Follow the existing authentication provider's recommended security practices.
+
+---
+
+12. PHASE TEN: PROFILE DESIGN SYSTEM
+
+The profile must feel like a natural extension of WRITE YOUR WAVE.
+
+Design direction
+
+Aim for:
+
+- Premium.
+- Minimal.
+- Editorial.
+- Calm.
+- Modern.
+- Organized.
+- Professional.
+- Writing-focused.
+- Mobile-first.
+
+Respect the existing website's established colors, typography, buttons, spacing, and component styles.
+
+If the existing brand uses a black-and-white design language, preserve that visual identity.
+
+Do not introduce a completely unrelated color system.
+
+Desktop layout
+
+Use a thoughtful structure such as:
+
+- A profile header.
+- A compact sidebar or clearly organized navigation.
+- A primary content area.
+- A small number of meaningful summary cards.
+- A recent activity section when real data exists.
+
+Avoid excessive empty space and avoid squeezing all content into narrow cards.
+
+Mobile layout
+
+On smaller screens:
+
+- Stack content logically.
+- Make navigation easy to access.
+- Use appropriately sized touch targets.
+- Keep forms readable.
+- Prevent horizontal overflow.
+- Ensure dialogs fit the viewport.
+- Keep important account actions easy to find.
+
+Interaction quality
+
+Implement:
+
+- Consistent hover and focus states.
+- Accessible dropdown menus.
+- Responsive dialogs.
+- Clear form feedback.
+- Loading indicators.
+- Subtle transitions.
+- Keyboard-accessible navigation.
+- Reduced-motion support.
+
+Respect user preferences for reduced motion.
+
+Do not use animations that delay essential actions or make the interface difficult to navigate.
+
+Accessibility
+
+Aim for WCAG 2.2 AA where applicable.
+
+Include:
+
+- Semantic HTML.
+- Correct heading hierarchy.
+- Accessible form labels.
+- Keyboard navigation.
+- Visible focus indicators.
+- Sufficient contrast.
+- Screen-reader-friendly status messages.
+- Accessible error descriptions.
+- Appropriate ARIA only where necessary.
+
+Do not sacrifice accessibility for visual appearance.
+
+---
+
+13. PHASE ELEVEN: DATABASE AND BACKEND INTEGRATION
+
+Inspect the existing schema before creating or modifying database tables.
+
+Reuse existing entities where appropriate.
+
+Potential entities may include:
+
+- User.
+- UserProfile.
+- SavedProduct.
+- Address.
+- UserPreference.
+- Order.
+- OrderItem.
+- CustomizationRequest.
+- Session or AuthenticationAccount, depending on the authentication architecture.
+- AuditEvent, where the existing security model requires it.
+
+These are conceptual examples, not instructions to create duplicate tables.
+
+Database requirements
+
+Where appropriate, ensure:
+
+- Primary keys.
+- Foreign-key relationships.
+- Unique constraints.
+- Appropriate indexes.
+- Created and updated timestamps.
+- Correct handling of nullable fields.
+- Referential integrity.
+- Safe deletion behavior.
+- Transactional updates where multiple changes must succeed together.
+
+Enforce uniqueness and consistency in the database as well as the application.
+
+Use migrations and the project's existing migration workflow.
+
+Do not drop production tables or erase existing data to make the new feature work.
+
+Do not use destructive migrations without identifying their impact and obtaining the required approval.
+
+Backend API requirements
+
+Adapt the following conceptual operations to the project's existing API architecture:
+
+- Retrieve the authenticated user's profile.
+- Update permitted profile fields.
+- Upload or remove the avatar.
+- Retrieve account summary metrics.
+- Retrieve the customer's order history.
+- Retrieve an authorized order detail.
+- Retrieve and modify saved products.
+- Retrieve customization requests.
+- Manage saved addresses.
+- Retrieve and update account preferences.
+- Change password through the supported authentication system.
+- Manage sessions if supported.
+- Submit account deletion or deactivation requests.
+
+For every operation:
+
+1. Authenticate the requester.
+2. Authorize the operation.
+3. Validate incoming data.
+4. Apply business rules.
+5. Access only permitted records.
+6. Handle failures safely.
+7. Return a predictable response.
+8. Avoid leaking internal errors or sensitive information.
+
+Use the existing API response conventions rather than creating an inconsistent second API style.
+
+---
+
+14. PHASE TWELVE: DATA FETCHING AND PERFORMANCE
+
+Implement efficient loading and updating of profile data.
+
+Requirements:
+
+- Fetch only the information needed by the current page.
+- Avoid unnecessary repeated requests.
+- Prevent duplicate form submissions.
+- Handle stale data appropriately.
+- Use pagination for growing collections.
+- Avoid loading an entire order history just to display a few recent orders.
+- Use database indexes appropriate to actual query patterns.
+- Prevent avoidable N+1 database queries.
+- Keep profile components modular.
+- Avoid unnecessary client-side JavaScript.
+- Avoid exposing server-only modules or credentials to browser bundles.
+
+Use caching only when it is safe for authenticated, user-specific data.
+
+Never allow one customer's cached profile or orders to appear in another customer's session.
+
+After profile updates, refresh the affected UI in a predictable way.
+
+Handle concurrent updates appropriately where data loss is possible.
+
+---
+
+15. PHASE THIRTEEN: ERROR HANDLING
+
+Every important profile workflow must have a complete state model.
+
+Include:
+
+1. Initial loading.
+2. Successful data retrieval.
+3. Empty data.
+4. Validation errors.
+5. Authentication expiration.
+6. Permission denial.
+7. Network failure.
+8. Server failure.
+9. Successful submission.
+10. Partial failure where multiple independent operations are involved.
+
+Show useful customer-facing messages.
+
+Do not expose stack traces, SQL errors, internal file paths, access tokens, or database connection details.
+
+Do not silently discard failed updates.
+
+Do not display success notifications before the server confirms the operation.
+
+Provide retry actions where appropriate.
+
+If a profile request fails, do not replace the existing profile with fabricated fallback data.
+
+---
+
+16. PHASE FOURTEEN: TESTING REQUIREMENTS
+
+Create or extend automated tests using the testing framework already present in the project.
+
+If no suitable framework exists, recommend an appropriate option and explain the implementation needed.
+
+Do not claim that tests pass unless they have actually been executed successfully.
+
+A. Profile tests
+
+Test:
+
+- Retrieving the authenticated user's profile.
+- Updating allowed profile fields.
+- Rejecting invalid input.
+- Preventing changes to protected fields.
+- Handling duplicate submissions.
+- Handling unavailable backend services.
+- Handling an expired session.
+
+B. Authorization tests
+
+Test:
+
+- An unauthenticated visitor cannot access private profile data.
+- Customer A cannot read Customer B's profile.
+- Customer A cannot modify Customer B's profile.
+- Customer A cannot access Customer B's orders.
+- Customer A cannot access Customer B's saved addresses.
+- Customer A cannot access Customer B's customization requests.
+- A customer cannot grant themselves administrative privileges.
+- Authorization is enforced on the server, not just in the UI.
+
+C. Order and saved-item tests
+
+Test:
+
+- Order summaries reflect real database records.
+- Empty order history renders correctly.
+- Saved products persist after reload.
+- Duplicate saved records are prevented.
+- Unavailable products are handled gracefully.
+- Guest order access remains protected.
+- Payment status cannot be changed by unauthorized customer input.
+
+D. Upload tests
+
+Test:
+
+- Allowed image types.
+- Unsupported file types.
+- Excessive file size.
+- Invalid file content.
+- Unauthorized uploads.
+- Storage failures.
+- Safe removal or replacement of existing images.
+
+E. User experience tests
+
+Test:
+
+- Desktop layout.
+- Mobile layout.
+- Keyboard navigation.
+- Form validation.
+- Loading states.
+- Empty states.
+- Error states.
+- Responsive dialogs.
+- Accessibility basics.
+
+Run the relevant tests and report the actual results.
+
+Distinguish between:
+
+- Implemented.
+- Tested and passed.
+- Tested and failed.
+- Not tested.
+- Blocked by missing credentials or infrastructure.
+
+---
+
+17. PHASE FIFTEEN: PROJECT STRUCTURE AND CODE QUALITY
+
+Follow the existing project structure.
+
+Keep components modular and reusable.
+
+Possible component responsibilities include:
+
+- ProfileHeader.
+- ProfileNavigation.
+- ProfileSummaryCards.
+- RecentActivity.
+- PersonalInformationForm.
+- AvatarUploader.
+- OrderHistory.
+- OrderSummary.
+- SavedProducts.
+- CustomizationRequestList.
+- AddressManager.
+- PreferencesForm.
+- SecuritySettings.
+- ConfirmActionDialog.
+- LoadingState.
+- EmptyState.
+- ErrorState.
+
+These names are suggestions. Reuse existing components when appropriate.
+
+Do not place the entire profile system into one oversized component.
+
+Separate responsibilities sensibly across:
+
+- UI components.
+- Page or route components.
+- Validation schemas.
+- Backend services.
+- Authorization logic.
+- Data-access functions.
+- Database models.
+- Automated tests.
+
+Avoid duplicated business logic.
+
+Use strong typing and the project's established linting and formatting conventions.
+
+Avoid unnecessary dependencies.
+
+Do not disable TypeScript checks, lint rules, security checks, or build validations just to make the project appear successful.
+
+---
+
+18. PHASE SIXTEEN: IMPLEMENTATION STRATEGY
+
+Implement the profile system incrementally.
+
+Stage 1: Inspect
+
+Inspect the project, identify existing capabilities, and report the implementation plan.
+
+Stage 2: Architecture
+
+Identify the required routes, components, backend operations, database changes, and authorization requirements.
+
+Stage 3: Profile foundation
+
+Implement the profile layout, navigation, authenticated access, and actual profile retrieval.
+
+Stage 4: Personal information
+
+Implement profile editing, validation, server-side authorization, and persistence.
+
+Stage 5: Orders
+
+Integrate the existing order system with secure customer-specific order history.
+
+Stage 6: Saved products
+
+Implement persistent saved products and catalog integration.
+
+Stage 7: Customization
+
+Connect existing customization requests and customer-visible statuses.
+
+Stage 8: Preferences and addresses
+
+Implement supported preferences and saved addresses.
+
+Stage 9: Security
+
+Implement and test the supported security workflows.
+
+Stage 10: Quality assurance
+
+Run builds, lint checks, type checks, automated tests, and relevant accessibility checks.
+
+Stage 11: Final review
+
+Inspect the completed implementation for design consistency, broken routes, security gaps, duplicated code, incomplete functionality, and unhandled errors.
+
+At each stage, preserve existing working functionality.
+
+If the environment requires human approval for a migration, external service, credential, or destructive change, stop and explain exactly what is needed.
+
+---
+
+19. GOOGLE AI STUDIO IMPLEMENTATION RULES
+
+You are working inside an existing application environment.
+
+Follow these rules strictly:
+
+1. Inspect the available files before making changes.
+2. Determine what already exists before implementing replacements.
+3. Preserve existing working features.
+4. Do not rebuild the entire website to add a profile page.
+5. Do not replace the established brand identity.
+6. Do not invent API endpoints and claim they are connected.
+7. Do not invent successful database writes.
+8. Do not use mock data as production data.
+9. Do not create fake authentication.
+10. Do not place private credentials in frontend code.
+11. Do not expose environment variables to browser bundles.
+12. Do not bypass server-side authorization.
+13. Do not disable security controls to simplify implementation.
+14. Do not delete existing database data.
+15. Do not run destructive migrations without approval.
+16. Do not claim a build or test succeeded without executing it.
+17. Do not hide incomplete integrations.
+18. Clearly identify external services that require configuration.
+19. Use the existing package manager and project conventions.
+20. Explain any changes that affect existing routes, database models, or APIs.
+
+If Google AI Studio cannot directly execute or validate a required backend operation, explain the limitation and provide the necessary implementation steps.
+
+Do not represent generated code as a verified production deployment.
+
+---
+
+20. FINAL ACCEPTANCE CRITERIA
+
+The implementation is ready for review when:
+
+- The profile matches the existing WRITE YOUR WAVE brand.
+- The profile works on mobile, tablet, and desktop.
+- Only authenticated customers can access their private profile.
+- Customers can edit permitted profile information.
+- Changes persist in the actual configured backend.
+- Protected fields cannot be modified by customers.
+- Account summary metrics use real records.
+- Order history is correctly authorized.
+- Saved products persist and remain consistent.
+- Customization requests show only authorized customer data.
+- Preferences and addresses work where implemented.
+- Unsupported functionality is clearly disclosed.
+- Errors are handled without leaking sensitive information.
+- Profile data is not accidentally shared through caching.
+- Automated security and functionality tests have been run where possible.
+- The application builds successfully, if the environment supports running the build.
+- Existing pages and features remain functional.
+- No secrets or private credentials are exposed.
+- No fake payment, verification, or security states are presented as real.
+
+Provide a final implementation report containing:
+
+1. Features implemented.
+2. Files created.
+3. Files modified.
+4. Database changes and migrations.
+5. API or server actions added.
+6. Authentication and authorization behavior.
+7. External services requiring configuration.
+8. Tests actually executed and their results.
+9. Known limitations.
+10. Remaining production-readiness tasks.
+
+Clearly separate completed work from proposed work.
+
+Do not declare the system production-ready merely because the interface looks finished.
+
+---
+
+21. BEGIN NOW
+
+Start by inspecting the existing WRITE YOUR WAVE application.
+
+Do not immediately generate an entirely new website.
+
+First, report:
+
+- The existing technology stack.
+- The current authentication approach.
+- The current database and backend status.
+- Existing profile-related functionality.
+- Missing requirements.
+- The proposed implementation sequence.
+
+Then implement the profile system using the actual project architecture, preserving the existing website and its working functionality.

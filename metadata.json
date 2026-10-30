@@ -1,0 +1,6 @@
+{
+  "name": "Write Your Wave",
+  "description": "Full-stack e-commerce, journal customization, inventory tracking, and AI stationery platform for students and creators.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

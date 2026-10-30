@@ -2,11 +2,14 @@ package com.example
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.robolectric.shadows.ShadowToast
+import com.example.ui.screens.performGitHubSyncWithExponentialBackoff
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [36])
@@ -317,6 +320,71 @@ class ExampleRobolectricTest {
     org.junit.Assert.assertTrue(csvRow.contains("write-your-wave"))
     org.junit.Assert.assertTrue(csvRow.contains("main"))
     org.junit.Assert.assertTrue(csvRow.contains("SUCCESS"))
+  }
+
+  @Test
+  fun `verify GitHub sync fails after 3 attempts with exponential backoff and shows toast notification`() = runBlocking {
+    val context = ApplicationProvider.getApplicationContext<Context>()
+    var completedSuccess: Boolean? = null
+    var finalLog: com.example.data.model.GitHubSyncLog? = null
+    var finalStatusMsg: String? = null
+    val stages = mutableListOf<String>()
+
+    performGitHubSyncWithExponentialBackoff(
+      context = context,
+      owner = "emmanuelhodges17",
+      repo = "write-your-wave",
+      branch = "main",
+      isInitialConnected = true,
+      maxRetries = 3,
+      baseDelayMs = 10L, // low delay for fast test execution
+      simulateFailure = true,
+      onStageUpdate = { stage, _ -> stages.add(stage) },
+      onComplete = { success, log, statusMsg ->
+        completedSuccess = success
+        finalLog = log
+        finalStatusMsg = statusMsg
+      }
+    )
+
+    assertEquals(false, completedSuccess)
+    org.junit.Assert.assertNotNull(finalLog)
+    assertEquals("FAILED", finalLog?.status)
+    assertEquals("SYNC_RETRY_EXHAUSTED", finalLog?.action)
+    org.junit.Assert.assertTrue(finalStatusMsg!!.contains("failed after 3 attempts"))
+    org.junit.Assert.assertTrue(stages.any { it.contains("Retry 2/3") || it.contains("Attempt 1 failed") })
+    org.junit.Assert.assertTrue(stages.any { it.contains("Retry 3/3") || it.contains("Attempt 2 failed") })
+    val latestToast = ShadowToast.getTextOfLatestToast()
+    org.junit.Assert.assertNotNull(latestToast)
+    org.junit.Assert.assertTrue(latestToast.contains("failed after 3 attempts"))
+  }
+
+  @Test
+  fun `verify GitHub sync succeeds with retry logic`() = runBlocking {
+    val context = ApplicationProvider.getApplicationContext<Context>()
+    var completedSuccess: Boolean? = null
+    var finalLog: com.example.data.model.GitHubSyncLog? = null
+
+    performGitHubSyncWithExponentialBackoff(
+      context = context,
+      owner = "emmanuelhodges17",
+      repo = "write-your-wave",
+      branch = "main",
+      isInitialConnected = true,
+      maxRetries = 3,
+      baseDelayMs = 10L,
+      simulateFailure = false,
+      onStageUpdate = { _, _ -> },
+      onComplete = { success, log, _ ->
+        completedSuccess = success
+        finalLog = log
+      }
+    )
+
+    assertEquals(true, completedSuccess)
+    org.junit.Assert.assertNotNull(finalLog)
+    assertEquals("SUCCESS", finalLog?.status)
+    assertEquals("MANUAL_SYNC_TRIGGER", finalLog?.action)
   }
 }
 

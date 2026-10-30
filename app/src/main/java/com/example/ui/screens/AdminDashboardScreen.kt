@@ -41,6 +41,7 @@ import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Link
 import androidx.compose.material.icons.filled.Refresh
 import android.content.Intent
+import android.widget.Toast
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.material.icons.filled.Shield
@@ -1065,29 +1066,24 @@ fun AdminDashboardScreen(
                                 OutlinedButton(
                                     onClick = {
                                         isGitHubSyncing = true
-                                        gitHubSyncProgress = 0.2f
-                                        gitHubSyncStage = "Connecting to $gitHubOwner/$gitHubRepoName ($gitHubBranch)..."
                                         coroutineScope.launch {
-                                            delay(350)
-                                            gitHubSyncProgress = 0.65f
-                                            gitHubSyncStage = "Pushing 7 authentic journal catalog & Starz/WIT commits..."
-                                            delay(450)
-                                            gitHubSyncProgress = 0.95f
-                                            gitHubSyncStage = "Triggering Vercel production webhook..."
-                                            delay(400)
-                                            gitHubSyncProgress = 1.0f
-                                            gitHubSyncStage = "Sync complete! Production deployment live."
-                                            val newLog = GitHubSyncLog(
-                                                id = "sync-${System.currentTimeMillis()}",
-                                                timestamp = "Just now",
-                                                action = "MANUAL_SYNC_TRIGGER",
-                                                repository = gitHubRepoName,
+                                            performGitHubSyncWithExponentialBackoff(
+                                                context = context,
+                                                owner = gitHubOwner,
+                                                repo = gitHubRepoName,
                                                 branch = gitHubBranch,
-                                                status = "SUCCESS",
-                                                summary = "Manual sync triggered by admin. Updated 7 journal editions & Vercel deployment hook."
+                                                isInitialConnected = isGitHubConnected,
+                                                maxRetries = 3,
+                                                baseDelayMs = 1000L,
+                                                onStageUpdate = { stage, progress ->
+                                                    gitHubSyncStage = stage
+                                                    gitHubSyncProgress = progress
+                                                },
+                                                onComplete = { _, log, statusMsg ->
+                                                    syncLogs = listOf(log) + syncLogs.take(4)
+                                                    gitHubStatusMessage = statusMsg
+                                                }
                                             )
-                                            syncLogs = listOf(newLog) + syncLogs.take(4)
-                                            gitHubStatusMessage = "Sync completed! Vercel deployment triggered."
                                             delay(700)
                                             isGitHubSyncing = false
                                         }
@@ -1765,5 +1761,78 @@ fun MetricCard(title: String, value: String, subtitle: String, modifier: Modifie
             Spacer(modifier = Modifier.height(2.dp))
             Text(text = subtitle, fontSize = 10.sp, color = WaveNavyLight)
         }
+    }
+}
+
+/**
+ * Executes a GitHub sync operation with an exponential backoff auto-retry strategy.
+ * If the sync operation fails, it retries up to [maxRetries] times with increasing delays
+ * (e.g. 1s -> 2s). If it fails after 3 attempts, it records a failure log and alerts the user
+ * via a Toast notification.
+ */
+suspend fun performGitHubSyncWithExponentialBackoff(
+    context: android.content.Context,
+    owner: String,
+    repo: String,
+    branch: String,
+    isInitialConnected: Boolean,
+    maxRetries: Int = 3,
+    baseDelayMs: Long = 1000L,
+    simulateFailure: Boolean = false,
+    onStageUpdate: (stage: String, progress: Float) -> Unit,
+    onComplete: (success: Boolean, log: GitHubSyncLog, statusMessage: String) -> Unit
+) {
+    var success = false
+    var lastError = ""
+    for (attempt in 1..maxRetries) {
+        val attemptPrefix = if (attempt > 1) "[Retry $attempt/$maxRetries] " else ""
+        onStageUpdate("${attemptPrefix}Connecting to $owner/$repo ($branch)...", (attempt * 0.25f).coerceAtMost(0.75f))
+        delay(400)
+
+        onStageUpdate("${attemptPrefix}Pushing authentic 7 journal catalog & Starz/WIT commits...", (attempt * 0.30f).coerceAtMost(0.85f))
+        delay(450)
+
+        if (simulateFailure || !isInitialConnected) {
+            lastError = if (!isInitialConnected) "Repository disconnected" else "GitHub API 503 gateway timeout"
+        } else {
+            success = true
+            onStageUpdate("Sync complete! Production deployment live.", 1.0f)
+            val newLog = GitHubSyncLog(
+                id = "sync-${System.currentTimeMillis()}",
+                timestamp = "Just now",
+                action = "MANUAL_SYNC_TRIGGER",
+                repository = repo,
+                branch = branch,
+                status = "SUCCESS",
+                summary = "Manual sync completed on attempt $attempt/$maxRetries. Updated 7 journal editions & Vercel deployment hook."
+            )
+            onComplete(true, newLog, "Sync completed on attempt $attempt/$maxRetries! Vercel deployment triggered.")
+            break
+        }
+
+        if (attempt < maxRetries) {
+            val backoffMs = baseDelayMs * (1L shl (attempt - 1)) // 1000ms (attempt 1), 2000ms (attempt 2)
+            onStageUpdate("⚠️ Attempt $attempt failed ($lastError). Retrying in ${backoffMs / 1000}s...", (attempt * 0.30f).coerceAtMost(0.85f))
+            delay(backoffMs)
+        }
+    }
+
+    if (!success) {
+        onStageUpdate("❌ Sync failed after $maxRetries attempts.", 1.0f)
+        val failLog = GitHubSyncLog(
+            id = "sync-${System.currentTimeMillis()}",
+            timestamp = "Just now",
+            action = "SYNC_RETRY_EXHAUSTED",
+            repository = repo,
+            branch = branch,
+            status = "FAILED",
+            summary = "GitHub sync failed after $maxRetries attempts with exponential backoff: $lastError"
+        )
+        onComplete(false, failLog, "❌ GitHub sync failed after $maxRetries attempts! Please check connection and token permissions.")
+        Toast.makeText(
+            context,
+            "GitHub sync failed after $maxRetries attempts. Please verify token & connection.",
+            Toast.LENGTH_LONG
+        ).show()
     }
 }

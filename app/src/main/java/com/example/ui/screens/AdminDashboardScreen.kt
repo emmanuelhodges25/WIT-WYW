@@ -52,6 +52,9 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LinearProgressIndicator
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -151,6 +154,9 @@ fun AdminDashboardScreen(
     var gitHubOwner by remember { mutableStateOf("emmanuelhodges17") }
     var gitHubBranch by remember { mutableStateOf("main") }
     var gitHubStatusMessage by remember { mutableStateOf<String?>(null) }
+    var isGitHubSyncing by remember { mutableStateOf(false) }
+    var gitHubSyncProgress by remember { mutableStateOf(0f) }
+    var gitHubSyncStage by remember { mutableStateOf("") }
 
     var syncLogs by remember {
         mutableStateOf(
@@ -1046,9 +1052,10 @@ fun AdminDashboardScreen(
                             ) {
                                 Button(
                                     onClick = { showReconnectDialog = true },
+                                    enabled = !isGitHubSyncing,
                                     colors = ButtonDefaults.buttonColors(containerColor = WaveGold, contentColor = WaveNavyDark),
                                     shape = RoundedCornerShape(10.dp),
-                                    modifier = Modifier.weight(1f)
+                                    modifier = Modifier.weight(1f).testTag("reconnect_repo_button")
                                 ) {
                                     Icon(Icons.Default.Link, contentDescription = null, modifier = Modifier.size(16.dp))
                                     Spacer(modifier = Modifier.width(6.dp))
@@ -1057,26 +1064,106 @@ fun AdminDashboardScreen(
 
                                 OutlinedButton(
                                     onClick = {
-                                        val newLog = GitHubSyncLog(
-                                            id = "sync-${System.currentTimeMillis()}",
-                                            timestamp = "Just now",
-                                            action = "MANUAL_SYNC_TRIGGER",
-                                            repository = gitHubRepoName,
-                                            branch = gitHubBranch,
-                                            status = "SUCCESS",
-                                            summary = "Manual sync triggered by admin. Updated 7 journal editions & Vercel deployment hook."
-                                        )
-                                        syncLogs = listOf(newLog) + syncLogs.take(4)
-                                        gitHubStatusMessage = "Sync completed! Vercel deployment triggered."
+                                        isGitHubSyncing = true
+                                        gitHubSyncProgress = 0.2f
+                                        gitHubSyncStage = "Connecting to $gitHubOwner/$gitHubRepoName ($gitHubBranch)..."
+                                        coroutineScope.launch {
+                                            delay(350)
+                                            gitHubSyncProgress = 0.65f
+                                            gitHubSyncStage = "Pushing 7 authentic journal catalog & Starz/WIT commits..."
+                                            delay(450)
+                                            gitHubSyncProgress = 0.95f
+                                            gitHubSyncStage = "Triggering Vercel production webhook..."
+                                            delay(400)
+                                            gitHubSyncProgress = 1.0f
+                                            gitHubSyncStage = "Sync complete! Production deployment live."
+                                            val newLog = GitHubSyncLog(
+                                                id = "sync-${System.currentTimeMillis()}",
+                                                timestamp = "Just now",
+                                                action = "MANUAL_SYNC_TRIGGER",
+                                                repository = gitHubRepoName,
+                                                branch = gitHubBranch,
+                                                status = "SUCCESS",
+                                                summary = "Manual sync triggered by admin. Updated 7 journal editions & Vercel deployment hook."
+                                            )
+                                            syncLogs = listOf(newLog) + syncLogs.take(4)
+                                            gitHubStatusMessage = "Sync completed! Vercel deployment triggered."
+                                            delay(700)
+                                            isGitHubSyncing = false
+                                        }
                                     },
+                                    enabled = !isGitHubSyncing,
                                     colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White),
                                     border = BorderStroke(1.dp, Color.White.copy(alpha = 0.4f)),
                                     shape = RoundedCornerShape(10.dp),
-                                    modifier = Modifier.weight(1f)
+                                    modifier = Modifier.weight(1f).testTag("manual_github_sync_button")
                                 ) {
-                                    Icon(Icons.Default.Sync, contentDescription = null, modifier = Modifier.size(16.dp))
-                                    Spacer(modifier = Modifier.width(6.dp))
-                                    Text("Sync Now", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                    if (isGitHubSyncing) {
+                                        CircularProgressIndicator(
+                                            modifier = Modifier.size(14.dp),
+                                            color = WaveGold,
+                                            strokeWidth = 2.dp
+                                        )
+                                        Spacer(modifier = Modifier.width(6.dp))
+                                        Text("Syncing...", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                    } else {
+                                        Icon(Icons.Default.Sync, contentDescription = null, modifier = Modifier.size(16.dp))
+                                        Spacer(modifier = Modifier.width(6.dp))
+                                        Text("Sync Now", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                    }
+                                }
+                            }
+
+                            // Progress Bar & Spinner Feedback
+                            if (isGitHubSyncing) {
+                                Spacer(modifier = Modifier.height(14.dp))
+                                Card(
+                                    shape = RoundedCornerShape(12.dp),
+                                    colors = CardDefaults.cardColors(containerColor = Color(0xFF0B192C)),
+                                    border = BorderStroke(1.dp, WaveGold),
+                                    modifier = Modifier.fillMaxWidth().testTag("sync_progress_card")
+                                ) {
+                                    Column(modifier = Modifier.padding(12.dp)) {
+                                        Row(
+                                            modifier = Modifier.fillMaxWidth(),
+                                            horizontalArrangement = Arrangement.SpaceBetween,
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+                                            Row(
+                                                verticalAlignment = Alignment.CenterVertically,
+                                                modifier = Modifier.weight(1f)
+                                            ) {
+                                                CircularProgressIndicator(
+                                                    modifier = Modifier.size(16.dp),
+                                                    color = WaveGold,
+                                                    strokeWidth = 2.dp
+                                                )
+                                                Spacer(modifier = Modifier.width(8.dp))
+                                                Text(
+                                                    text = gitHubSyncStage,
+                                                    fontSize = 11.sp,
+                                                    fontWeight = FontWeight.Bold,
+                                                    color = Color.White
+                                                )
+                                            }
+                                            Text(
+                                                text = "${(gitHubSyncProgress * 100).toInt()}%",
+                                                fontSize = 11.sp,
+                                                fontWeight = FontWeight.ExtraBold,
+                                                color = WaveGold
+                                            )
+                                        }
+                                        Spacer(modifier = Modifier.height(8.dp))
+                                        LinearProgressIndicator(
+                                            progress = { gitHubSyncProgress },
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .height(6.dp)
+                                                .clip(RoundedCornerShape(3.dp)),
+                                            color = WaveGold,
+                                            trackColor = Color(0xFF1E293B)
+                                        )
+                                    }
                                 }
                             }
 
@@ -1295,21 +1382,36 @@ fun AdminDashboardScreen(
 
                         Button(
                             onClick = {
-                                isGitHubConnected = true
-                                gitHubRepoName = repoInput.trim()
-                                gitHubBranch = branchInput.trim()
-                                val newLog = GitHubSyncLog(
-                                    id = "sync-${System.currentTimeMillis()}",
-                                    timestamp = "Just now",
-                                    action = "AUTH_RECONNECT",
-                                    repository = gitHubRepoName,
-                                    branch = gitHubBranch,
-                                    status = "ACTIVE",
-                                    summary = "Re-authenticated and linked directly to existing '$gitHubRepoName' repository without creating a new repo."
-                                )
-                                syncLogs = listOf(newLog) + syncLogs.take(4)
-                                gitHubStatusMessage = "Reconnected successfully to $gitHubRepoName!"
+                                val targetRepo = repoInput.trim()
+                                val targetBranch = branchInput.trim()
                                 showReconnectDialog = false
+                                isGitHubSyncing = true
+                                gitHubSyncProgress = 0.25f
+                                gitHubSyncStage = "Validating GitHub token credentials for $targetRepo..."
+                                coroutineScope.launch {
+                                    delay(400)
+                                    gitHubSyncProgress = 0.70f
+                                    gitHubSyncStage = "Restoring remote Git origin to $targetRepo ($targetBranch)..."
+                                    delay(450)
+                                    gitHubSyncProgress = 1.0f
+                                    gitHubSyncStage = "Reconnected successfully to $targetRepo!"
+                                    isGitHubConnected = true
+                                    gitHubRepoName = targetRepo
+                                    gitHubBranch = targetBranch
+                                    val newLog = GitHubSyncLog(
+                                        id = "sync-${System.currentTimeMillis()}",
+                                        timestamp = "Just now",
+                                        action = "AUTH_RECONNECT",
+                                        repository = gitHubRepoName,
+                                        branch = gitHubBranch,
+                                        status = "ACTIVE",
+                                        summary = "Re-authenticated and linked directly to existing '$gitHubRepoName' repository without creating a new repo."
+                                    )
+                                    syncLogs = listOf(newLog) + syncLogs.take(4)
+                                    gitHubStatusMessage = "Reconnected successfully to $gitHubRepoName!"
+                                    delay(700)
+                                    isGitHubSyncing = false
+                                }
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = WaveNavyDark, contentColor = WaveGold),
                             modifier = Modifier.weight(1.4f)

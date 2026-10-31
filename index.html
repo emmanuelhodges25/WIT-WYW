@@ -661,19 +661,30 @@
       gap: 16px;
     }
 
-    /* Modals & Drawers */
+    /* Modals & Drawers - Professional Smooth Entry/Exit Transitions */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(7, 19, 38, 0.85);
+      background: rgba(7, 19, 38, 0.82);
       backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       z-index: 2000;
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, visibility;
     }
-    .modal-backdrop.is-open { display: flex; }
+    .modal-backdrop.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
     .modal-box {
       background: #FFFFFF;
       border-radius: 20px;
@@ -681,14 +692,18 @@
       max-width: 680px;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: var(--wave-shadow-lg);
+      box-shadow: 0 24px 64px -12px rgba(7, 19, 38, 0.35), 0 0 0 1px rgba(229, 169, 60, 0.3);
       border: 1.5px solid var(--wave-gold);
       position: relative;
-      animation: modalFadeIn 0.25s ease-out;
+      opacity: 0;
+      transform: scale(0.92) translateY(24px);
+      transition: transform 0.36s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
     }
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: scale(0.95) translateY(10px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
+    .modal-backdrop.is-open .modal-box {
+      opacity: 1;
+      transform: scale(1) translateY(0);
     }
     @keyframes spinWave {
       to { transform: rotate(360deg); }
@@ -721,20 +736,31 @@
       color: var(--wave-text-muted);
       cursor: pointer;
       padding: 4px;
+      transition: color 0.2s ease, transform 0.2s ease;
     }
-    .modal-close-btn:hover { color: var(--wave-navy-dark); }
+    .modal-close-btn:hover { color: var(--wave-navy-dark); transform: scale(1.1); }
     .modal-body { padding: 24px; }
 
-    /* Cart Drawer */
+    /* Cart Drawer & Backdrops - Smooth Entry/Exit Sliding */
     .cart-drawer-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(7, 19, 38, 0.7);
-      backdrop-filter: blur(4px);
+      background: rgba(7, 19, 38, 0.72);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
       z-index: 2050;
-      display: none;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, visibility;
     }
-    .cart-drawer-overlay.is-open { display: block; }
+    .cart-drawer-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
     .cart-drawer {
       position: fixed;
       top: 0;
@@ -744,13 +770,25 @@
       max-width: 460px;
       background: #FFFFFF;
       z-index: 2060;
-      box-shadow: -8px 0 32px rgba(0,0,0,0.25);
+      box-shadow: -12px 0 40px rgba(7, 19, 38, 0.28);
       display: flex;
       flex-direction: column;
       transform: translateX(100%);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.38s ease;
+      will-change: transform;
     }
     .cart-drawer.is-open { transform: translateX(0); }
+    #mobileDrawer {
+      left: 0;
+      right: auto;
+      transform: translateX(-100%);
+      box-shadow: 12px 0 40px rgba(7, 19, 38, 0.28);
+      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #mobileDrawer.is-open {
+      transform: translateX(0) !important;
+    }
     .cart-header {
       padding: 20px 24px;
       border-bottom: 1px solid var(--wave-border);
@@ -988,8 +1026,7 @@
     </div>
   </header>
 
-  <!-- Mobile Drawer -->
-  <aside class="cart-drawer" id="mobileDrawer" style="left: 0; right: auto; transform: translateX(-100%);">
+  <aside class="cart-drawer" id="mobileDrawer">
     <div class="cart-header">
       <div style="font-weight: 800; color: var(--wave-navy-dark);">WRITE YOUR WAVE</div>
       <button type="button" class="modal-close-btn" onclick="toggleMobileMenu()">&times;</button>
@@ -1925,7 +1962,31 @@
       updateHeaderUserBadge();
       updateCartBadge();
       renderAdminReservations();
+      initModalAndDrawerTransitions();
     });
+
+    function initModalAndDrawerTransitions() {
+      // Backdrop click dismiss for all modals
+      document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+        backdrop.addEventListener('click', (e) => {
+          if (e.target === backdrop) {
+            backdrop.classList.remove('is-open');
+            document.body.style.overflow = '';
+          }
+        });
+      });
+
+      // Accessible Escape key dismiss for open modals & drawers
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.modal-backdrop.is-open').forEach(modal => {
+            modal.classList.remove('is-open');
+          });
+          closeCartDrawer();
+          document.body.style.overflow = '';
+        }
+      });
+    }
 
     function loadStorageData() {
       try {
@@ -2133,11 +2194,17 @@
       renderCart();
       document.getElementById('cartOverlay').classList.add('is-open');
       document.getElementById('cartDrawer').classList.add('is-open');
+      document.body.style.overflow = 'hidden';
     }
 
     function closeCartDrawer() {
-      document.getElementById('cartOverlay').classList.remove('is-open');
-      document.getElementById('cartDrawer').classList.remove('is-open');
+      const overlay = document.getElementById('cartOverlay');
+      const cartDrawer = document.getElementById('cartDrawer');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+      if (overlay) overlay.classList.remove('is-open');
+      if (cartDrawer) cartDrawer.classList.remove('is-open');
+      if (mobileDrawer) mobileDrawer.classList.remove('is-open');
+      document.body.style.overflow = '';
     }
 
     function renderCart() {
@@ -3624,7 +3691,19 @@ Please present your reference code or student ID. Flat $5.00 USD cash or Mobile 
 
     // --- 12. UTILITIES ---
     function toggleMobileMenu() {
-      document.getElementById('mobileDrawer').classList.toggle('is-open');
+      const drawer = document.getElementById('mobileDrawer');
+      const overlay = document.getElementById('cartOverlay');
+      if (!drawer) return;
+      const willOpen = !drawer.classList.contains('is-open');
+      if (willOpen) {
+        drawer.classList.add('is-open');
+        if (overlay) overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      } else {
+        drawer.classList.remove('is-open');
+        if (overlay) overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
     }
 
     function dismissAnnouncement() {

@@ -576,36 +576,16 @@ class WriteYourWaveRepository(
                     )).await()
                 }
 
-                // Seed Ambassadors
+                // Seed Official Brand Ambassador (Hazel Quiqui)
                 val seedAmbassadors = listOf(
                     Ambassador(
                         id = "amb_hazel_quiqui",
                         name = "Hazel Quiqui",
                         slug = "hazel-quiqui",
-                        role = "Campus Ambassador & Student Leader (Starz University)",
-                        biography = "Passionate advocate for student voice and intentional goal planning. Champions the Hazel Quiqui Signature Edition with the personal motto: 'Your Story Matters. Pray Truth and Wait.'",
+                        role = "Brand Ambassador / Sales & Marketing Agent (Starz University)",
+                        biography = "Attending Starz University studying System Administration. Official Brand Ambassador and Sales & Marketing Agent for Write Your Wave. “Your Story Matters. Pray Truth and Wait. Big Dreams. Real Plans.”",
                         featuredProduct = "Write Your Wave Journal (Hazel Quiqui Edition)",
                         imageUrl = "android.resource://com.example/" + com.example.R.drawable.journal_cover_hazel_quiqui,
-                        isPublished = true
-                    ),
-                    Ambassador(
-                        id = "amb_zinnah_kamara",
-                        name = "Zinnah M. Kamara",
-                        slug = "zinnah-kamara",
-                        role = "Senior Ambassador & Creative Director (WIT Hub)",
-                        biography = "Mentor in student entrepreneurship and academic excellence. Guides students across Monrovia to balance academic rigor and personal well-being: 'Better Days Ahead. Pray Truth and Wait.'",
-                        featuredProduct = "Write Your Wave Journal (Zinnah M. Kamara Edition)",
-                        imageUrl = "android.resource://com.example/" + com.example.R.drawable.journal_cover_zinnah_kamara,
-                        isPublished = true
-                    ),
-                    Ambassador(
-                        id = "amb_abiola",
-                        name = "Abiola",
-                        slug = "abiola",
-                        role = "Founding Ambassador & Student Creator",
-                        biography = "Pioneering student ambassador for the Write Your Wave movement. Creator of the 5 Life Pillars journal system: Study, Career, Financial Freedom, Self Care, and Success.",
-                        featuredProduct = "Write Your Wave Journal (Signature Ocean Blue)",
-                        imageUrl = "android.resource://com.example/" + com.example.R.drawable.journal_cover_abiola_blue,
                         isPublished = true
                     )
                 )

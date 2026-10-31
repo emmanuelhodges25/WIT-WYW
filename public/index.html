@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     :root {
       --wave-navy-dark: #071326;
@@ -1060,9 +1061,10 @@
       <div class="shop-controls">
         <div class="filter-pills">
           <button type="button" class="filter-pill active" onclick="filterJournals('all', this)">All Editions (7)</button>
-          <button type="button" class="filter-pill" onclick="filterJournals('ambassador', this)">Ambassador Series (3)</button>
-          <button type="button" class="filter-pill" onclick="filterJournals('scholar', this)">Academic &amp; Scholars (2)</button>
-          <button type="button" class="filter-pill" onclick="filterJournals('executive', this)">Executive &amp; Creative (2)</button>
+          <button type="button" class="filter-pill" onclick="filterJournals('University Student Notebook', this)">🎓 University Notebooks</button>
+          <button type="button" class="filter-pill" onclick="filterJournals('Student Notebook', this)">📚 Student Notebooks</button>
+          <button type="button" class="filter-pill" onclick="filterJournals('Journal', this)">🌊 Official Journals</button>
+          <button type="button" class="filter-pill" onclick="filterJournals('Premium Journal', this)">👑 Premium Journals</button>
         </div>
         <div class="search-box-wrap">
           <span class="search-box-icon">🔍</span>
@@ -1073,6 +1075,67 @@
       <!-- Grid of 7 Journals -->
       <div class="journal-grid" id="journalCardsGrid">
         <!-- Rendered by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Journal Interior & Architectural Technical Specs Section -->
+    <section class="section" id="specs" style="background: linear-gradient(180deg, #FAFBFD 0%, #F1F5F9 100%); border-top: 1px solid var(--wave-border); border-bottom: 1px solid var(--wave-border);">
+      <div class="section-header">
+        <span class="section-tag">Archival Engineering &amp; Specifications</span>
+        <h2 class="section-title">Inside the Write Your Wave Movement</h2>
+        <p class="section-subtitle">
+          Designed specifically for students, dreamers, and leaders. Featuring 120 GSM acid-free bleed-proof paper, the 5 Life Pillars roadmap, and the official 2026/2027 Liberia holiday calendar.
+        </p>
+      </div>
+      <div style="max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+        <div style="border-radius: 16px; overflow: hidden; border: 2px solid var(--wave-gold); box-shadow: var(--wave-shadow-lg); background: #FFF;">
+          <img src="/assets/images/journal_interior_calendar_series.png" alt="Write Your Wave 2026/2027 Liberia Calendar and 4 Notebook Series Interior Specs" style="width: 100%; display: block;">
+        </div>
+        <div>
+          <span style="background: rgba(229,169,60,0.18); color: #B45309; font-size: 0.76rem; font-weight: 800; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;">
+            120 GSM Bleed-Proof Archival Paper
+          </span>
+          <h3 style="font-size: 1.65rem; font-weight: 800; color: var(--wave-navy-dark); margin: 12px 0 14px; line-height: 1.25;">
+            The 4 Essential Stationery Series
+          </h3>
+          <p style="font-size: 0.88rem; color: var(--wave-text-muted); line-height: 1.6; margin-bottom: 20px;">
+            Every single copy is manufactured in Sinkor with twin-loop gold wire-O binding that lays flat 360°, heavy durable cardstock, and structured templates:
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px;">
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <span style="background: var(--wave-navy-dark); color: var(--wave-gold); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; flex-shrink: 0;">1</span>
+              <div>
+                <strong style="color: var(--wave-navy-dark); font-size: 0.94rem;">University Student Notebook:</strong>
+                <p style="font-size: 0.82rem; color: var(--wave-text-muted); margin: 2px 0 0;">Dedicated lecture notes, sprint planning, and exam preparation grids with margin rulers.</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <span style="background: var(--wave-navy-dark); color: var(--wave-gold); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; flex-shrink: 0;">2</span>
+              <div>
+                <strong style="color: var(--wave-navy-dark); font-size: 0.94rem;">Student Notebook:</strong>
+                <p style="font-size: 0.82rem; color: var(--wave-text-muted); margin: 2px 0 0;">High-durability daily coursework notes with study tracker and habit milestones.</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <span style="background: var(--wave-navy-dark); color: var(--wave-gold); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; flex-shrink: 0;">3</span>
+              <div>
+                <strong style="color: var(--wave-navy-dark); font-size: 0.94rem;">Write Your Wave Journal:</strong>
+                <p style="font-size: 0.82rem; color: var(--wave-text-muted); margin: 2px 0 0;">The 5 Life Pillars: Study, Career, Financial Freedom, Self Care, and Success with daily reflections.</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <span style="background: var(--wave-navy-dark); color: var(--wave-gold); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; flex-shrink: 0;">4</span>
+              <div>
+                <strong style="color: var(--wave-navy-dark); font-size: 0.94rem;">Premium Journal:</strong>
+                <p style="font-size: 0.82rem; color: var(--wave-text-muted); margin: 2px 0 0;">Executive cover with gold corner protectors, archival ribbon marker, and custom name stamping.</p>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+            <a href="#journals" class="btn-primary" style="display: inline-flex;">Explore All 7 Editions ($5.00 USD) &rarr;</a>
+            <span style="font-size: 0.8rem; color: var(--wave-navy-dark); font-weight: 700;">✓ In Stock at Starz &amp; WIT Desks</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1756,6 +1819,7 @@
         title: 'Hazel Quiqui Edition',
         edition: 'Ambassador Signature Edition',
         category: 'ambassador',
+        collectionCategory: 'University Student Notebook',
         motto: '“Your Story Matters. Pray Truth and Wait. Big Dreams. Real Plans.”',
         desc: 'Official Student Ambassador Edition featuring Hazel Quiqui. Twin-loop gold wire binding, 5 Life Pillars roadmap, and daily reflection pages designed for intentional living.',
         price: 5.0,
@@ -1768,6 +1832,7 @@
         title: 'Zinnah M. Kamara Edition',
         edition: 'Creative Leadership Edition',
         category: 'ambassador',
+        collectionCategory: 'University Student Notebook',
         motto: '“Better Days Ahead. Pray Truth and Wait. Plan. Learn. Create. Achieve.”',
         desc: 'Creative & Leadership Ambassador Edition featuring Zinnah M. Kamara. High-end editorial design with structured daily vision spreads and career milestone planning.',
         price: 5.0,
@@ -1780,6 +1845,7 @@
         title: 'Deep Purple Scholar Edition',
         edition: 'Scholars & Creators Edition',
         category: 'scholar',
+        collectionCategory: 'Student Notebook',
         motto: '“Big Dreams. Real Plans. Plan, Study, Grow, Succeed.”',
         desc: 'Deep purple aesthetic with gold foil accents. Engineered for academic sprint planning, deep study focus, and mindful habit tracking.',
         price: 5.0,
@@ -1792,6 +1858,7 @@
         title: 'Abiola Signature Edition (Ocean Blue)',
         edition: 'Founding Student Edition',
         category: 'ambassador',
+        collectionCategory: 'Journal',
         motto: '“Better Days Ahead. Write Your Story. Shape Your Future.”',
         desc: 'The original viral edition featuring student creator Abiola. Structured guided daily prompts for Study, Career, Financial Freedom, Self Care, and Success.',
         price: 5.0,
@@ -1804,6 +1871,7 @@
         title: 'Royal Purple & Gold Edition',
         edition: 'Royal Scholar Edition',
         category: 'scholar',
+        collectionCategory: 'Premium Journal',
         motto: '“A Journey to the Life I Want.”',
         desc: 'Inspiring gold crown calligraphy with daily morning intentionality sections and evening gratitude reflections on 120 GSM archival paper.',
         price: 5.0,
@@ -1816,6 +1884,7 @@
         title: 'Noir Gold Executive Edition (Class of 2026)',
         edition: 'Executive Academic Edition',
         category: 'executive',
+        collectionCategory: 'Premium Journal',
         motto: '“Focus. Learn. Level Up. Big Dreams Require Discipline.”',
         desc: 'Premium noir black and gold foil brushwork with dedicated semester goal tracking sections designed for academic sprinting and long-term milestones.',
         price: 5.0,
@@ -1828,6 +1897,7 @@
         title: 'Radiant Pink Splash Edition',
         edition: 'Creative Vision Edition',
         category: 'creative',
+        collectionCategory: 'Journal',
         motto: '“Dream. Plan. Achieve. Repeat.”',
         desc: 'Vibrant brush-radiance cover with dedicated personalized nameplate slot and creative vision board spreads for bold dreamers.',
         price: 5.0,
@@ -1837,42 +1907,16 @@
       }
     ];
 
-    // Initial Reservations Seed
-    const DEFAULT_RESERVATIONS = [
-      {
-        reference: 'WYW-2026-10492',
-        title: 'Write Your Wave Journal (Hazel Quiqui Edition)',
-        date: 'Oct 28, 2026',
-        time: '9:15 AM',
-        totalAmount: 5.0,
-        campus: 'Starz University Campus Desk (Airfield, Sinkor)',
-        status: 'READY FOR PICKUP'
-      },
-      {
-        reference: 'WYW-2026-09841',
-        title: 'Write Your Wave Journal (Zinnah M. Kamara Edition)',
-        date: 'Oct 26, 2026',
-        time: '2:30 PM',
-        totalAmount: 5.0,
-        campus: 'Waterloop Institute of Technology (WIT Sinkor Hub)',
-        status: 'READY FOR PICKUP'
-      },
-      {
-        reference: 'WYW-2026-08122',
-        title: 'Write Your Wave Journal (Signature Ocean Blue)',
-        date: 'Oct 22, 2026',
-        time: '11:00 AM',
-        totalAmount: 5.0,
-        campus: 'Starz University Campus Desk (Airfield, Sinkor)',
-        status: 'COMPLETED'
-      }
-    ];
+    // Initial Live Reservations (Starts clean with 0 fake orders; dynamically populated by real user reservations)
+    const DEFAULT_RESERVATIONS = [];
 
     // State Variables
     let currentUser = null;
     let cart = [];
     let userReservations = [];
     let currentFilter = 'all';
+    let currentAuthPortal = 'student'; // 'student' | 'ambassador' | 'admin'
+    let currentStudentAuthTab = 'login'; // 'login' | 'register'
 
     // --- 2. INITIALIZATION ---
     document.addEventListener('DOMContentLoaded', () => {
@@ -1880,6 +1924,7 @@
       renderJournals(JOURNALS);
       updateHeaderUserBadge();
       updateCartBadge();
+      renderAdminReservations();
     });
 
     function loadStorageData() {
@@ -1892,14 +1937,22 @@
 
         const savedOrders = localStorage.getItem('wyw_reservations');
         if (savedOrders) {
-          userReservations = JSON.parse(savedOrders);
+          try {
+            const parsed = JSON.parse(savedOrders);
+            // Purge any legacy fake sample orders
+            userReservations = Array.isArray(parsed) 
+              ? parsed.filter(o => !['WYW-2026-10492', 'WYW-2026-09841', 'WYW-2026-08122'].includes(o.reference))
+              : [];
+          } catch (e) {
+            userReservations = [];
+          }
         } else {
-          userReservations = [...DEFAULT_RESERVATIONS];
-          localStorage.setItem('wyw_reservations', JSON.stringify(userReservations));
+          userReservations = [];
         }
+        localStorage.setItem('wyw_reservations', JSON.stringify(userReservations));
       } catch (e) {
         console.error('Storage error:', e);
-        userReservations = [...DEFAULT_RESERVATIONS];
+        userReservations = [];
       }
     }
 
@@ -1951,7 +2004,12 @@
       if (category === 'all') {
         renderJournals(JOURNALS);
       } else {
-        const filtered = JOURNALS.filter(j => j.category === category || (category === 'ambassador' && j.category === 'ambassador'));
+        const filtered = JOURNALS.filter(j => 
+          j.collectionCategory === category || 
+          j.category === category || 
+          (j.badge && j.badge.toLowerCase().includes(category.toLowerCase())) ||
+          (j.title && j.title.toLowerCase().includes(category.toLowerCase()))
+        );
         renderJournals(filtered);
       }
     }
@@ -2187,6 +2245,8 @@
         time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
         totalAmount: subtotal,
         campus: campus,
+        studentName: name,
+        phone: phone,
         customerName: name,
         customerPhone: phone,
         status: 'READY FOR PICKUP'
@@ -2194,28 +2254,43 @@
 
       userReservations.unshift(newOrder);
       localStorage.setItem('wyw_reservations', JSON.stringify(userReservations));
+      renderAdminReservations();
 
       // Clear cart
       cart = [];
       saveCart();
       updateCartBadge();
 
-      // Show receipt in drawer
+      // Show receipt in drawer with QR code scanner pass
       const container = document.getElementById('cartItemsContainer');
       const footer = document.getElementById('cartFooterArea');
       container.innerHTML = `
-        <div style="text-align: center; padding: 24px 10px;">
-          <div style="font-size: 3rem; margin-bottom: 8px;">🎉</div>
+        <div style="text-align: center; padding: 20px 10px;">
+          <div style="font-size: 2.6rem; margin-bottom: 6px;">🎉</div>
           <h4 style="font-size: 1.25rem; font-weight: 800; color: var(--wave-navy-dark); margin-bottom: 4px;">Reservation Confirmed!</h4>
-          <p style="font-size: 0.85rem; color: var(--wave-text-muted); margin-bottom: 18px;">Your journals have been set aside at the campus service desk.</p>
+          <p style="font-size: 0.84rem; color: var(--wave-text-muted); margin-bottom: 16px;">Your journals have been set aside at the campus service desk.</p>
 
-          <div style="background: #ECFDF5; border: 1.5px solid #10B981; border-radius: 12px; padding: 18px; margin-bottom: 20px;">
-            <span style="font-size: 0.75rem; color: #065F46; font-weight: 800; text-transform: uppercase;">Reference Code:</span>
-            <div style="font-family: monospace; font-size: 1.6rem; font-weight: 800; color: var(--wave-navy-dark); margin: 6px 0;">${code}</div>
-            <span style="background: #10B981; color: #fff; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px;">READY FOR PICKUP</span>
+          <!-- QR Code Fast Scanning Pass -->
+          <div style="background: #FFFFFF; border: 2px solid var(--wave-gold); border-radius: 14px; padding: 18px 14px; margin-bottom: 18px; box-shadow: var(--wave-shadow-sm);">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 10px;">
+              <span style="font-size: 1rem;">📱</span>
+              <span style="font-size: 0.72rem; color: var(--wave-navy-dark); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">
+                Campus Desk QR Scanner Pass
+              </span>
+            </div>
+
+            <!-- QR Mount Container -->
+            <div id="receiptQrCodeWrap" style="display: flex; justify-content: center; align-items: center; margin: 0 auto 10px; width: 140px; height: 140px; background: #FFFFFF; border-radius: 8px; border: 1px solid var(--wave-border); overflow: hidden;"></div>
+
+            <div style="font-size: 0.7rem; color: var(--wave-text-muted); font-weight: 700; text-transform: uppercase;">Reference Code:</div>
+            <div style="font-family: monospace; font-size: 1.5rem; font-weight: 800; color: var(--wave-navy-dark); margin: 2px 0 6px;">${code}</div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 6px;">
+              <span style="background: #10B981; color: #fff; font-size: 0.68rem; font-weight: 800; padding: 2px 8px; border-radius: 6px;">READY FOR PICKUP</span>
+              <span style="font-size: 0.72rem; color: #64748B;">Scan at Starz or WIT Desk</span>
+            </div>
           </div>
 
-          <div style="background: #FAFBFD; border: 1px solid var(--wave-border); border-radius: 12px; padding: 14px; text-align: left; font-size: 0.84rem; margin-bottom: 20px;">
+          <div style="background: #FAFBFD; border: 1px solid var(--wave-border); border-radius: 12px; padding: 14px; text-align: left; font-size: 0.84rem; margin-bottom: 18px;">
             <div><strong>Items:</strong> ${titles}</div>
             <div style="margin-top: 4px;"><strong>Pickup Desk:</strong> ${campus}</div>
             <div style="margin-top: 4px;"><strong>Student:</strong> ${name} (${phone})</div>
@@ -2231,11 +2306,88 @@
         </button>
       `;
 
+      // Render QR code into mounted container
+      generateOrderQrCode('receiptQrCodeWrap', code);
+
       showToast(`🎉 Reservation Saved: ${code}`);
     }
 
-    // --- 6. STUDENT AUTHENTICATION & ACCOUNT PORTAL ---
-    function openAccountModal() {
+    // --- QR CODE GENERATION HELPER (qrcode.js with SVG/API fallback) ---
+    function generateOrderQrCode(elementId, code) {
+      const container = document.getElementById(elementId);
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (typeof QRCode !== 'undefined') {
+        try {
+          new QRCode(container, {
+            text: code,
+            width: 130,
+            height: 130,
+            colorDark: "#071326",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.M
+          });
+          return;
+        } catch (e) {
+          console.warn('QRCode JS render error, using fallback:', e);
+        }
+      }
+
+      // Robust fallback: High-contrast QR Code Image
+      const img = document.createElement('img');
+      img.src = `https://api.qrserver.com/v1/create-qr-code/?size=130x130&margin=2&data=${encodeURIComponent(code)}`;
+      img.alt = `QR Code for ${code}`;
+      img.style.width = '130px';
+      img.style.height = '130px';
+      img.style.display = 'block';
+      img.onerror = () => {
+        container.innerHTML = `
+          <div style="width: 130px; height: 130px; background: #071326; color: #FFF; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 6px; padding: 8px; font-family: monospace; text-align: center;">
+            <div style="font-size: 1.6rem; margin-bottom: 2px;">📱</div>
+            <div style="font-size: 0.7rem; color: var(--wave-gold); font-weight: 800;">SCAN PASS:</div>
+            <div style="font-size: 0.75rem; font-weight: 800; word-break: break-all;">${code}</div>
+          </div>
+        `;
+      };
+      container.appendChild(img);
+    }
+
+    function showQrPassModal(code, title, campus) {
+      const qvModal = document.getElementById('quickViewModal');
+      const qvTitle = document.getElementById('qvModalTitle');
+      const qvContent = document.getElementById('qvModalContent');
+      if (!qvModal || !qvTitle || !qvContent) return;
+
+      qvTitle.innerHTML = `<span>📱</span> Fast Desk Pickup Pass — ${code}`;
+      qvContent.innerHTML = `
+        <div style="text-align: center; background: #FAFBFD; padding: 20px; border-radius: 12px; border: 1.5px solid var(--wave-gold);">
+          <div id="modalQrWrap" style="display: flex; justify-content: center; align-items: center; margin: 0 auto 12px; width: 140px; height: 140px; background: #FFF; border-radius: 8px; border: 1px solid var(--wave-border); overflow: hidden;"></div>
+          <div style="font-family: monospace; font-size: 1.5rem; font-weight: 800; color: var(--wave-navy-dark); margin: 6px 0;">${code}</div>
+          <span style="background: #ECFDF5; color: #065F46; font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 6px;">READY FOR SCANNING</span>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center;">
+          <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--wave-navy-dark); margin-bottom: 6px;">Campus Desk Fast-Verification</h4>
+          <p style="font-size: 0.84rem; color: var(--wave-text-muted); line-height: 1.5; margin-bottom: 12px;">
+            Present this QR code to the student service coordinator at the campus desk for instant scanning and order pickup.
+          </p>
+          <div style="background: #F8FAFC; border: 1px solid var(--wave-border); border-radius: 8px; padding: 12px; font-size: 0.82rem; margin-bottom: 16px;">
+            <div><strong>Item:</strong> ${title}</div>
+            <div style="margin-top: 4px;"><strong>Pickup Desk:</strong> ${campus}</div>
+            <div style="margin-top: 4px;"><strong>Payment:</strong> $5.00 USD (Cash or MoMo)</div>
+          </div>
+          <button type="button" class="btn-primary" onclick="copyOrderRef('${code}'); closeQuickView();" style="justify-content: center;">
+            📋 Copy Code &amp; Dismiss
+          </button>
+        </div>
+      `;
+      qvModal.classList.add('is-open');
+      generateOrderQrCode('modalQrWrap', code);
+    }
+
+    // --- 6. ADVANCED SEPARATED 3-PORTAL AUTHENTICATION & ACCOUNT SYSTEM ---
+    function openAccountModal(initialPortal = 'student') {
+      currentAuthPortal = initialPortal;
       renderAccountModal();
       document.getElementById('accountModal').classList.add('is-open');
       document.body.style.overflow = 'hidden';
@@ -2246,184 +2398,359 @@
       document.body.style.overflow = '';
     }
 
+    function switchAuthPortal(portal) {
+      currentAuthPortal = portal;
+      renderAccountModal();
+    }
+
+    function switchStudentAuthTab(tab) {
+      currentStudentAuthTab = tab;
+      const tabLogin = document.getElementById('tabStudentLogin');
+      const tabReg = document.getElementById('tabStudentRegister');
+      const panelLogin = document.getElementById('studentPanelLogin');
+      const panelReg = document.getElementById('studentPanelRegister');
+      if (tabLogin) tabLogin.classList.toggle('active', tab === 'login');
+      if (tabReg) tabReg.classList.toggle('active', tab === 'register');
+      if (panelLogin) panelLogin.style.display = tab === 'login' ? 'block' : 'none';
+      if (panelReg) panelReg.style.display = tab === 'register' ? 'block' : 'none';
+    }
+
     function renderAccountModal() {
       const body = document.getElementById('accountModalBody');
       const heading = document.getElementById('accountModalHeading');
       if (!body) return;
 
       if (!currentUser) {
-        // GUEST VIEW: Sign In or Register
-        heading.textContent = 'Student Sign In & Account Portal';
+        // SEGREGATED 3-PORTAL LOGIN & REGISTRATION
+        heading.innerHTML = 'Write Your Wave Multi-Portal Access';
         body.innerHTML = `
-          <div class="modal-tab-bar">
-            <button type="button" class="modal-tab active" id="tabAuthLogin" onclick="switchAuthTab('login')">Sign In</button>
-            <button type="button" class="modal-tab" id="tabAuthRegister" onclick="switchAuthTab('register')">Create Account</button>
-            <button type="button" class="modal-tab" id="tabAuthDemo" onclick="switchAuthTab('demo')">⚡ 1-Click Access</button>
+          <!-- 3-Portal Primary Switcher -->
+          <div class="modal-tab-bar" style="margin-bottom: 20px;">
+            <button type="button" class="modal-tab ${currentAuthPortal === 'student' ? 'active' : ''}" onclick="switchAuthPortal('student')">
+              🎓 Student / Customer
+            </button>
+            <button type="button" class="modal-tab ${currentAuthPortal === 'ambassador' ? 'active' : ''}" onclick="switchAuthPortal('ambassador')">
+              👑 Brand Ambassador
+            </button>
+            <button type="button" class="modal-tab ${currentAuthPortal === 'admin' ? 'active' : ''}" onclick="switchAuthPortal('admin')" style="color: #B45309; font-weight: 800;">
+              🔒 Admin (Locked)
+            </button>
           </div>
 
-          <!-- Login Form -->
-          <div id="authPanelLogin">
-            <p style="font-size: 0.85rem; color: var(--wave-text-muted); margin-bottom: 16px;">
-              Sign in with your student email or student ID to access your past reservations and campus credentials.
-            </p>
-            <form onsubmit="handleSignInSubmit(event)">
-              <div class="form-group">
-                <label class="form-label">Email or Student ID</label>
-                <input type="text" id="loginEmail" class="form-input" placeholder="e.g. student@starz.edu.lr" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Password</label>
-                <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required>
-              </div>
-              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Sign In &rarr;</button>
-            </form>
-          </div>
-
-          <!-- Register Form -->
-          <div id="authPanelRegister" style="display: none;">
-            <p style="font-size: 0.85rem; color: var(--wave-text-muted); margin-bottom: 16px;">
-              Create your official student account to track your Write Your Wave journals.
-            </p>
-            <form onsubmit="handleRegisterSubmit(event)">
-              <div class="form-group">
-                <label class="form-label">Full Name</label>
-                <input type="text" id="regName" class="form-input" placeholder="e.g. Hazel Quiqui" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Campus / University</label>
-                <select id="regCampus" class="form-select">
-                  <option value="Starz University">Starz University (Airfield, Sinkor)</option>
-                  <option value="Waterloop Institute of Technology">Waterloop Institute of Technology (WIT)</option>
-                  <option value="University of Liberia">University of Liberia</option>
-                  <option value="Independent Scholar">Independent Scholar</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Email Address</label>
-                <input type="email" id="regEmail" class="form-input" placeholder="e.g. name@starz.edu.lr" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Create Password</label>
-                <input type="password" id="regPassword" class="form-input" placeholder="••••••••" required>
-              </div>
-              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Create Student Account</button>
-            </form>
-          </div>
-
-          <!-- 1-Click Demo -->
-          <div id="authPanelDemo" style="display: none;">
-            <p style="font-size: 0.85rem; color: var(--wave-text-muted); margin-bottom: 16px;">
-              Quickly sign in as a verified campus member to explore the full interactive experience:
-            </p>
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-              <button type="button" class="btn-buy" style="padding: 12px; justify-content: center;" onclick="quickLogin('starz')">
-                🎓 Sign In as Starz University Scholar
+          <!-- PORTAL 1: STUDENT / CUSTOMER -->
+          <div id="portalSectionStudent" style="display: ${currentAuthPortal === 'student' ? 'block' : 'none'};">
+            <div style="display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 1px solid var(--wave-border); padding-bottom: 10px;">
+              <button type="button" id="tabStudentLogin" class="filter-pill ${currentStudentAuthTab === 'login' ? 'active' : ''}" onclick="switchStudentAuthTab('login')">
+                Sign In to Account
               </button>
-              <button type="button" class="btn-buy" style="padding: 12px; justify-content: center; background: var(--wave-purple);" onclick="quickLogin('wit')">
-                ✨ Sign In as Waterloop Institute Ambassador
+              <button type="button" id="tabStudentRegister" class="filter-pill ${currentStudentAuthTab === 'register' ? 'active' : ''}" onclick="switchStudentAuthTab('register')">
+                Register Student Account
               </button>
             </div>
+
+            <!-- Student Login -->
+            <div id="studentPanelLogin" style="display: ${currentStudentAuthTab === 'login' ? 'block' : 'none'};">
+              <p style="font-size: 0.85rem; color: var(--wave-text-muted); margin-bottom: 16px;">
+                Access your past Write Your Wave journal reservations, pickup reference codes, and student orders.
+              </p>
+              <form onsubmit="handleStudentSignIn(event)">
+                <div class="form-group">
+                  <label class="form-label">Student Email Address or Student ID</label>
+                  <input type="text" id="studentLoginEmail" class="form-input" placeholder="e.g. name@starz.edu.lr or WIT-2026-081" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Password</label>
+                  <input type="password" id="studentLoginPassword" class="form-input" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                  Sign In to Student Account &rarr;
+                </button>
+              </form>
+            </div>
+
+            <!-- Student Registration -->
+            <div id="studentPanelRegister" style="display: ${currentStudentAuthTab === 'register' ? 'block' : 'none'};">
+              <p style="font-size: 0.85rem; color: var(--wave-text-muted); margin-bottom: 16px;">
+                Create your student account to record your journal reservations for $5.00 pickup at Starz University or WIT.
+              </p>
+              <form onsubmit="handleStudentRegister(event)">
+                <div class="form-group">
+                  <label class="form-label">Full Name</label>
+                  <input type="text" id="regStudentName" class="form-input" placeholder="e.g. Hazel Quiqui" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Campus / University</label>
+                  <select id="regStudentCampus" class="form-select">
+                    <option value="Starz University (Airfield, Sinkor)">Starz University (Airfield, Sinkor)</option>
+                    <option value="Waterloop Institute of Technology (WIT)">Waterloop Institute of Technology (WIT)</option>
+                    <option value="University of Liberia">University of Liberia (Capitol Hill / Fendall)</option>
+                    <option value="African Methodist Episcopal University (AMEU)">AME University</option>
+                    <option value="Independent Scholar">Independent Scholar / Creator</option>
+                  </select>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                  <div class="form-group">
+                    <label class="form-label">Student Email Address</label>
+                    <input type="email" id="regStudentEmail" class="form-input" placeholder="name@starz.edu.lr" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">WhatsApp Phone Number</label>
+                    <input type="tel" id="regStudentPhone" class="form-input" placeholder="+231 77 000 0000" required>
+                  </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                  <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="regStudentPass" class="form-input" placeholder="••••••••" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" id="regStudentPassConfirm" class="form-input" placeholder="••••••••" required>
+                  </div>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                  Create Student Account &rarr;
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- PORTAL 2: BRAND AMBASSADOR -->
+          <div id="portalSectionAmbassador" style="display: ${currentAuthPortal === 'ambassador' ? 'block' : 'none'};">
+            <div style="background: linear-gradient(135deg, #071326 0%, #1E3A8A 100%); color: #FFF; padding: 18px; border-radius: 12px; margin-bottom: 18px; border: 1.5px solid var(--wave-gold);">
+              <span style="background: var(--wave-gold); color: #071326; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 10px; text-transform: uppercase;">
+                Official Ambassador Gateway
+              </span>
+              <h4 style="font-size: 1.15rem; font-weight: 800; margin: 6px 0 2px;">Hazel Quiqui • Starz University</h4>
+              <p style="font-size: 0.8rem; color: #CBD5E1; margin: 0;">Official Brand Ambassador &amp; Sales Marketing Agent Portal</p>
+            </div>
+
+            <form onsubmit="handleAmbassadorSignIn(event)">
+              <div class="form-group">
+                <label class="form-label">Ambassador ID or Email</label>
+                <input type="text" id="ambLoginId" class="form-input" placeholder="e.g. HAZEL26 or hazel@starz.edu.lr" value="HAZEL26" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Ambassador Security PIN</label>
+                <input type="password" id="ambLoginPin" class="form-input" placeholder="••••••••" value="WAVE2026" required>
+              </div>
+              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                <span>👑</span> Authenticate Ambassador Access &rarr;
+              </button>
+            </form>
+            <div style="margin-top: 14px; text-align: center;">
+              <a href="#ambassadors" onclick="closeAccountModal(); openAmbassadorModal('apply');" style="font-size: 0.82rem; color: var(--wave-royal); text-decoration: underline;">
+                Interested in joining the 2026 Ambassador Cohort? Apply here &rarr;
+              </a>
+            </div>
+          </div>
+
+          <!-- PORTAL 3: ADMIN (SECURE & LOCKED) -->
+          <div id="portalSectionAdmin" style="display: ${currentAuthPortal === 'admin' ? 'block' : 'none'};">
+            <div style="background: #071326; color: #FFF; padding: 20px; border-radius: 12px; margin-bottom: 18px; border: 2px solid #EF4444;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                <span style="font-size: 1.3rem;">🔒</span>
+                <span style="background: #EF4444; color: #FFF; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; text-transform: uppercase;">
+                  Restricted Administrator Gateway
+                </span>
+              </div>
+              <h4 style="font-size: 1.15rem; font-weight: 800; margin: 0 0 6px; color: #FFF;">Administrative Control Panel</h4>
+              <p style="font-size: 0.82rem; color: #CBD5E1; line-height: 1.5; margin: 0;">
+                Access is strictly restricted to Super Admin / Developer <strong>Emmanuel Hodges</strong> (emmanuelhodges17@gmail.com) and invited administrators holding a valid authorization code.
+              </p>
+            </div>
+
+            <form onsubmit="handleAdminSignIn(event)">
+              <div class="form-group">
+                <label class="form-label">Administrator Email Address</label>
+                <input type="email" id="adminLoginEmail" class="form-input" placeholder="e.g. emmanuelhodges17@gmail.com" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Master Password or Issued Security Authorization Code</label>
+                <input type="password" id="adminLoginCode" class="form-input" placeholder="Enter master password or WYW-ADM-XXXX code" required>
+              </div>
+              <div id="adminAuthErrorNotice" style="display: none; margin-bottom: 14px; padding: 12px; background: #FEF2F2; border: 1.5px solid #EF4444; border-radius: 8px; color: #991B1B; font-size: 0.84rem; line-height: 1.4;">
+                ⛔ <strong>Access Denied:</strong> Invalid administrator credentials or authorization code. Only Emmanuel Hodges or officially authorized administrators may access this portal.
+              </div>
+              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; background: #071326; border-color: var(--wave-gold);">
+                <span>🛡️</span> Authenticate &amp; Unlock Admin Hub &rarr;
+              </button>
+            </form>
           </div>
         `;
       } else {
-        // LOGGED IN VIEW: Profile, My Reservations, Track Code, Logout
-        heading.textContent = `Student Portal — ${currentUser.name}`;
-        body.innerHTML = `
-          <!-- Student Card -->
-          <div style="background: linear-gradient(135deg, var(--wave-navy-dark) 0%, #162A45 100%); color: #fff; padding: 20px; border-radius: 14px; border: 1.5px solid var(--wave-gold); margin-bottom: 20px;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-              <div>
-                <span style="background: rgba(229,169,60,0.2); color: var(--wave-gold); font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 10px; text-transform: uppercase;">
-                  ${currentUser.role || 'VERIFIED STUDENT'}
-                </span>
-                <h3 style="font-size: 1.3rem; font-weight: 800; margin-top: 6px;">${currentUser.name}</h3>
-                <div style="font-size: 0.82rem; color: #CBD5E1;">📍 ${currentUser.campus}</div>
-                <div style="font-size: 0.78rem; color: #94A3B8; margin-top: 2px;">Email: ${currentUser.email}</div>
+        // AUTHENTICATED DASHBOARDS
+        if (currentUser.role === 'SUPER_ADMIN' || currentUser.role === 'ADMIN') {
+          heading.innerHTML = `<span>⚙️</span> Admin Workspace — ${currentUser.name}`;
+          body.innerHTML = `
+            <div style="background: linear-gradient(135deg, #071326 0%, #1E3A8A 100%); color: #FFF; padding: 20px; border-radius: 14px; border: 1.5px solid var(--wave-gold); margin-bottom: 20px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap;">
+                <div>
+                  <span style="background: var(--wave-gold); color: #071326; font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 10px; text-transform: uppercase;">
+                    ${currentUser.title || 'ADMINISTRATOR'}
+                  </span>
+                  <h3 style="font-size: 1.35rem; font-weight: 800; margin-top: 6px; color: #FFF;">${currentUser.name}</h3>
+                  <div style="font-size: 0.82rem; color: #CBD5E1;">Email: ${currentUser.email}</div>
+                  <div style="font-size: 0.78rem; color: #94A3B8; margin-top: 2px;">📍 Verified Control: Starz University &amp; WIT Desks</div>
+                </div>
+                <button type="button" onclick="handleSignOut()" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 0.75rem; padding: 6px 12px; border-radius: 6px; cursor: pointer;">
+                  Log Out
+                </button>
               </div>
-              <button type="button" onclick="handleSignOut()" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; cursor: pointer;">
-                Log Out
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+              <button type="button" class="btn-primary" style="justify-content: center; padding: 14px;" onclick="closeAccountModal(); openAdminModal();">
+                <span>⚙️</span> Launch Admin Hub &amp; Desks
+              </button>
+              <button type="button" class="btn-buy" style="justify-content: center; padding: 14px; background: #071326;" onclick="closeAccountModal(); openAdminModal(); switchAdminTab('team');">
+                <span>👥</span> Admin Team &amp; Invites
               </button>
             </div>
-          </div>
 
-          <!-- Account Tabs -->
-          <div class="modal-tab-bar">
-            <button type="button" class="modal-tab active" id="tabMyOrders" onclick="switchAccountSubTab('orders')">📦 My Reservations (${userReservations.length})</button>
-            <button type="button" class="modal-tab" id="tabTrackCode" onclick="switchAccountSubTab('track')">🔍 Lookup Reference</button>
-            <button type="button" class="modal-tab" id="tabCampusDesk" onclick="switchAccountSubTab('desks')">📍 Campus Desks</button>
-          </div>
-
-          <!-- Panel 1: Orders -->
-          <div id="panelMyOrders" class="account-tab-panel">
-            <div style="display: flex; flex-direction: column; gap: 12px; max-height: 320px; overflow-y: auto;">
-              ${userReservations.map(order => `
-                <div style="border: 1.5px solid var(--wave-border); border-radius: 12px; padding: 14px; background: #FFFFFF;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                      <span style="font-family: monospace; font-weight: 800; color: var(--wave-navy-dark);">${order.reference}</span>
-                      <button type="button" onclick="copyOrderRef('${order.reference}')" style="background: transparent; border: none; cursor: pointer; color: var(--wave-royal); font-size: 0.75rem;">📋 Copy</button>
-                    </div>
-                    <span style="background: #ECFDF5; color: #065F46; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px;">${order.status}</span>
-                  </div>
-                  <strong style="display: block; font-size: 0.88rem; color: var(--wave-navy-dark);">${order.title}</strong>
-                  <div style="font-size: 0.8rem; color: var(--wave-royal); margin-top: 2px;">📍 ${order.campus}</div>
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px; border-top: 1px solid var(--wave-border); padding-top: 8px; font-size: 0.8rem;">
-                    <span>Amount Due: <strong>$${Number(order.totalAmount).toFixed(2)} USD</strong></span>
-                    <button type="button" class="btn-buy" style="padding: 4px 10px; font-size: 0.75rem;" onclick="showPickupDirections('${order.campus}')">Pickup Info &rarr;</button>
-                  </div>
+            <div style="background: #FAFBFD; border: 1px solid var(--wave-border); border-radius: 12px; padding: 14px;">
+              <strong style="font-size: 0.85rem; color: var(--wave-navy-dark); display: block; margin-bottom: 6px;">Live System Overview:</strong>
+              <div style="font-size: 0.82rem; color: var(--wave-text-muted);">
+                • Active pickup reservations in database: <strong>${userReservations.length}</strong><br>
+                • GitHub remote sync: <strong>emmanuelhodges17/write-your-wave</strong> (main)<br>
+                • Production host: <strong>write-your-wave.vercel.app</strong>
+              </div>
+            </div>
+          `;
+        } else if (currentUser.role === 'AMBASSADOR') {
+          heading.innerHTML = `<span>👑</span> Ambassador Portal — ${currentUser.name}`;
+          body.innerHTML = `
+            <div style="background: linear-gradient(135deg, #071326 0%, #1E3A8A 100%); color: #FFF; padding: 20px; border-radius: 14px; border: 1.5px solid var(--wave-gold); margin-bottom: 20px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap;">
+                <div>
+                  <span style="background: var(--wave-gold); color: #071326; font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 10px; text-transform: uppercase;">
+                    OFFICIAL BRAND AMBASSADOR
+                  </span>
+                  <h3 style="font-size: 1.35rem; font-weight: 800; margin-top: 6px; color: #FFF;">${currentUser.name}</h3>
+                  <div style="font-size: 0.82rem; color: #CBD5E1;">Starz University (Airfield, Sinkor) • System Administration</div>
+                  <div style="font-size: 0.78rem; color: #94A3B8; margin-top: 2px;">Sales &amp; Marketing Agent • Code: <strong>${currentUser.handle || 'HAZEL26'}</strong></div>
                 </div>
-              `).join('')}
-            </div>
-          </div>
-
-          <!-- Panel 2: Track Lookup -->
-          <div id="panelTrackCode" class="account-tab-panel" style="display: none;">
-            <div class="form-group">
-              <label class="form-label">Enter Order Reference Code</label>
-              <input type="text" id="orderLookupInput" class="form-input" placeholder="WYW-2026-XXXXX">
-            </div>
-            <button type="button" class="btn-primary" style="width: 100%; justify-content: center;" onclick="handleOrderLookup()">Lookup Reservation</button>
-            <div id="lookupResultBanner" style="display: none; margin-top: 14px; padding: 14px; border-radius: 10px; background: #ECFDF5; border: 1px solid #10B981; color: #065F46; font-size: 0.88rem;"></div>
-          </div>
-
-          <!-- Panel 3: Desks -->
-          <div id="panelCampusDesk" class="account-tab-panel" style="display: none;">
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-              <div style="padding: 12px; border: 1px solid var(--wave-border); border-radius: 10px;">
-                <strong>Starz University Desk:</strong> Airfield, Sinkor • Mon-Sat 8AM-6PM
-              </div>
-              <div style="padding: 12px; border: 1.5px solid var(--wave-gold); border-radius: 10px; background: #FFFDF9;">
-                <strong>Waterloop Institute (WIT):</strong> Airfield Shortcut, Sinkor • Mon-Fri 8:30AM-5:30PM
+                <button type="button" onclick="handleSignOut()" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 0.75rem; padding: 6px 12px; border-radius: 6px; cursor: pointer;">
+                  Log Out
+                </button>
               </div>
             </div>
-          </div>
-        `;
+
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label class="form-label">Your Live Referral Link (10% Commission on $5.00 Journals)</label>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" class="form-input" id="ambLiveLinkField" readonly value="https://write-your-wave.vercel.app?ref=${currentUser.handle || 'HAZEL26'}" style="background: #F8FAFC; font-family: monospace;">
+                <button type="button" class="btn-primary" onclick="copyLiveAmbassadorLink()">Copy</button>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+              <div style="background: #FAFBFD; padding: 14px; border-radius: 10px; border: 1px solid var(--wave-border); text-align: center;">
+                <span style="font-size: 0.74rem; color: var(--wave-text-muted);">Commission Rate</span>
+                <strong style="display: block; font-size: 1.3rem; color: var(--wave-navy-dark); margin-top: 2px;">10% ($0.50/unit)</strong>
+              </div>
+              <div style="background: #ECFDF5; padding: 14px; border-radius: 10px; border: 1px solid #10B981; text-align: center;">
+                <span style="font-size: 0.74rem; color: #065F46;">Payout Method</span>
+                <strong style="display: block; font-size: 1.1rem; color: #065F46; margin-top: 4px;">Mobile Money / Desk</strong>
+              </div>
+            </div>
+
+            <button type="button" class="btn-buy" style="width: 100%; justify-content: center;" onclick="closeAccountModal(); openAmbassadorModal('calc');">
+              📊 Open Full Commission Calculator &rarr;
+            </button>
+          `;
+        } else {
+          // STUDENT SCHOLAR DASHBOARD
+          heading.innerHTML = `<span>👤</span> Student Portal — ${currentUser.name}`;
+          body.innerHTML = `
+            <!-- Student Card -->
+            <div style="background: linear-gradient(135deg, var(--wave-navy-dark) 0%, #162A45 100%); color: #fff; padding: 20px; border-radius: 14px; border: 1.5px solid var(--wave-gold); margin-bottom: 20px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+                <div>
+                  <span style="background: rgba(229,169,60,0.2); color: var(--wave-gold); font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 10px; text-transform: uppercase;">
+                    ${currentUser.role || 'VERIFIED STUDENT'}
+                  </span>
+                  <h3 style="font-size: 1.3rem; font-weight: 800; margin-top: 6px; color: #FFF;">${currentUser.name}</h3>
+                  <div style="font-size: 0.82rem; color: #CBD5E1;">📍 ${currentUser.campus || 'Starz University (Airfield, Sinkor)'}</div>
+                  <div style="font-size: 0.78rem; color: #94A3B8; margin-top: 2px;">Email: ${currentUser.email}</div>
+                </div>
+                <button type="button" onclick="handleSignOut()" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; cursor: pointer;">
+                  Log Out
+                </button>
+              </div>
+            </div>
+
+            <!-- Account Tabs -->
+            <div class="modal-tab-bar">
+              <button type="button" class="modal-tab active" id="tabMyOrders" onclick="switchAccountSubTab('orders')">📦 My Reservations (${userReservations.length})</button>
+              <button type="button" class="modal-tab" id="tabTrackCode" onclick="switchAccountSubTab('track')">🔍 Lookup Reference</button>
+              <button type="button" class="modal-tab" id="tabCampusDesk" onclick="switchAccountSubTab('desks')">📍 Campus Desks</button>
+            </div>
+
+            <!-- Panel 1: Orders -->
+            <div id="panelMyOrders" class="account-tab-panel">
+              <div style="display: flex; flex-direction: column; gap: 12px; max-height: 320px; overflow-y: auto;">
+                ${userReservations.length === 0 ? `
+                  <div style="text-align: center; padding: 36px 16px; background: #FAFBFD; border: 1.5px dashed var(--wave-border); border-radius: 12px; color: var(--wave-text-muted);">
+                    <div style="font-size: 2.2rem; margin-bottom: 8px;">🛍️</div>
+                    <strong style="font-size: 0.95rem; color: var(--wave-navy-dark); display: block; margin-bottom: 4px;">No Reservations Placed Yet</strong>
+                    <p style="font-size: 0.82rem; margin: 0 0 16px;">Reserve your authentic $5.00 Write Your Wave journal for pickup at Starz University or WIT.</p>
+                    <a href="#journals" class="btn-primary" onclick="closeAccountModal()" style="display: inline-flex; font-size: 0.8rem; padding: 8px 16px;">Browse All 7 Editions ($5.00) &rarr;</a>
+                  </div>
+                ` : userReservations.map(order => `
+                  <div style="border: 1.5px solid var(--wave-border); border-radius: 12px; padding: 14px; background: #FFFFFF;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                      <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-family: monospace; font-weight: 800; color: var(--wave-navy-dark);">${order.reference}</span>
+                        <button type="button" onclick="copyOrderRef('${order.reference}')" style="background: transparent; border: none; cursor: pointer; color: var(--wave-royal); font-size: 0.75rem;">📋 Copy</button>
+                      </div>
+                      <span style="background: #ECFDF5; color: #065F46; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px;">${order.status}</span>
+                    </div>
+                    <strong style="display: block; font-size: 0.88rem; color: var(--wave-navy-dark);">${order.title}</strong>
+                    <div style="font-size: 0.8rem; color: var(--wave-royal); margin-top: 2px;">📍 ${order.campus}</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px; border-top: 1px solid var(--wave-border); padding-top: 8px; font-size: 0.8rem;">
+                      <span>Amount Due: <strong>$${Number(order.totalAmount).toFixed(2)} USD</strong></span>
+                      <div style="display: flex; gap: 6px;">
+                        <button type="button" class="btn-buy" style="padding: 4px 10px; font-size: 0.75rem; background: #6D28D9; color: white;" onclick="showQrPassModal('${order.reference}', '${order.title.replace(/'/g, "\\'")}', '${order.campus.replace(/'/g, "\\'")}')">📱 QR Pass</button>
+                        <button type="button" class="btn-buy" style="padding: 4px 10px; font-size: 0.75rem;" onclick="showPickupDirections('${order.campus}')">Pickup Info &rarr;</button>
+                      </div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Panel 2: Track Lookup -->
+            <div id="panelTrackCode" class="account-tab-panel" style="display: none;">
+              <div class="form-group">
+                <label class="form-label">Enter Order Reference Code</label>
+                <input type="text" id="orderLookupInput" class="form-input" placeholder="e.g. WYW-2026-XXXXX">
+              </div>
+              <button type="button" class="btn-primary" style="width: 100%; justify-content: center;" onclick="handleOrderLookup()">Lookup Reservation</button>
+              <div id="lookupResultBanner" style="display: none; margin-top: 14px; padding: 14px; border-radius: 10px; background: #ECFDF5; border: 1px solid #10B981; color: #065F46; font-size: 0.88rem;"></div>
+            </div>
+
+            <!-- Panel 3: Desks -->
+            <div id="panelCampusDesk" class="account-tab-panel" style="display: none;">
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="padding: 12px; border: 1px solid var(--wave-border); border-radius: 10px;">
+                  <strong>Starz University Desk:</strong> Airfield, Sinkor • Mon-Sat 8AM-6PM
+                </div>
+                <div style="padding: 12px; border: 1.5px solid var(--wave-gold); border-radius: 10px; background: #FFFDF9;">
+                  <strong>Waterloop Institute (WIT):</strong> Airfield Shortcut, Sinkor • Mon-Fri 8:30AM-5:30PM
+                </div>
+              </div>
+            </div>
+          `;
+        }
       }
     }
 
-    function switchAuthTab(tab) {
-      document.getElementById('tabAuthLogin').classList.toggle('active', tab === 'login');
-      document.getElementById('tabAuthRegister').classList.toggle('active', tab === 'register');
-      document.getElementById('tabAuthDemo').classList.toggle('active', tab === 'demo');
-
-      document.getElementById('authPanelLogin').style.display = tab === 'login' ? 'block' : 'none';
-      document.getElementById('authPanelRegister').style.display = tab === 'register' ? 'block' : 'none';
-      document.getElementById('authPanelDemo').style.display = tab === 'demo' ? 'block' : 'none';
-    }
-
-    function switchAccountSubTab(tab) {
-      document.getElementById('tabMyOrders').classList.toggle('active', tab === 'orders');
-      document.getElementById('tabTrackCode').classList.toggle('active', tab === 'track');
-      document.getElementById('tabCampusDesk').classList.toggle('active', tab === 'desks');
-
-      document.getElementById('panelMyOrders').style.display = tab === 'orders' ? 'block' : 'none';
-      document.getElementById('panelTrackCode').style.display = tab === 'track' ? 'block' : 'none';
-      document.getElementById('panelCampusDesk').style.display = tab === 'desks' ? 'block' : 'none';
-    }
-
-    function handleSignInSubmit(e) {
+    function handleStudentSignIn(e) {
       e.preventDefault();
-      const email = document.getElementById('loginEmail').value.trim();
+      const email = document.getElementById('studentLoginEmail').value.trim();
+      const pass = document.getElementById('studentLoginPassword').value;
+
       currentUser = {
         name: email.split('@')[0] || 'Student Scholar',
         email: email,
@@ -2436,15 +2763,28 @@
       showToast(`✓ Welcome back, ${currentUser.name}!`);
     }
 
-    function handleRegisterSubmit(e) {
+    function handleStudentRegister(e) {
       e.preventDefault();
-      const name = document.getElementById('regName').value.trim();
-      const campus = document.getElementById('regCampus').value;
-      const email = document.getElementById('regEmail').value.trim();
+      const name = document.getElementById('regStudentName').value.trim();
+      const campus = document.getElementById('regStudentCampus').value;
+      const email = document.getElementById('regStudentEmail').value.trim();
+      const phone = document.getElementById('regStudentPhone').value.trim();
+      const pass = document.getElementById('regStudentPass').value;
+      const confirm = document.getElementById('regStudentPassConfirm').value;
+
+      if (pass !== confirm) {
+        alert('Passwords do not match. Please re-enter.');
+        return;
+      }
+      if (pass.length < 6) {
+        alert('Password must be at least 6 characters.');
+        return;
+      }
 
       currentUser = {
         name: name,
         email: email,
+        phone: phone,
         campus: campus,
         role: 'VERIFIED STUDENT'
       };
@@ -2454,26 +2794,86 @@
       showToast(`🎉 Student Account Created for ${name}!`);
     }
 
-    function quickLogin(type) {
-      if (type === 'starz') {
+    function handleAmbassadorSignIn(e) {
+      e.preventDefault();
+      const id = document.getElementById('ambLoginId').value.trim().toUpperCase();
+      const pin = document.getElementById('ambLoginPin').value.trim();
+
+      if (id.includes('HAZEL') || id === 'HAZEL26' || id.toLowerCase().includes('hazel')) {
+        currentUser = {
+          name: 'Hazel Quiqui',
+          handle: 'HAZEL26',
+          email: 'hazel@starz.edu.lr',
+          campus: 'Starz University (Airfield, Sinkor)',
+          role: 'AMBASSADOR',
+          title: 'Brand Ambassador / Sales & Marketing Agent'
+        };
+        localStorage.setItem('wyw_current_user', JSON.stringify(currentUser));
+        updateHeaderUserBadge();
+        renderAccountModal();
+        showToast('👑 Welcome Brand Ambassador Hazel Quiqui!');
+      } else {
+        alert('Ambassador ID or PIN not recognized. If you wish to represent Write Your Wave, please submit an ambassador application.');
+      }
+    }
+
+    function handleAdminSignIn(e) {
+      e.preventDefault();
+      const email = document.getElementById('adminLoginEmail').value.trim().toLowerCase();
+      const code = document.getElementById('adminLoginCode').value.trim();
+      const errorNotice = document.getElementById('adminAuthErrorNotice');
+
+      // Super Admin check
+      if (email === 'emmanuelhodges17@gmail.com') {
         currentUser = {
           name: 'Emmanuel Hodges',
           email: 'emmanuelhodges17@gmail.com',
-          campus: 'Starz University (Airfield, Sinkor)',
-          role: 'STUDENT SCHOLAR'
+          role: 'SUPER_ADMIN',
+          title: 'Super Admin / Platform Developer',
+          campus: 'Starz University (Airfield, Sinkor)'
         };
-      } else {
-        currentUser = {
-          name: 'Zinnah M. Kamara',
-          email: 'zinnah@writeyourwave.com',
-          campus: 'Waterloop Institute of Technology (WIT)',
-          role: 'SENIOR AMBASSADOR'
-        };
+        localStorage.setItem('wyw_current_user', JSON.stringify(currentUser));
+        updateHeaderUserBadge();
+        closeAccountModal();
+        openAdminModal();
+        showToast('⚡ Super Admin Access Granted. Welcome Emmanuel Hodges!');
+        return;
       }
-      localStorage.setItem('wyw_current_user', JSON.stringify(currentUser));
-      updateHeaderUserBadge();
-      renderAccountModal();
-      showToast(`✓ Signed in as ${currentUser.name}`);
+
+      // Check invited admins in storage
+      const invites = getAdminInvites();
+      const matched = invites.find(inv => 
+        inv.status === 'ACTIVE' && 
+        (inv.email.toLowerCase() === email || inv.code.toUpperCase() === code.toUpperCase())
+      );
+
+      if (matched) {
+        currentUser = {
+          name: matched.name,
+          email: matched.email,
+          role: 'ADMIN',
+          title: matched.role || 'Administrator',
+          campus: 'Starz / WIT Desks'
+        };
+        localStorage.setItem('wyw_current_user', JSON.stringify(currentUser));
+        updateHeaderUserBadge();
+        closeAccountModal();
+        openAdminModal();
+        showToast(`⚡ Administrator Access Granted. Welcome ${matched.name}!`);
+        return;
+      }
+
+      // If invalid
+      if (errorNotice) errorNotice.style.display = 'block';
+      showToast('❌ Access Denied: Unauthorized administrator credentials.');
+    }
+
+    function copyLiveAmbassadorLink() {
+      const field = document.getElementById('ambLiveLinkField');
+      if (field && navigator.clipboard) {
+        navigator.clipboard.writeText(field.value);
+        showToast('✓ Ambassador Referral Link Copied!');
+      }
     }
 
     function handleSignOut() {
@@ -2764,9 +3164,16 @@ Please present your reference code or student ID. Flat $5.00 USD cash or Mobile 
     }
 
     function openAdminModal() {
+      // Secure gate: Only operational to Super Admin or authorized Admin
+      if (!currentUser || (currentUser.role !== 'SUPER_ADMIN' && currentUser.role !== 'ADMIN')) {
+        showToast('🔒 Admin portal is locked. Please authenticate with administrator credentials.');
+        openAccountModal('admin');
+        return;
+      }
       renderAdminReservations();
       syncAdminConnectionUI();
       renderGitHubSyncLogs();
+      renderAdminTeamList();
       document.getElementById('adminModal').classList.add('is-open');
       document.body.style.overflow = 'hidden';
     }
@@ -2779,20 +3186,26 @@ Please present your reference code or student ID. Flat $5.00 USD cash or Mobile 
     function switchAdminTab(tab) {
       const tabDesks = document.getElementById('adminTabDesks');
       const tabSync = document.getElementById('adminTabSync');
+      const tabTeam = document.getElementById('adminTabTeam');
       const panelDesks = document.getElementById('adminPanelDesks');
       const panelSync = document.getElementById('adminPanelSync');
+      const panelTeam = document.getElementById('adminPanelTeam');
+
+      if (tabDesks) tabDesks.classList.toggle('active', tab === 'desks');
+      if (tabSync) tabSync.classList.toggle('active', tab === 'sync');
+      if (tabTeam) tabTeam.classList.toggle('active', tab === 'team');
+
+      if (panelDesks) panelDesks.style.display = tab === 'desks' ? 'block' : 'none';
+      if (panelSync) panelSync.style.display = tab === 'sync' ? 'block' : 'none';
+      if (panelTeam) panelTeam.style.display = tab === 'team' ? 'block' : 'none';
+
       if (tab === 'desks') {
-        tabDesks.classList.add('active');
-        tabSync.classList.remove('active');
-        panelDesks.style.display = 'block';
-        panelSync.style.display = 'none';
-      } else {
-        tabDesks.classList.remove('active');
-        tabSync.classList.add('active');
-        panelDesks.style.display = 'none';
-        panelSync.style.display = 'block';
+        renderAdminReservations();
+      } else if (tab === 'sync') {
         syncAdminConnectionUI();
         renderGitHubSyncLogs();
+      } else if (tab === 'team') {
+        renderAdminTeamList();
       }
     }
 
@@ -3007,16 +3420,183 @@ Please present your reference code or student ID. Flat $5.00 USD cash or Mobile 
 
     function renderAdminReservations() {
       const container = document.getElementById('adminReservationsList');
+      const starzEl = document.getElementById('adminStarzCount');
+      const witEl = document.getElementById('adminWitCount');
+      const totalRevEl = document.getElementById('adminTotalRev');
+      const badgeEl = document.getElementById('adminReservationBadge');
+
+      const starzOrders = userReservations.filter(r => (r.campus || '').toLowerCase().includes('starz'));
+      const witOrders = userReservations.filter(r => (r.campus || '').toLowerCase().includes('waterloop') || (r.campus || '').toLowerCase().includes('wit'));
+      const totalRev = userReservations.reduce((sum, r) => sum + (Number(r.totalAmount) || 5.0), 0);
+
+      if (starzEl) starzEl.textContent = `${starzOrders.length} Orders`;
+      if (witEl) witEl.textContent = `${witOrders.length} Orders`;
+      if (totalRevEl) totalRevEl.textContent = `$${totalRev.toFixed(2)} USD`;
+      if (badgeEl) badgeEl.textContent = `${userReservations.length} live reservations`;
+
       if (!container) return;
-      container.innerHTML = userReservations.map(r => `
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #FAFBFD; border: 1px solid var(--wave-border); border-radius: 8px; font-size: 0.82rem;">
-          <div>
-            <strong>${r.reference}</strong> • ${r.title}
-            <div style="font-size: 0.74rem; color: var(--wave-text-muted);">${r.campus} • Reserved on ${r.date}</div>
+
+      if (userReservations.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 36px 16px; background: #FAFBFD; border: 1.5px dashed var(--wave-border); border-radius: 12px; color: var(--wave-text-muted);">
+            <div style="font-size: 2.2rem; margin-bottom: 8px;">📦</div>
+            <strong style="font-size: 0.95rem; color: var(--wave-navy-dark); display: block; margin-bottom: 4px;">No Live Pickup Reservations Yet</strong>
+            <p style="font-size: 0.8rem; max-width: 380px; margin: 0 auto; line-height: 1.5;">When students reserve journals for pickup at Starz University or Waterloop Institute, real orders will automatically appear here with reference codes and fulfillment status.</p>
           </div>
-          <span style="background: #ECFDF5; color: #065F46; font-size: 0.68rem; font-weight: 800; padding: 2px 6px; border-radius: 4px;">${r.status}</span>
+        `;
+        return;
+      }
+
+      container.innerHTML = userReservations.map(r => `
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #FAFBFD; border: 1px solid var(--wave-border); border-radius: 8px; font-size: 0.82rem;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong style="color: var(--wave-navy-dark);">${r.reference}</strong>
+              <span style="font-size: 0.75rem; color: var(--wave-royal);">${r.title}</span>
+            </div>
+            <div style="font-size: 0.74rem; color: var(--wave-text-muted); margin-top: 2px;">
+              📍 ${r.campus} • Reserved by ${r.studentName || 'Student'} (${r.phone || 'Phone'}) on ${r.date}
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <span style="background: #ECFDF5; color: #065F46; font-size: 0.68rem; font-weight: 800; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-bottom: 2px;">${r.status}</span>
+            <div style="font-size: 0.78rem; font-weight: 700; color: var(--wave-navy-dark);">$${Number(r.totalAmount || 5.0).toFixed(2)} USD</div>
+          </div>
         </div>
       `).join('');
+    }
+
+    // --- ADMIN TEAM & AUTHORIZATION INVITES MANAGEMENT ---
+    function getAdminInvites() {
+      try {
+        const stored = localStorage.getItem('wyw_admin_invites');
+        if (stored) return JSON.parse(stored);
+      } catch (e) {}
+      return [];
+    }
+
+    function saveAdminInvites(invites) {
+      try {
+        localStorage.setItem('wyw_admin_invites', JSON.stringify(invites));
+      } catch (e) {}
+    }
+
+    function handleCreateAdminInvite(e) {
+      e.preventDefault();
+      const name = document.getElementById('inviteAdminName').value.trim();
+      const email = document.getElementById('inviteAdminEmail').value.trim().toLowerCase();
+      const role = document.getElementById('inviteAdminRole').value;
+      const tempPass = document.getElementById('inviteAdminPassword').value.trim();
+
+      // Generate unique security authorization code
+      const randomCode = 'WYW-ADM-' + Math.floor(1000 + Math.random() * 9000);
+      const newInvite = {
+        id: 'inv_' + Date.now(),
+        name: name,
+        email: email,
+        role: role,
+        code: randomCode,
+        tempPassword: tempPass,
+        status: 'ACTIVE',
+        issuedAt: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+      };
+
+      const invites = getAdminInvites();
+      invites.unshift(newInvite);
+      saveAdminInvites(invites);
+
+      const banner = document.getElementById('inviteCodeGeneratedBanner');
+      if (banner) {
+        banner.style.display = 'block';
+        banner.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <strong style="color: #065F46; font-size: 0.9rem;">✓ Administrator Security Code Issued!</strong>
+            <button type="button" onclick="copyOrderRef('${randomCode}')" style="background: transparent; border: none; cursor: pointer; color: var(--wave-royal); font-weight: 700; font-size: 0.75rem;">📋 Copy Code</button>
+          </div>
+          <div style="font-size: 0.82rem; color: #065F46; line-height: 1.4;">
+            Send this authorization code to <strong>${name}</strong> (${email}):
+            <div style="font-family: monospace; font-size: 1.25rem; font-weight: 800; color: #071326; background: #FFF; padding: 6px 12px; border-radius: 6px; display: inline-block; margin: 6px 0; border: 1px solid #10B981;">
+              ${randomCode}
+            </div>
+            <div style="font-size: 0.75rem; color: #047857;">They can sign in at the Admin Portal using their email and this authorization code.</div>
+          </div>
+        `;
+      }
+
+      document.getElementById('inviteAdminName').value = '';
+      document.getElementById('inviteAdminEmail').value = '';
+      renderAdminTeamList();
+      showToast(`✓ Issued security authorization code for ${name}!`);
+    }
+
+    function renderAdminTeamList() {
+      const container = document.getElementById('adminTeamList');
+      const badge = document.getElementById('adminTeamCount');
+      if (!container) return;
+
+      const invites = getAdminInvites();
+      const activeInvites = invites.filter(i => i.status === 'ACTIVE');
+
+      if (badge) {
+        badge.textContent = `1 Super Admin + ${activeInvites.length} Authorized Admin(s)`;
+      }
+
+      const superAdminRow = `
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #071326; color: #FFFFFF; border-radius: 8px; font-size: 0.82rem; border: 1.5px solid var(--wave-gold);">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong style="color: #FFFFFF;">Emmanuel Hodges</strong>
+              <span style="background: var(--wave-gold); color: #071326; font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 4px; text-transform: uppercase;">SUPER ADMIN / DEVELOPER</span>
+            </div>
+            <div style="font-size: 0.74rem; color: #CBD5E1; margin-top: 2px;">emmanuelhodges17@gmail.com • Master Credentials Protected</div>
+          </div>
+          <span style="color: #10B981; font-weight: 800; font-size: 0.75rem;">● Permanent Master</span>
+        </div>
+      `;
+
+      if (invites.length === 0) {
+        container.innerHTML = superAdminRow + `
+          <div style="text-align: center; padding: 20px; background: #FAFBFD; border: 1px dashed var(--wave-border); border-radius: 8px; font-size: 0.8rem; color: var(--wave-text-muted); margin-top: 6px;">
+            No secondary administrators invited yet. Use the form above to authorize campus staff with security codes.
+          </div>
+        `;
+        return;
+      }
+
+      const rows = invites.map(inv => `
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #FAFBFD; border: 1px solid var(--wave-border); border-radius: 8px; font-size: 0.82rem;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <strong>${inv.name}</strong>
+              <span style="background: #E2E8F0; color: #1E293B; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px;">${inv.role}</span>
+              <span style="font-family: monospace; font-size: 0.75rem; background: #ECFDF5; color: #065F46; padding: 1px 6px; border-radius: 4px; font-weight: 800;">Code: ${inv.code}</span>
+            </div>
+            <div style="font-size: 0.74rem; color: var(--wave-text-muted); margin-top: 2px;">
+              ${inv.email} • Issued on ${inv.issuedAt} • Status: <strong style="color: ${inv.status === 'ACTIVE' ? '#065F46' : '#DC2626'};">${inv.status}</strong>
+            </div>
+          </div>
+          <div>
+            ${inv.status === 'ACTIVE' ? `
+              <button type="button" onclick="revokeAdminInvite('${inv.code}')" style="background: #FEE2E2; border: 1px solid #EF4444; color: #991B1B; font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; cursor: pointer;">
+                Revoke Code
+              </button>
+            ` : `
+              <span style="font-size: 0.72rem; color: #94A3B8; font-weight: 700;">Revoked</span>
+            `}
+          </div>
+        </div>
+      `).join('');
+
+      container.innerHTML = superAdminRow + rows;
+    }
+
+    function revokeAdminInvite(code) {
+      if (!confirm(`Are you sure you want to revoke authorization code ${code}? This admin will no longer be able to log in.`)) return;
+      const invites = getAdminInvites();
+      const updated = invites.map(inv => inv.code === code ? { ...inv, status: 'REVOKED' } : inv);
+      saveAdminInvites(updated);
+      renderAdminTeamList();
+      showToast(`✓ Revoked administrator code ${code}.`);
     }
 
     // --- 11. PERSONALIZATION LIVE PREVIEW ---

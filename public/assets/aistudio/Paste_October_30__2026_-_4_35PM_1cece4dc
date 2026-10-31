@@ -1,0 +1,1244 @@
+MASTER ROLE
+
+Act as an elite multidisciplinary digital product team consisting of:
+
+- Principal Product Designer.
+- Senior UI/UX Architect.
+- Senior Frontend Engineer.
+- Senior Backend Engineer.
+- E-commerce Solutions Architect.
+- Database Architect.
+- Brand Identity Designer.
+- Mobile Application Experience Designer.
+- Cybersecurity Engineer.
+- Accessibility and Performance Specialist.
+
+You are responsible for transforming the existing WRITE YOUR WAVE platform into a sophisticated, premium, commercially viable, production-ready digital ecosystem.
+
+This is not a simple redesign.
+
+It is a complete platform-wide restructuring, architectural refinement, visual transformation, and user-experience improvement project.
+
+The final product must look and function like a professionally engineered technology and lifestyle brand platform—not a generic AI-generated website.
+
+---
+
+1. PROJECT IDENTITY
+
+Brand: WRITE YOUR WAVE
+
+Brand philosophy:
+
+"More Than a Notebook. It's a Movement."
+
+Brand positioning:
+
+A modern notebook, journal, creativity, education, and lifestyle brand designed for students, dreamers, creators, professionals, and future leaders.
+
+The platform should communicate:
+
+- Creativity.
+- Personal identity.
+- Premium quality.
+- Education.
+- Productivity.
+- Self-expression.
+- Community.
+- Personal development.
+- Innovation.
+- Trust.
+
+The entire digital experience must consistently reflect this identity.
+
+Do not introduce unrelated branding, unnecessary visual elements, or inconsistent design languages.
+
+---
+
+2. CRITICAL PRESERVATION REQUIREMENTS
+
+Before modifying anything, inspect the entire existing project.
+
+Preserve:
+
+1. Existing product information.
+2. Imported product images.
+3. Notebook and journal cover designs.
+4. Existing book interior page images.
+5. Existing brand logos and identity assets.
+6. Existing product categories.
+7. Existing website content.
+8. Existing database records.
+9. Existing authentication integrations.
+10. Existing API integrations.
+11. Existing functional components.
+12. Existing customer and administrative data.
+
+DO NOT:
+
+- Delete existing products.
+- Replace existing images with AI-generated alternatives.
+- Invent products or product descriptions.
+- Create fake customer accounts.
+- Create fake orders or transactions.
+- Create fake ambassadors.
+- Create fabricated reviews or testimonials.
+- Generate imaginary business statistics.
+- Replace actual backend functionality with mock data.
+- Remove working features simply because their design is being changed.
+- Create duplicate pages or redundant components.
+
+If a feature does not have a real backend implementation, clearly identify it as incomplete instead of pretending it works.
+
+Before changing database structures, inspect the existing schema and migration history.
+
+Create a recoverable backup before potentially destructive modifications.
+
+---
+
+3. COMPLETE PLATFORM RESTRUCTURING
+
+Reorganize the entire platform into clearly separated experiences.
+
+The platform must contain distinct environments:
+
+A. Public Website.
+B. Customer Account Environment.
+C. Administrative Environment.
+D. Ambassador Environment.
+E. Verified Campus Environment.
+F. Pickup Hub Environment.
+G. WaveGuide AI Experience.
+
+Each environment must have its own appropriate navigation, permissions, layout, and responsibilities.
+
+Do not mix administrative controls with ordinary customer navigation.
+
+Do not expose internal administrative functionality to public visitors.
+
+---
+
+4. HOMEPAGE — COMPLETE REDESIGN
+
+Reconstruct the homepage using a premium editorial and commercial design approach.
+
+The homepage should include:
+
+1. Announcement Bar.
+2. Main Header.
+3. Brand Logo.
+4. Desktop Navigation.
+5. Mobile Navigation.
+6. Hero Section.
+7. Featured Collections.
+8. Shop by Category.
+9. Featured Notebook Designs.
+10. Journal Showcase.
+11. Notebook Personalization.
+12. How It Works.
+13. Verified Campus Network.
+14. Pickup Hub Information.
+15. Ambassador Spotlight.
+16. About the Movement.
+17. WaveGuide AI Introduction.
+18. Customer Experience and Benefits.
+19. Bulk and Institutional Orders.
+20. Newsletter or Communication Section, if already supported.
+21. Final Call to Action.
+22. Advanced Footer.
+
+The homepage must have a clear visual hierarchy.
+
+Use intentional spacing, typography, image placement, restrained animation, and strong content organization.
+
+Avoid excessive cards, unnecessary gradients, random decorative shapes, and repetitive section layouts.
+
+The homepage should feel like a carefully art-directed brand experience.
+
+---
+
+5. BRAND IDENTITY, LOGO AND HEADER
+
+Redesign the brand presentation without destroying the original identity.
+
+Improve:
+
+- Logo placement.
+- Logo proportions.
+- Brand typography.
+- Header alignment.
+- Navigation hierarchy.
+- Announcement bar.
+- Search placement.
+- Account controls.
+- Shopping bag indicator.
+- WaveGuide AI access.
+
+The logo must remain recognizable and consistent.
+
+Do not invent a new logo unless a genuine improvement is necessary and the original asset is preserved.
+
+Create a professional header that adapts to desktop, tablet, and mobile screens.
+
+---
+
+6. ADVANCED DESKTOP NAVIGATION
+
+The desktop experience must include a sophisticated navigation system.
+
+Create two coordinated navigation structures:
+
+A. PUBLIC DESKTOP NAVIGATION
+
+Include:
+
+- Home.
+- Shop.
+- Journals.
+- Collections.
+- Personalization.
+- Campus Network.
+- Pickup Hubs.
+- Ambassadors.
+- About the Movement.
+- Contact.
+
+Provide appropriate secondary navigation for relevant sections.
+
+Shop should have an organized mega-menu or dropdown where appropriate.
+
+Include:
+
+- Search.
+- Customer Account.
+- Shopping Bag.
+- WaveGuide AI.
+
+B. DESKTOP SIDEBAR
+
+Introduce a professional collapsible desktop sidebar where appropriate.
+
+The sidebar should support authenticated user environments.
+
+For customers, organize:
+
+- Overview.
+- My Profile.
+- My Orders.
+- My Journals.
+- Saved Items.
+- Personalization Requests.
+- Notifications.
+- Addresses.
+- Settings.
+- Help and Support.
+
+For administrators, create a separate administrative sidebar with permission-aware navigation.
+
+For ambassadors, create a separate ambassador sidebar.
+
+The sidebar must not unnecessarily occupy the entire screen.
+
+Include:
+
+- Expand/collapse behavior.
+- Active navigation indicators.
+- Tooltips where useful.
+- Responsive behavior.
+- Clear icons.
+- Consistent spacing.
+- Accessible keyboard navigation.
+
+Do not force a dashboard sidebar onto the public shopping homepage.
+
+---
+
+7. ADVANCED MOBILE NAVIGATION
+
+The mobile navigation requires a complete redesign.
+
+Create a premium slide-up drawer or sidebar experience.
+
+The navigation should feel like a professionally designed mobile application.
+
+Requirements:
+
+- Smooth slide-up or slide-in transition.
+- Clear brand identity.
+- Organized navigation groups.
+- Expandable Shop section.
+- Account access.
+- Shopping Bag access.
+- Search access.
+- WaveGuide AI access.
+- Campus and Pickup Hub access.
+- Ambassador access.
+- Contact and support.
+- Clear close button.
+- Proper overlay.
+- Scrollable navigation when necessary.
+- Safe-area support.
+- Touch-friendly controls.
+- Background scroll locking while open.
+- Accessible focus management.
+- Escape-key support where applicable.
+
+The drawer must not obstruct essential mobile interactions.
+
+Create a consistent mobile navigation experience across public, customer, admin, and ambassador environments.
+
+Use different navigation items according to the authenticated user's role.
+
+---
+
+8. SHOP AND JOURNAL EXPERIENCE
+
+Completely restructure the shopping experience.
+
+Create a professional catalog and collection architecture.
+
+Existing categories must be preserved, including:
+
+- University Student Notebook.
+- Student Notebook.
+- Journal.
+- Premium Journal.
+
+Improve:
+
+- Product listing layouts.
+- Product filters.
+- Product search.
+- Sorting.
+- Product detail pages.
+- Image galleries.
+- Product specifications.
+- Price presentation.
+- Availability indicators.
+- Quantity selection.
+- Customization options.
+- Add-to-bag interactions.
+- Related collections.
+
+Each product page should contain:
+
+1. Product image gallery.
+2. Product name.
+3. Description.
+4. Price.
+5. Availability.
+6. Product features.
+7. Customization availability.
+8. Quantity selection.
+9. Add to Shopping Bag.
+10. Product information.
+11. Delivery or pickup information.
+12. Related products where real product data exists.
+
+Preserve actual product images.
+
+Do not generate fake products to fill empty spaces.
+
+---
+
+9. NOTEBOOK COVER DESIGN EXPERIENCE
+
+Notebook covers are an essential part of the WRITE YOUR WAVE brand.
+
+Create a sophisticated presentation for existing notebook and journal cover designs.
+
+Requirements:
+
+- High-quality image presentation.
+- Front-cover previews.
+- Back-cover previews.
+- Product gallery.
+- Cover design categories.
+- Clear product specifications.
+- Personalization availability.
+- Consistent image proportions.
+- Appropriate image zoom.
+- Mobile-friendly galleries.
+
+Where existing images are available, use them.
+
+Do not redesign or replace existing notebook artwork without authorization.
+
+Do not distort original cover proportions.
+
+The cover designs must look like actual printable notebook products, not generic digital illustrations.
+
+---
+
+10. JOURNAL INTERIOR PAGES
+
+Use the previously provided journal and notebook interior page images as the source of truth.
+
+Preserve the existing page structure and design language.
+
+Organize the interior pages into a professional presentation experience.
+
+Existing sections may include:
+
+- About Me.
+- My Story.
+- My Journey.
+- My Vision.
+- Goals.
+- Daily Journal.
+- Reflection.
+- My Year in Review.
+
+Requirements:
+
+- Display actual supplied page images.
+- Preserve the original black-and-white interior design where applicable.
+- Maintain correct page proportions.
+- Do not fabricate interior pages.
+- Do not change original page content without permission.
+- Create an organized preview gallery.
+- Allow users to inspect selected pages.
+- Provide responsive image viewing.
+- Ensure pages remain readable on mobile.
+
+If page images are missing, identify them as unavailable instead of creating replacements.
+
+---
+
+11. SHOPPING BAG AND RESERVATION EXPERIENCE
+
+Create a professional shopping bag experience.
+
+The bag should support:
+
+- Selected products.
+- Product images.
+- Product quantities.
+- Price calculations.
+- Item removal.
+- Quantity updates.
+- Customization summaries.
+- Subtotal.
+- Applicable delivery information.
+- Checkout or order-request continuation.
+
+Separate the following concepts:
+
+- Shopping Bag.
+- Order Submission.
+- Product Reservation, if supported.
+- Payment.
+- Order Tracking.
+
+Do not describe an order as paid unless the payment provider confirms it.
+
+If a reservation feature is not currently supported by the backend, do not create a fake reservation system.
+
+Implement only functionality supported by real business rules.
+
+---
+
+12. PERSONALIZATION EXPERIENCE
+
+Redesign the personalization environment.
+
+Customers should have a clear process for requesting customized notebooks and journals.
+
+Support existing business capabilities, such as:
+
+- Personalized names.
+- Custom text.
+- Quotes.
+- Cover color preferences.
+- Design instructions.
+- Image uploads, where supported.
+- Quantity.
+- Additional requirements.
+
+Create a clear submission process.
+
+Show actual request status.
+
+Customers should be able to access their previous customization requests from their account.
+
+Protect uploaded files through server-side validation and access controls.
+
+---
+
+13. VERIFIED CAMPUS NETWORK
+
+Create a dedicated Verified Campus section.
+
+This section should organize participating educational institutions and approved campus locations.
+
+Potential functionality:
+
+- Campus directory.
+- Institution profiles.
+- Verification status.
+- Campus contact information.
+- Campus representatives.
+- Available products.
+- Campus ordering information.
+- Campus pickup information.
+
+Only display institutions and locations that actually exist in the database and have been approved.
+
+Do not invent verified institutions.
+
+If no verified campuses exist, show a professional empty state explaining that the network is being established.
+
+---
+
+14. PICKUP HUBS
+
+Create a dedicated Pickup Hub environment.
+
+The system should support approved physical collection points.
+
+Potential information:
+
+- Pickup Hub name.
+- Address.
+- Location description.
+- Contact information.
+- Operating hours.
+- Availability.
+- Pickup instructions.
+- Associated campus or institution.
+- Verification status.
+
+If supported by the existing backend, allow customers to select an available pickup hub during ordering.
+
+Do not display fabricated addresses, opening hours, or pickup availability.
+
+Administrative users must be able to manage authorized pickup hubs.
+
+---
+
+15. AMBASSADOR EXPERIENCE
+
+Restructure the ambassador experience.
+
+Create:
+
+A. PUBLIC AMBASSADOR DIRECTORY.
+
+Include approved ambassadors with their actual:
+
+- Names.
+- Profile photographs.
+- Biography.
+- Ambassador roles.
+- Featured products.
+- Social links.
+- Published status.
+
+B. AMBASSADOR PORTAL.
+
+Provide a separate authenticated environment.
+
+Potential sections:
+
+- Ambassador Overview.
+- Profile.
+- Referral Information.
+- Campaigns.
+- Assigned Tasks.
+- Activity.
+- Notifications.
+- Performance.
+- Settings.
+
+Only display actual referral and performance data.
+
+Do not invent commission amounts, referrals, or campaign statistics.
+
+---
+
+16. CUSTOMER LOGIN, SIGNUP AND PROFILE
+
+Create a polished and professional authentication experience.
+
+Separate customer authentication from administrative authentication.
+
+Customer authentication should support:
+
+- Sign In.
+- Create Account.
+- Forgot Password.
+- Password Reset.
+- Email Verification, where supported.
+- Secure Session Management.
+- Sign Out.
+
+Create a sophisticated customer profile environment.
+
+Customer sidebar:
+
+- Overview.
+- Personal Information.
+- My Orders.
+- My Journals.
+- Saved Items.
+- Customization Requests.
+- Notifications.
+- Addresses.
+- Preferences.
+- Security.
+- Help and Support.
+
+Connect every section to real backend records.
+
+Do not display fabricated order history or customer activity.
+
+If a customer has no orders, show an appropriate empty state.
+
+---
+
+17. ADMINISTRATIVE ENVIRONMENT
+
+Rebuild the entire administration experience.
+
+Administrative login must be separate from customer login.
+
+Do not allow public users to register as administrators.
+
+Use server-side role-based access control.
+
+Support the existing roles where configured:
+
+- SUPER_ADMIN.
+- ADMIN.
+- EDITOR.
+
+Restructure the dashboard.
+
+Potential sidebar:
+
+1. Overview.
+2. Orders.
+3. Customers.
+4. Products.
+5. Collections.
+6. Inventory.
+7. Personalization Requests.
+8. Ambassadors.
+9. Campus Network.
+10. Pickup Hubs.
+11. Contact Messages.
+12. Bulk Orders.
+13. Notifications.
+14. Content Management.
+15. Reports.
+16. Team Management.
+17. Audit Logs.
+18. Settings.
+
+Dashboard information should come from actual database queries.
+
+Use genuine calculations for:
+
+- Total orders.
+- Pending orders.
+- Completed orders.
+- Registered customers.
+- Product counts.
+- Customization requests.
+- Ambassador activity.
+- Revenue, only where payment data supports it.
+- Operational performance.
+
+Every administrative action must respect role permissions.
+
+Protect sensitive operations through server-side authorization and audit logging.
+
+---
+
+18. SETTINGS ENVIRONMENT
+
+Create a centralized settings architecture.
+
+CUSTOMER SETTINGS:
+
+- Personal Information.
+- Account Preferences.
+- Password and Security.
+- Notifications.
+- Saved Addresses.
+- Communication Preferences.
+
+ADMIN SETTINGS:
+
+- Business Information.
+- Profile.
+- Team and Permissions.
+- Notification Preferences.
+- Product Configuration.
+- Campus Configuration.
+- Pickup Hub Configuration.
+- Security.
+- Audit Logs.
+- Platform Configuration.
+
+AMBASSADOR SETTINGS:
+
+- Profile Information.
+- Contact Details.
+- Social Links.
+- Notification Preferences.
+- Security.
+
+Only implement settings that are supported by the actual application and backend.
+
+---
+
+19. NOTIFICATION CENTER
+
+Create a structured notification system.
+
+Notification categories may include:
+
+- Order Updates.
+- Customization Updates.
+- Account Notifications.
+- Announcements.
+- Ambassador Updates.
+- Administrative Alerts.
+
+Requirements:
+
+- Read/unread state.
+- Notification timestamps.
+- Notification details.
+- Relevant destination links.
+- Appropriate notification permissions.
+- Real-time updates if the existing backend supports them.
+
+Do not create fake notifications.
+
+---
+
+20. WAVEGUIDE AI
+
+Redesign the WaveGuide AI interface as a distinctive brand feature.
+
+WaveGuide should feel like an integrated digital assistant rather than a generic floating chatbot.
+
+Improve:
+
+- Chat interface.
+- Welcome experience.
+- Conversation layout.
+- Message presentation.
+- Loading indicators.
+- Error states.
+- Mobile experience.
+- Desktop experience.
+- Conversation history, if supported.
+- Product discovery.
+- Order assistance.
+- Personalization guidance.
+- Customer support.
+
+Connect it to actual product and business information.
+
+Use server-side Gemini API integration where applicable.
+
+Never expose API keys or private credentials in browser code.
+
+WaveGuide must not fabricate:
+
+- Product availability.
+- Order status.
+- Payments.
+- Delivery status.
+- Pickup availability.
+- Business policies.
+
+For private customer information, enforce authentication and authorization.
+
+---
+
+21. SEARCH EXPERIENCE
+
+Create a centralized search experience.
+
+Search should be useful across:
+
+- Products.
+- Journals.
+- Collections.
+- Categories.
+- Campus locations.
+- Pickup hubs.
+- Public content.
+
+Only include searchable data that actually exists.
+
+Improve:
+
+- Search input.
+- Search suggestions.
+- Result presentation.
+- Empty states.
+- Loading states.
+- No-result handling.
+- Mobile search interface.
+
+Do not expose private customer or administrative information through public search.
+
+---
+
+22. ABOUT THE MOVEMENT
+
+Rebuild the About section around the brand's philosophy.
+
+Present WRITE YOUR WAVE as a movement built around:
+
+- Self-expression.
+- Creativity.
+- Personal development.
+- Education.
+- Individual identity.
+- Ambition.
+- Community.
+
+Use authentic brand content and existing assets.
+
+Do not fabricate founder stories, company history, partnerships, or achievements.
+
+---
+
+23. CONTACT AND SUPPORT
+
+Restructure the Contact environment.
+
+Support relevant inquiry categories:
+
+- General Inquiry.
+- Product Question.
+- Order Question.
+- Customization.
+- Bulk Order.
+- School Order.
+- Partnership.
+- Ambassador.
+- Other.
+
+Use the existing contact backend where available.
+
+Implement validation, spam protection, success states, and error handling.
+
+Never display fake submission success when a message has not actually been saved.
+
+---
+
+24. FOOTER REDESIGN
+
+Create a sophisticated, structured footer.
+
+Organize it into logical groups:
+
+BRAND:
+
+- Logo.
+- Brand description.
+- About the Movement.
+
+SHOP:
+
+- Collections.
+- Journals.
+- Student Notebooks.
+- Premium Journals.
+- Personalization.
+
+COMMUNITY:
+
+- Ambassadors.
+- Verified Campus Network.
+- Pickup Hubs.
+
+SUPPORT:
+
+- Contact.
+- Order Information.
+- Frequently Asked Questions, if available.
+
+ACCOUNT:
+
+- Sign In.
+- Create Account.
+- My Profile.
+
+Include genuine social links and existing business contact information.
+
+Do not invent social media profiles or addresses.
+
+The footer must be responsive and visually balanced.
+
+---
+
+25. VISUAL DESIGN SYSTEM — NO GENERIC AI DESIGN
+
+The visual direction must be deliberate, mature, and professionally art-directed.
+
+Avoid the recognizable generic AI website aesthetic.
+
+Do not rely on:
+
+- Excessive purple gradients.
+- Random floating shapes.
+- Unnecessary glassmorphism.
+- Repetitive rounded cards.
+- Excessive pill buttons.
+- Generic dashboard templates.
+- Random decorative icons.
+- Repetitive section structures.
+- Unnecessary animations.
+- Oversized headings everywhere.
+- Unbalanced whitespace.
+- Generic stock illustrations.
+- Unrelated imagery.
+
+Instead, use:
+
+- A coherent brand color system.
+- Carefully selected typography.
+- Strong editorial hierarchy.
+- Consistent spacing.
+- Professional grid layouts.
+- Intentional image composition.
+- Restrained shadows.
+- Consistent border treatments.
+- High-quality product presentation.
+- Clear navigation.
+- Purposeful interactions.
+- Appropriate micro-animations.
+
+The design should feel like a premium international stationery and lifestyle brand.
+
+Avoid copying another company's identity or website.
+
+---
+
+26. RESPONSIVE DESIGN
+
+Every section must be professionally optimized for:
+
+- Mobile phones.
+- Tablets.
+- Laptops.
+- Desktop monitors.
+- Large desktop screens.
+
+Mobile and desktop must not simply be scaled versions of each other.
+
+Design for the actual behavior and constraints of each screen size.
+
+Test:
+
+- Navigation.
+- Sidebars.
+- Forms.
+- Product galleries.
+- Shopping Bag.
+- Authentication.
+- Dashboards.
+- Tables.
+- Notifications.
+- WaveGuide AI.
+- Footer.
+
+No horizontal overflow.
+
+No overlapping controls.
+
+No inaccessible menus.
+
+No broken layouts.
+
+---
+
+27. TECHNICAL ARCHITECTURE
+
+Before implementation, inspect the existing technology stack.
+
+Do not replace the current architecture without a documented technical reason.
+
+Preserve existing working integrations.
+
+Maintain clear separation between:
+
+- Public frontend.
+- Customer application.
+- Administrative application.
+- Ambassador application.
+- API layer.
+- Authentication.
+- Authorization.
+- Database.
+- File storage.
+- AI integrations.
+- Business logic.
+
+Requirements:
+
+- Reusable components.
+- Consistent page layouts.
+- Centralized design tokens.
+- Clear route organization.
+- Type-safe implementation where applicable.
+- Server-side validation.
+- Database integrity.
+- Secure authentication.
+- Role-based authorization.
+- Safe file uploads.
+- Error handling.
+- Structured logging.
+- Maintainable code.
+
+Avoid unnecessary dependencies and architectural complexity.
+
+---
+
+28. TESTING AND QUALITY ASSURANCE
+
+Test the actual application.
+
+Do not claim successful testing without evidence.
+
+Test:
+
+- Public navigation.
+- Desktop sidebar.
+- Mobile drawer.
+- Customer registration.
+- Customer login.
+- Password recovery.
+- Customer profile.
+- Administrative login.
+- Administrative permissions.
+- Ambassador login.
+- Product browsing.
+- Search.
+- Shopping Bag.
+- Order submission.
+- Personalization requests.
+- Notifications.
+- WaveGuide AI.
+- Campus directory.
+- Pickup Hub selection.
+- Contact forms.
+- Image rendering.
+- Responsive behavior.
+- API authorization.
+- Database operations.
+
+Test unauthenticated and unauthorized access.
+
+Test invalid form submissions.
+
+Test empty states.
+
+Test loading and failure states.
+
+Identify and repair the root cause of errors rather than hiding them.
+
+---
+
+29. IMPLEMENTATION METHOD
+
+DO NOT attempt a careless one-pass redesign.
+
+Work in controlled phases.
+
+PHASE 1 — EXISTING PROJECT AUDIT
+
+Inspect the entire application.
+
+Document:
+
+- Existing routes.
+- Existing components.
+- Existing database.
+- Existing APIs.
+- Existing authentication.
+- Existing user roles.
+- Existing images.
+- Existing notebook designs.
+- Existing integrations.
+- Existing deployment configuration.
+
+PHASE 2 — DESIGN SYSTEM
+
+Establish:
+
+- Brand colors.
+- Typography.
+- Spacing.
+- Buttons.
+- Form controls.
+- Navigation.
+- Cards.
+- Sidebar patterns.
+- Responsive rules.
+
+PHASE 3 — PUBLIC WEBSITE
+
+Restructure homepage, header, desktop navigation, mobile navigation, shop, journals, search, About, Contact, and footer.
+
+PHASE 4 — CUSTOMER ENVIRONMENT
+
+Implement customer authentication, profile, shopping bag, notifications, order history, and personalization.
+
+PHASE 5 — ADMINISTRATIVE ENVIRONMENT
+
+Implement the separate admin login, dashboard, sidebar, settings, permissions, and management tools.
+
+PHASE 6 — AMBASSADOR ENVIRONMENT
+
+Implement ambassador authentication, dashboard, profile, and actual referral functionality.
+
+PHASE 7 — CAMPUS AND PICKUP HUBS
+
+Implement verified directories and supported operational workflows.
+
+PHASE 8 — WAVEGUIDE AI
+
+Upgrade the AI experience and verify secure backend integration.
+
+PHASE 9 — NOTEBOOK PRESENTATION
+
+Integrate actual notebook cover designs and interior page images.
+
+PHASE 10 — TESTING AND REFINEMENT
+
+Fix errors, verify APIs, validate responsiveness, and improve performance.
+
+PHASE 11 — DEPLOYMENT
+
+Prepare the project for GitHub synchronization and Vercel deployment.
+
+---
+
+30. GITHUB AND VERCEL SAFETY
+
+The existing GitHub repository and Vercel deployment must be preserved.
+
+Do not:
+
+- Create an unnecessary replacement repository.
+- Delete the existing repository.
+- Change deployment configuration without justification.
+- Overwrite existing branches blindly.
+- Remove environment variables.
+- expose secrets.
+- Replace the production database.
+- Run destructive database migrations without approval.
+
+Before committing changes:
+
+1. Inspect Git status.
+2. Review modified files.
+3. Identify potentially destructive changes.
+4. Verify the build.
+5. Verify relevant tests.
+6. Explain the proposed commit.
+
+After deployment, verify the actual Vercel deployment and live website.
+
+Do not claim deployment success based only on code changes.
+
+---
+
+31. FINAL ACCEPTANCE CRITERIA
+
+The redesign is not complete until:
+
+- Existing brand assets are preserved.
+- Existing products remain intact.
+- Existing notebook images remain intact.
+- Existing interior page images remain intact.
+- Public navigation works.
+- Desktop sidebar works.
+- Mobile drawer works.
+- Customer authentication works.
+- Admin authentication is separate and secure.
+- Ambassador access is separated.
+- Customer profiles use real data.
+- Admin dashboards use real data.
+- Shopping Bag works.
+- Product pages work.
+- Search works.
+- Personalization works where supported.
+- Notifications work where supported.
+- WaveGuide AI works securely.
+- Campus and Pickup Hub information is genuine.
+- Forms connect to actual backend endpoints.
+- APIs are tested.
+- Database operations are verified.
+- No unauthorized role access is possible.
+- Mobile and desktop layouts are polished.
+- Vercel deployment is verified.
+
+---
+
+32. FINAL REPORT
+
+At the end, provide a detailed report containing:
+
+1. Original project architecture.
+2. Restructured architecture.
+3. Pages redesigned.
+4. Components created.
+5. Components upgraded.
+6. Existing assets preserved.
+7. Authentication changes.
+8. Database changes.
+9. API changes.
+10. Security improvements.
+11. Responsive design improvements.
+12. Notebook presentation improvements.
+13. Testing results.
+14. Build results.
+15. Deployment results.
+16. Outstanding defects.
+17. Features requiring external configuration.
+18. Production readiness assessment.
+
+Use these statuses:
+
+- PASS.
+- FAIL.
+- BLOCKED.
+- NOT IMPLEMENTED.
+- NOT TESTED.
+
+Do not hide unfinished work.
+
+Do not claim the platform is production-ready if critical security, authentication, payment, database, or operational requirements remain incomplete.
+
+FINAL DIRECTIVE
+
+Think like a principal product architect building a real international stationery and lifestyle technology brand.
+
+Every page must have a reason to exist.
+
+Every component must have a clear responsibility.
+
+Every navigation item must lead somewhere meaningful.
+
+Every button must perform its intended action.
+
+Every dashboard must use genuine information.
+
+Every user environment must be properly separated.
+
+Every design decision must contribute to the WRITE YOUR WAVE identity.
+
+The goal is not to make the platform look complicated.
+
+The goal is to make it look exceptional, feel effortless, function reliably, and be ready for real customers.
+
+Preserve what is valuable. Rebuild what is weak. Improve what is incomplete. Never fabricate what does not exist.

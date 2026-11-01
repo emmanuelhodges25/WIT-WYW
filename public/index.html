@@ -1109,9 +1109,143 @@
         width: 38px;
         height: 38px;
       }
-      .mobile-bottom-nav-item span {
-        font-size: 0.64rem;
-      }
+    /* ==========================================================================
+       DARK MODE THEME SWITCHING (--wave-parchment <-> --wave-navy-dark)
+       ========================================================================== */
+    :root[data-theme="dark"], body.dark-theme {
+      --wave-parchment: #071326;
+      --wave-navy-dark: #F8FAFC;
+      --wave-surface: #0B192C;
+      --wave-border: #1E2E4A;
+      --wave-text-dark: #F8FAFC;
+      --wave-text-muted: #94A3B8;
+      --wave-text-light: #64748B;
+      --wave-shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
+      --wave-shadow-md: 0 8px 24px rgba(0,0,0,0.6);
+      --wave-shadow-lg: 0 16px 40px rgba(0,0,0,0.8);
+    }
+
+    body {
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-theme {
+      background-color: var(--wave-parchment);
+      color: var(--wave-text-dark);
+    }
+
+    body.dark-theme .trust-strip {
+      background: #091526;
+      border-color: var(--wave-border);
+    }
+
+    body.dark-theme .shop-controls {
+      background: #0B192C;
+      border-color: var(--wave-border);
+    }
+
+    body.dark-theme .journal-card {
+      background: #0B192C;
+      border-color: var(--wave-border);
+    }
+
+    body.dark-theme .journal-name,
+    body.dark-theme .section-title,
+    body.dark-theme .trust-item h4 {
+      color: #F8FAFC;
+    }
+
+    body.dark-theme .modal-box {
+      background: #0B192C;
+      border-color: var(--wave-gold);
+      color: #F8FAFC;
+    }
+
+    body.dark-theme .modal-header {
+      background: #071326;
+      border-color: var(--wave-border);
+    }
+
+    body.dark-theme .modal-title {
+      color: #F8FAFC;
+    }
+
+    body.dark-theme .cart-drawer {
+      background: #0B192C;
+      color: #F8FAFC;
+    }
+
+    body.dark-theme .cart-header {
+      background: #071326;
+      border-color: var(--wave-border);
+      color: #F8FAFC;
+    }
+
+    body.dark-theme .cart-footer {
+      background: #071326;
+      border-color: var(--wave-border);
+    }
+
+    body.dark-theme .mobile-nav-tile {
+      background: #0E1E38;
+      border-color: var(--wave-border);
+      color: #F8FAFC;
+    }
+
+    body.dark-theme .mobile-nav-tile strong {
+      color: #F8FAFC;
+    }
+
+    body.dark-theme .mobile-nav-tile:hover,
+    body.dark-theme .mobile-nav-tile.active {
+      background: #142745;
+      border-color: var(--wave-gold);
+    }
+
+    body.dark-theme .form-input,
+    body.dark-theme .form-select,
+    body.dark-theme .search-box-input {
+      background: #071326;
+      border-color: var(--wave-border);
+      color: #F8FAFC;
+    }
+
+    body.dark-theme .form-label {
+      color: #E2E8F0;
+    }
+
+    body.dark-theme .filter-pill {
+      background: #142745;
+      color: #CBD5E1;
+    }
+
+    body.dark-theme .filter-pill:hover,
+    body.dark-theme .filter-pill.active {
+      background: var(--wave-gold);
+      color: #071326;
+    }
+
+    body.dark-theme .btn-inspect {
+      background: #142745;
+      color: #F8FAFC;
+    }
+
+    body.dark-theme #personalization,
+    body.dark-theme #contact {
+      background: #071326 !important;
+    }
+
+    body.dark-theme .mega-menu-wrapper {
+      background: #0B192C;
+      border-color: var(--wave-border);
+    }
+
+    body.dark-theme .mega-link {
+      color: #CBD5E1;
+    }
+
+    body.dark-theme .mega-link:hover {
+      color: var(--wave-gold);
     }
   </style>
 </head>
@@ -1180,6 +1314,12 @@
           <li><a href="#about" class="nav-link-btn">About Movement</a></li>
           <li><a href="#contact" class="nav-link-btn">Contact</a></li>
           <li><button type="button" class="nav-link-btn" onclick="openAdminModal()" style="color: var(--wave-gold);">Admin Hub</button></li>
+          <li>
+            <button type="button" class="nav-link-btn" onclick="toggleTheme()" id="navThemeToggleBtn" aria-label="Toggle dark mode theme" style="color: var(--wave-gold-light);">
+              <span id="navThemeIcon">🌙</span>
+              <span id="navThemeText">Dark Mode</span>
+            </button>
+          </li>
         </ul>
       </nav>
 
@@ -1187,6 +1327,10 @@
         <button type="button" class="btn-waveguide" onclick="openWaveguideModal()">
           <span>✨</span>
           <span>Ask WaveGuide</span>
+        </button>
+
+        <button type="button" class="header-icon-btn" onclick="toggleTheme()" id="headerThemeToggleBtn" aria-label="Toggle dark mode theme" title="Switch between Parchment and Navy Dark theme">
+          <span id="headerThemeIcon" style="font-size: 1.1rem; line-height: 1;">🌙</span>
         </button>
 
         <button type="button" class="header-icon-btn" onclick="openSearchModal()" aria-label="Search journals">
@@ -1329,7 +1473,22 @@
         </div>
       </div>
 
-      <!-- Navigation Section 4: Portal Gateways -->
+      <!-- Navigation Section 4: Appearance & Theme Toggle -->
+      <div class="mobile-nav-group">
+        <div class="mobile-nav-group-title">Display &amp; Theme</div>
+        <button type="button" class="mobile-nav-tile" onclick="toggleTheme()" style="width: 100%; text-align: left; cursor: pointer;">
+          <span class="mobile-nav-tile-icon" id="drawerThemeIcon">🌙</span>
+          <div style="flex-grow: 1;">
+            <strong id="drawerThemeTitle">Theme Switching</strong>
+            <div class="mobile-nav-tile-desc" id="drawerThemeDesc">Toggle between Parchment and Navy Dark</div>
+          </div>
+          <span id="drawerThemePill" style="background: var(--wave-gold); color: #071326; font-size: 0.68rem; font-weight: 800; padding: 3px 8px; border-radius: 6px;">
+            LIGHT
+          </span>
+        </button>
+      </div>
+
+      <!-- Navigation Section 5: Portal Gateways -->
       <div class="mobile-nav-group">
         <div class="mobile-nav-group-title">Portal Gateways</div>
         <div style="display: grid; grid-template-columns: 1fr; gap: 8px;">
@@ -2272,6 +2431,7 @@
     // --- 2. INITIALIZATION ---
     document.addEventListener('DOMContentLoaded', () => {
       loadStorageData();
+      initTheme();
       renderJournals(JOURNALS);
       updateHeaderUserBadge();
       updateCartBadge();
@@ -4164,6 +4324,89 @@ Please present your reference code or student ID. Flat $5.00 USD cash or Mobile 
           setMobileBottomNavActive('home');
         }
       }, { passive: true });
+    }
+
+    // --- 14. THEME TOGGLE CONTROLLER (--wave-parchment <-> --wave-navy-dark) ---
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark-theme');
+      const root = document.documentElement;
+
+      if (isDark) {
+        root.setAttribute('data-theme', 'dark');
+        // Switches background from parchment to deep navy dark and updates variables
+        root.style.setProperty('--wave-parchment', '#071326');
+        root.style.setProperty('--wave-navy-dark', '#F8FAFC');
+        root.style.setProperty('--wave-surface', '#0B192C');
+        root.style.setProperty('--wave-border', '#1E2E4A');
+        root.style.setProperty('--wave-text-dark', '#F8FAFC');
+        root.style.setProperty('--wave-text-muted', '#94A3B8');
+        localStorage.setItem('wyw_theme', 'dark');
+      } else {
+        root.setAttribute('data-theme', 'light');
+        // Switches background back to original light parchment
+        root.style.setProperty('--wave-parchment', '#F8F9FA');
+        root.style.setProperty('--wave-navy-dark', '#071326');
+        root.style.setProperty('--wave-surface', '#FFFFFF');
+        root.style.setProperty('--wave-border', '#E2E8F0');
+        root.style.setProperty('--wave-text-dark', '#0F172A');
+        root.style.setProperty('--wave-text-muted', '#64748B');
+        localStorage.setItem('wyw_theme', 'light');
+      }
+
+      updateThemeToggleUI(isDark);
+      showToast(isDark ? '🌙 Dark Mode Activated (--wave-navy-dark)' : '☀️ Light Mode Activated (--wave-parchment)');
+    }
+
+    function initTheme() {
+      const savedTheme = localStorage.getItem('wyw_theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+      const root = document.documentElement;
+
+      if (isDark) {
+        document.body.classList.add('dark-theme');
+        root.setAttribute('data-theme', 'dark');
+        root.style.setProperty('--wave-parchment', '#071326');
+        root.style.setProperty('--wave-navy-dark', '#F8FAFC');
+        root.style.setProperty('--wave-surface', '#0B192C');
+        root.style.setProperty('--wave-border', '#1E2E4A');
+        root.style.setProperty('--wave-text-dark', '#F8FAFC');
+        root.style.setProperty('--wave-text-muted', '#94A3B8');
+      } else {
+        document.body.classList.remove('dark-theme');
+        root.setAttribute('data-theme', 'light');
+        root.style.setProperty('--wave-parchment', '#F8F9FA');
+        root.style.setProperty('--wave-navy-dark', '#071326');
+        root.style.setProperty('--wave-surface', '#FFFFFF');
+        root.style.setProperty('--wave-border', '#E2E8F0');
+        root.style.setProperty('--wave-text-dark', '#0F172A');
+        root.style.setProperty('--wave-text-muted', '#64748B');
+      }
+
+      updateThemeToggleUI(isDark);
+    }
+
+    function updateThemeToggleUI(isDark) {
+      const headerIcon = document.getElementById('headerThemeIcon');
+      if (headerIcon) headerIcon.textContent = isDark ? '☀️' : '🌙';
+
+      const navIcon = document.getElementById('navThemeIcon');
+      const navText = document.getElementById('navThemeText');
+      if (navIcon) navIcon.textContent = isDark ? '☀️' : '🌙';
+      if (navText) navText.textContent = isDark ? 'Light Theme' : 'Dark Mode';
+
+      const drawerIcon = document.getElementById('drawerThemeIcon');
+      const drawerTitle = document.getElementById('drawerThemeTitle');
+      const drawerDesc = document.getElementById('drawerThemeDesc');
+      const drawerPill = document.getElementById('drawerThemePill');
+      if (drawerIcon) drawerIcon.textContent = isDark ? '☀️' : '🌙';
+      if (drawerTitle) drawerTitle.textContent = isDark ? 'Light Parchment Mode' : 'Deep Navy Dark Mode';
+      if (drawerDesc) drawerDesc.textContent = isDark ? 'Active: --wave-navy-dark (#071326)' : 'Active: --wave-parchment (#F8F9FA)';
+      if (drawerPill) {
+        drawerPill.textContent = isDark ? 'DARK' : 'LIGHT';
+        drawerPill.style.background = isDark ? '#10B981' : 'var(--wave-gold)';
+        drawerPill.style.color = isDark ? '#FFFFFF' : '#071326';
+      }
     }
   </script>
 

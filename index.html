@@ -916,18 +916,202 @@
       box-shadow: var(--wave-shadow-sm);
     }
 
-    /* Responsive */
+    /* ==========================================================================
+       MOBILE NAVIGATION SYSTEM (TOP HEADER, SLIDE-IN DRAWER, BOTTOM NAV)
+       ========================================================================== */
+    /* Mobile Drawer Detailed Styling */
+    .mobile-nav-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .mobile-nav-group-title {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--wave-royal);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 2px;
+      padding-left: 4px;
+    }
+    .mobile-nav-tile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--wave-navy-dark);
+      background: #FFFFFF;
+      border: 1px solid var(--wave-border);
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+      min-height: 48px;
+      cursor: pointer;
+    }
+    .mobile-nav-tile:hover,
+    .mobile-nav-tile.active {
+      background: #F8FAFC;
+      border-color: var(--wave-gold);
+      transform: translateX(3px);
+    }
+    .mobile-nav-tile-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      width: 28px;
+      text-align: center;
+    }
+    .mobile-nav-tile strong {
+      font-size: 0.88rem;
+      color: var(--wave-navy-dark);
+      display: block;
+      line-height: 1.25;
+    }
+    .mobile-nav-tile-desc {
+      font-size: 0.74rem;
+      color: var(--wave-text-muted);
+      line-height: 1.3;
+      margin-top: 2px;
+    }
+
+    /* Mobile Bottom Navigation Bar */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: calc(64px + env(safe-area-inset-bottom, 0px));
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      background: rgba(7, 19, 38, 0.98);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--wave-border-dark);
+      z-index: 1040;
+      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.35);
+    }
+    .mobile-bottom-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      color: #94A3B8;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 6px 2px;
+      position: relative;
+      font-size: 0.68rem;
+      font-weight: 700;
+      transition: color 0.2s ease, transform 0.15s ease;
+      min-height: 48px;
+      min-width: 44px;
+    }
+    .mobile-bottom-nav-item svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+    .mobile-bottom-nav-item:active {
+      transform: scale(0.92);
+    }
+    .mobile-bottom-nav-item.active,
+    .mobile-bottom-nav-item:hover {
+      color: var(--wave-gold);
+    }
+    .mobile-bottom-nav-badge {
+      position: absolute;
+      top: 4px;
+      right: calc(50% - 16px);
+      background: var(--wave-gold);
+      color: var(--wave-navy-dark);
+      font-size: 0.65rem;
+      font-weight: 800;
+      min-width: 17px;
+      height: 17px;
+      border-radius: 9px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+    .mobile-bottom-nav-dot {
+      position: absolute;
+      top: 6px;
+      right: calc(50% - 13px);
+      width: 8px;
+      height: 8px;
+      background: var(--wave-green);
+      border-radius: 50%;
+      border: 1.5px solid var(--wave-navy-dark);
+      display: none;
+    }
+
+    /* Responsive Breakpoints */
     @media (max-width: 1024px) {
       .main-nav { display: none; }
       .mobile-menu-trigger { display: flex; }
+      .btn-waveguide { display: none; }
       .ambassador-grid { grid-template-columns: 1fr; }
       .personalization-box { grid-template-columns: 1fr; }
       .stores-grid { grid-template-columns: 1fr; }
       .trust-container { grid-template-columns: 1fr 1fr; }
     }
+    @media (max-width: 768px) {
+      .mobile-bottom-nav {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+      }
+      body, #main-content {
+        padding-bottom: 78px !important;
+      }
+      .header-inner {
+        padding: 0 16px;
+        gap: 12px;
+      }
+      .brand-title {
+        font-size: 1.05rem;
+      }
+      .brand-subtitle {
+        font-size: 0.62rem;
+      }
+      .header-icon-btn#accountHeaderBtn {
+        display: none; /* Accessible directly via contextual bottom navigation */
+      }
+      #mobileDrawer {
+        width: min(340px, 86vw);
+      }
+    }
     @media (max-width: 640px) {
       .trust-container { grid-template-columns: 1fr; }
       .hero-title { font-size: 2.2rem; }
+    }
+    @media (max-width: 480px) {
+      .brand-logo-img {
+        height: 36px;
+        padding: 2px 6px;
+      }
+      .brand-title {
+        font-size: 0.96rem;
+      }
+      .header-right {
+        gap: 6px;
+      }
+      .header-icon-btn {
+        width: 38px;
+        height: 38px;
+      }
+      .mobile-menu-trigger {
+        width: 38px;
+        height: 38px;
+      }
+      .mobile-bottom-nav-item span {
+        font-size: 0.64rem;
+      }
     }
   </style>
 </head>
@@ -1026,20 +1210,150 @@
     </div>
   </header>
 
-  <aside class="cart-drawer" id="mobileDrawer">
-    <div class="cart-header">
-      <div style="font-weight: 800; color: var(--wave-navy-dark);">WRITE YOUR WAVE</div>
-      <button type="button" class="modal-close-btn" onclick="toggleMobileMenu()">&times;</button>
+  <!-- Advanced Responsive Mobile Navigation Drawer -->
+  <aside class="cart-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+    <div class="cart-header" style="background: linear-gradient(135deg, #071326 0%, #0F284E 100%); color: #FFF; border-bottom: 1.5px solid var(--wave-gold);">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="/assets/images/wyw_official_logo.png" alt="Write Your Wave Logo" style="height: 32px; background: #FFF; border-radius: 6px; padding: 2px 6px;">
+        <div>
+          <div style="font-weight: 800; font-size: 0.95rem; color: #FFF; letter-spacing: -0.3px;">WRITE YOUR WAVE</div>
+          <div style="font-size: 0.62rem; color: var(--wave-gold); font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px;">Movement 2026</div>
+        </div>
+      </div>
+      <button type="button" class="modal-close-btn" onclick="toggleMobileMenu()" aria-label="Close navigation menu" style="color: #FFF; font-size: 1.8rem; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;">&times;</button>
     </div>
-    <div class="cart-body">
-      <a href="#top" class="form-label" style="text-decoration: none; padding: 10px 0; font-size: 1rem;" onclick="toggleMobileMenu()">🏠 Home</a>
-      <a href="#journals" class="form-label" style="text-decoration: none; padding: 10px 0; font-size: 1rem;" onclick="toggleMobileMenu()">📖 Shop All 7 Journals ($5.00)</a>
-      <a href="#ambassadors" class="form-label" style="text-decoration: none; padding: 10px 0; font-size: 1rem;" onclick="toggleMobileMenu()">⭐ Ambassador Platform</a>
-      <a href="#personalization" class="form-label" style="text-decoration: none; padding: 10px 0; font-size: 1rem;" onclick="toggleMobileMenu()">✍️ Personalization</a>
-      <a href="#stores" class="form-label" style="text-decoration: none; padding: 10px 0; font-size: 1rem;" onclick="toggleMobileMenu()">📍 Campus Hubs</a>
-      <a href="#contact" class="form-label" style="text-decoration: none; padding: 10px 0; font-size: 1rem;" onclick="toggleMobileMenu()">✉️ Contact Support</a>
-      <button type="button" class="btn-primary" onclick="toggleMobileMenu(); openAccountModal();" style="width: 100%; justify-content: center; margin-top: 10px;">👤 Student Account / Sign In</button>
-      <button type="button" class="btn-secondary" onclick="toggleMobileMenu(); openAmbassadorModal('portal');" style="width: 100%; justify-content: center; color: var(--wave-navy-dark); border-color: var(--wave-navy-dark); margin-top: 8px;">👑 Ambassador Portal</button>
+
+    <div class="cart-body" style="padding: 16px; gap: 18px; overflow-y: auto;">
+      <!-- Dynamic User Portal Status Card -->
+      <div id="mobileDrawerUserCard">
+        <!-- Injected via renderMobileDrawerUserCard() -->
+      </div>
+
+      <!-- Navigation Section 1: Primary Shop & Craft -->
+      <div class="mobile-nav-group">
+        <div class="mobile-nav-group-title">Primary Navigation</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <a href="#top" class="mobile-nav-tile active" onclick="toggleMobileMenu()">
+            <span class="mobile-nav-tile-icon">🏠</span>
+            <div style="flex-grow: 1;">
+              <strong>Home</strong>
+              <div class="mobile-nav-tile-desc">Overview &amp; Movement Mission</div>
+            </div>
+          </a>
+          <a href="#journals" class="mobile-nav-tile" onclick="toggleMobileMenu()">
+            <span class="mobile-nav-tile-icon">📖</span>
+            <div style="flex-grow: 1;">
+              <strong>Shop All 7 Journals</strong>
+              <div class="mobile-nav-tile-desc">Hazel, Zinnah, Scholar, Noir &amp; more ($5.00)</div>
+            </div>
+            <span style="background: var(--wave-gold); color: #071326; font-size: 0.68rem; font-weight: 800; padding: 2px 6px; border-radius: 6px;">$5.00</span>
+          </a>
+          <a href="#personalization" class="mobile-nav-tile" onclick="toggleMobileMenu()">
+            <span class="mobile-nav-tile-icon">✍️</span>
+            <div style="flex-grow: 1;">
+              <strong>Cover Personalization</strong>
+              <div class="mobile-nav-tile-desc">Custom Name Foil Stamping ($5.00)</div>
+            </div>
+          </a>
+          <button type="button" class="mobile-nav-tile" onclick="toggleMobileMenu(); openCartDrawer();" style="width: 100%; text-align: left; background: #FAFBFD;">
+            <span class="mobile-nav-tile-icon">🛍️</span>
+            <div style="flex-grow: 1;">
+              <strong>Shopping Bag &amp; Reservation</strong>
+              <div class="mobile-nav-tile-desc">Review reserved items &amp; campus pickup</div>
+            </div>
+            <span class="cart-badge" id="mobileDrawerBagBadge" style="position: static;">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Section 2: Discover & Campus Network -->
+      <div class="mobile-nav-group">
+        <div class="mobile-nav-group-title">Discover &amp; Campus Desks</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <a href="#ambassadors" class="mobile-nav-tile" onclick="toggleMobileMenu()">
+            <span class="mobile-nav-tile-icon">👑</span>
+            <div style="flex-grow: 1;">
+              <strong>Ambassador Hazel Quiqui</strong>
+              <div class="mobile-nav-tile-desc">Starz University • Official Movement Agent</div>
+            </div>
+          </a>
+          <a href="#stores" class="mobile-nav-tile" onclick="toggleMobileMenu()">
+            <span class="mobile-nav-tile-icon">📍</span>
+            <div style="flex-grow: 1;">
+              <strong>Starz University Desk</strong>
+              <div class="mobile-nav-tile-desc">Airfield, Sinkor • Mon-Sat 8AM-6PM</div>
+            </div>
+          </a>
+          <a href="#stores" class="mobile-nav-tile" onclick="toggleMobileMenu()">
+            <span class="mobile-nav-tile-icon">📍</span>
+            <div style="flex-grow: 1;">
+              <strong>Waterloop Institute (WIT)</strong>
+              <div class="mobile-nav-tile-desc">Airfield Shortcut • Mon-Fri 8:30AM-5:30PM</div>
+            </div>
+          </a>
+          <a href="#about" class="mobile-nav-tile" onclick="toggleMobileMenu()">
+            <span class="mobile-nav-tile-icon">📜</span>
+            <div style="flex-grow: 1;">
+              <strong>About the Movement</strong>
+              <div class="mobile-nav-tile-desc">120 GSM Acid-Free Paper &amp; Standards</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation Section 3: Smart Tools & Support -->
+      <div class="mobile-nav-group">
+        <div class="mobile-nav-group-title">Tools &amp; Assistance</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <button type="button" class="mobile-nav-tile" onclick="toggleMobileMenu(); openWaveguideModal();" style="width: 100%; text-align: left; background: #FFFDF9; border-color: rgba(229,169,60,0.4);">
+            <span class="mobile-nav-tile-icon">✨</span>
+            <div style="flex-grow: 1;">
+              <strong>Ask WaveGuide AI</strong>
+              <div class="mobile-nav-tile-desc">5 Life Pillars &amp; Academic Sprint Guidance</div>
+            </div>
+          </button>
+          <button type="button" class="mobile-nav-tile" onclick="toggleMobileMenu(); openSearchModal();" style="width: 100%; text-align: left;">
+            <span class="mobile-nav-tile-icon">🔍</span>
+            <div style="flex-grow: 1;">
+              <strong>Lookup &amp; Search Journals</strong>
+              <div class="mobile-nav-tile-desc">Search by name, edition, or color theme</div>
+            </div>
+          </button>
+          <a href="#contact" class="mobile-nav-tile" onclick="toggleMobileMenu()">
+            <span class="mobile-nav-tile-icon">✉️</span>
+            <div style="flex-grow: 1;">
+              <strong>Contact Movement Desk</strong>
+              <div class="mobile-nav-tile-desc">Inquiries, bulk quotations &amp; partnerships</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation Section 4: Portal Gateways -->
+      <div class="mobile-nav-group">
+        <div class="mobile-nav-group-title">Portal Gateways</div>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 8px;">
+          <button type="button" class="btn-primary" onclick="toggleMobileMenu(); openAccountModal('student');" style="justify-content: center; font-size: 0.85rem; padding: 12px;">
+            <span>🎓</span> Student / Customer Account
+          </button>
+          <button type="button" class="btn-secondary" onclick="toggleMobileMenu(); openAmbassadorModal('ref');" style="justify-content: center; font-size: 0.85rem; padding: 12px; color: var(--wave-navy-dark); border-color: var(--wave-navy-dark);">
+            <span>👑</span> Ambassador Platform (Hazel Quiqui)
+          </button>
+          <button type="button" class="btn-secondary" onclick="toggleMobileMenu(); openAdminModal();" style="justify-content: center; font-size: 0.82rem; padding: 10px; color: #B45309; border-color: #F59E0B; background: #FFFDF9;">
+            <span>🔒</span> Restricted Admin Control Hub
+          </button>
+        </div>
+      </div>
+
+      <!-- Drawer Footer -->
+      <div style="margin-top: auto; padding-top: 14px; border-top: 1px solid var(--wave-border); text-align: center;">
+        <span style="font-size: 0.72rem; color: var(--wave-text-muted); display: block; margin-bottom: 2px;">
+          “Plan. Learn. Create. Achieve.”
+        </span>
+        <div style="font-size: 0.68rem; color: var(--wave-royal); font-weight: 700;">
+          All 7 Authentic Editions strictly $5.00 USD
+        </div>
+      </div>
     </div>
   </aside>
 
@@ -1963,6 +2277,7 @@
       updateCartBadge();
       renderAdminReservations();
       initModalAndDrawerTransitions();
+      initMobileNavSystem();
     });
 
     function initModalAndDrawerTransitions() {
@@ -2188,6 +2503,13 @@
       const count = cart.reduce((sum, item) => sum + item.qty, 0);
       const badge = document.getElementById('cartBadgeCount');
       if (badge) badge.textContent = count;
+      const drawerBadge = document.getElementById('mobileDrawerBagBadge');
+      if (drawerBadge) drawerBadge.textContent = count;
+      const btmBadge = document.getElementById('mobileBottomNavBagBadge');
+      if (btmBadge) {
+        btmBadge.textContent = count;
+        btmBadge.style.display = count > 0 ? 'flex' : 'none';
+      }
     }
 
     function openCartDrawer() {
@@ -2954,6 +3276,9 @@
     function updateHeaderUserBadge() {
       const dot = document.getElementById('accountOnlineDot');
       if (dot) dot.style.display = currentUser ? 'block' : 'none';
+      const btmDot = document.getElementById('mobileBottomNavAccountDot');
+      if (btmDot) btmDot.style.display = currentUser ? 'block' : 'none';
+      renderMobileDrawerUserCard();
     }
 
     function handleOrderLookup() {
@@ -3720,12 +4045,152 @@ Please present your reference code or student ID. Flat $5.00 USD cash or Mobile 
       setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
-    function handleContactSubmit(e) {
-      e.preventDefault();
-      document.getElementById('contactSuccessNotice').style.display = 'block';
-      document.getElementById('contactForm').reset();
-      showToast('✓ Message sent to Movement Team!');
+    // --- 13. MOBILE NAVIGATION SYSTEM HELPERS ---
+    function renderMobileDrawerUserCard() {
+      const card = document.getElementById('mobileDrawerUserCard');
+      if (!card) return;
+
+      if (!currentUser) {
+        card.innerHTML = `
+          <div style="background: #F8FAFC; border: 1.5px dashed var(--wave-gold); border-radius: 12px; padding: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+            <div>
+              <div style="font-size: 0.72rem; color: var(--wave-royal); font-weight: 800; text-transform: uppercase;">Write Your Wave Account</div>
+              <strong style="font-size: 0.88rem; color: var(--wave-navy-dark); display: block; margin-top: 2px;">Sign in to view reservations</strong>
+            </div>
+            <button type="button" class="btn-primary" onclick="toggleMobileMenu(); openAccountModal('student');" style="padding: 6px 12px; font-size: 0.78rem;">
+              Sign In &rarr;
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      if (currentUser.role === 'SUPER_ADMIN' || currentUser.role === 'ADMIN') {
+        card.innerHTML = `
+          <div style="background: linear-gradient(135deg, #071326 0%, #1E3A8A 100%); color: #FFF; border: 1.5px solid var(--wave-gold); border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <div>
+                <span style="background: #EF4444; color: #FFF; font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 6px; text-transform: uppercase;">
+                  ${currentUser.title || 'ADMINISTRATOR'}
+                </span>
+                <strong style="font-size: 0.95rem; color: #FFF; display: block; margin-top: 4px;">${currentUser.name}</strong>
+                <div style="font-size: 0.74rem; color: #CBD5E1;">${currentUser.email}</div>
+              </div>
+              <button type="button" onclick="handleSignOut()" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: #FFF; font-size: 0.7rem; padding: 4px 8px; border-radius: 6px; cursor: pointer;">
+                Log Out
+              </button>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px;">
+              <button type="button" class="btn-primary" onclick="toggleMobileMenu(); openAdminModal();" style="padding: 6px 8px; font-size: 0.74rem; justify-content: center;">
+                ⚙️ Admin Hub
+              </button>
+              <button type="button" class="btn-buy" onclick="toggleMobileMenu(); openAdminModal(); switchAdminTab('team');" style="padding: 6px 8px; font-size: 0.74rem; justify-content: center; background: #071326;">
+                👥 Invites
+              </button>
+            </div>
+          </div>
+        `;
+      } else if (currentUser.role === 'AMBASSADOR') {
+        card.innerHTML = `
+          <div style="background: linear-gradient(135deg, #071326 0%, #1E3A8A 100%); color: #FFF; border: 1.5px solid var(--wave-gold); border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <div>
+                <span style="background: var(--wave-gold); color: #071326; font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 6px; text-transform: uppercase;">
+                  OFFICIAL AMBASSADOR
+                </span>
+                <strong style="font-size: 0.95rem; color: #FFF; display: block; margin-top: 4px;">${currentUser.name}</strong>
+                <div style="font-size: 0.74rem; color: #CBD5E1;">Code: <strong>${currentUser.handle || 'HAZEL26'}</strong> • 10% Earned</div>
+              </div>
+              <button type="button" onclick="handleSignOut()" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: #FFF; font-size: 0.7rem; padding: 4px 8px; border-radius: 6px; cursor: pointer;">
+                Log Out
+              </button>
+            </div>
+            <button type="button" class="btn-primary" onclick="toggleMobileMenu(); openAmbassadorModal('ref');" style="width: 100%; justify-content: center; margin-top: 10px; padding: 6px 8px; font-size: 0.74rem;">
+              👑 Referral Portal &amp; Link
+            </button>
+          </div>
+        `;
+      } else {
+        card.innerHTML = `
+          <div style="background: #FAFBFD; border: 1.5px solid var(--wave-border); border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <div>
+                <span style="background: #ECFDF5; color: #065F46; font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 6px; text-transform: uppercase;">
+                  VERIFIED STUDENT
+                </span>
+                <strong style="font-size: 0.95rem; color: var(--wave-navy-dark); display: block; margin-top: 4px;">${currentUser.name}</strong>
+                <div style="font-size: 0.74rem; color: var(--wave-royal);">${currentUser.campus || 'Starz University'}</div>
+              </div>
+              <button type="button" onclick="handleSignOut()" style="background: #F1F5F9; border: 1px solid var(--wave-border); color: var(--wave-text-muted); font-size: 0.7rem; padding: 4px 8px; border-radius: 6px; cursor: pointer;">
+                Log Out
+              </button>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px;">
+              <button type="button" class="btn-primary" onclick="toggleMobileMenu(); openAccountModal('student'); switchAccountSubTab('orders');" style="padding: 6px 8px; font-size: 0.74rem; justify-content: center;">
+                📦 My Orders (${userReservations.length})
+              </button>
+              <button type="button" class="btn-buy" onclick="toggleMobileMenu(); openAccountModal('student'); switchAccountSubTab('track');" style="padding: 6px 8px; font-size: 0.74rem; justify-content: center; background: #6D28D9;">
+                🔍 Lookup Pass
+              </button>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function setMobileBottomNavActive(tab) {
+      document.querySelectorAll('.mobile-bottom-nav-item').forEach(el => el.classList.remove('active'));
+      const activeMap = {
+        home: 'btnBtmNavHome',
+        shop: 'btnBtmNavShop',
+        ai: 'btnBtmNavAI',
+        bag: 'btnBtmNavBag',
+        account: 'btnBtmNavAccount'
+      };
+      const target = document.getElementById(activeMap[tab]);
+      if (target) target.classList.add('active');
+    }
+
+    function initMobileNavSystem() {
+      renderMobileDrawerUserCard();
+
+      // Scroll Spy for Bottom Nav
+      window.addEventListener('scroll', () => {
+        const scrollPos = window.scrollY + 200;
+        const journalsSection = document.getElementById('journals');
+        if (journalsSection && scrollPos >= journalsSection.offsetTop) {
+          setMobileBottomNavActive('shop');
+        } else {
+          setMobileBottomNavActive('home');
+        }
+      }, { passive: true });
     }
   </script>
+
+  <!-- Contextual Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Mobile Bottom Navigation">
+    <a href="#top" class="mobile-bottom-nav-item active" id="btnBtmNavHome" onclick="setMobileBottomNavActive('home')" aria-label="Home">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      <span>Home</span>
+    </a>
+    <a href="#journals" class="mobile-bottom-nav-item" id="btnBtmNavShop" onclick="setMobileBottomNavActive('shop')" aria-label="Shop All 7 Journals">
+      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+      <span>Shop ($5)</span>
+    </a>
+    <button type="button" class="mobile-bottom-nav-item" id="btnBtmNavAI" onclick="openWaveguideModal(); setMobileBottomNavActive('ai');" aria-label="Ask WaveGuide AI" style="color: var(--wave-gold);">
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+      <span>WaveGuide</span>
+    </button>
+    <button type="button" class="mobile-bottom-nav-item" id="btnBtmNavBag" onclick="openCartDrawer(); setMobileBottomNavActive('bag');" aria-label="Shopping Bag">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+      <span class="mobile-bottom-nav-badge" id="mobileBottomNavBagBadge">0</span>
+      <span>Bag</span>
+    </button>
+    <button type="button" class="mobile-bottom-nav-item" id="btnBtmNavAccount" onclick="openAccountModal(); setMobileBottomNavActive('account');" aria-label="Account &amp; Orders">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      <span class="mobile-bottom-nav-dot" id="mobileBottomNavAccountDot"></span>
+      <span>Account</span>
+    </button>
+  </nav>
 </body>
 </html>

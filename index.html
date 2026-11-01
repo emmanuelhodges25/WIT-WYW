@@ -1247,10 +1247,1293 @@
     body.dark-theme .mega-link:hover {
       color: var(--wave-gold);
     }
+
+    /* ==========================================================================
+       TRANSFORMATION STYLES (LAPTOPPRO INSPIRED E-COMMERCE STRUCTURE)
+       ========================================================================== */
+
+    /* 1. Initial Loading Screen */
+    .site-loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #071326;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.45s ease, visibility 0.45s ease;
+    }
+    .site-loading-screen.is-loaded {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loading-content {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 420px;
+      padding: 24px;
+    }
+    .loading-logo-box {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .loading-logo-img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      background: #FFFFFF;
+      padding: 6px;
+      border-radius: 14px;
+      border: 2px solid var(--wave-gold);
+      box-shadow: 0 0 24px rgba(229, 169, 60, 0.4);
+      animation: wavePulse 1.8s ease-in-out infinite;
+    }
+    .loading-wave-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 20px;
+      border: 1.5px dashed var(--wave-gold);
+      animation: rotateRing 8s linear infinite;
+    }
+    @keyframes wavePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+    @keyframes rotateRing {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .loading-brand-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .loading-brand-subtitle {
+      font-size: 0.82rem;
+      color: var(--wave-gold);
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .loading-progress-track {
+      width: 220px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .loading-progress-bar {
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--wave-royal), var(--wave-gold));
+      border-radius: 999px;
+      position: absolute;
+      animation: progressShimmy 1.4s ease-in-out infinite;
+    }
+    @keyframes progressShimmy {
+      0% { left: -45%; }
+      50% { left: 45%; }
+      100% { left: 100%; }
+    }
+    .loading-status-text {
+      font-size: 0.76rem;
+      color: #94A3B8;
+      letter-spacing: 0.3px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .loading-logo-img, .loading-wave-ring, .loading-progress-bar { animation: none; }
+    }
+
+    /* 2. Top Information Bar */
+    .top-info-bar {
+      background: #040A14;
+      color: #94A3B8;
+      font-size: 0.76rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      z-index: 1002;
+    }
+    .top-info-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 7px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .top-info-left, .top-info-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .top-info-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #CBD5E1;
+      font-weight: 500;
+    }
+    .top-info-icon { font-size: 0.85rem; }
+    .top-info-sep { color: rgba(255, 255, 255, 0.2); }
+    .top-info-link {
+      background: transparent;
+      border: none;
+      color: #CBD5E1;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      padding: 2px 4px;
+      transition: color 0.2s;
+    }
+    .top-info-link:hover { color: var(--wave-gold); }
+
+    /* 3. Header Search Container with Category Dropdown */
+    .header-search-container {
+      display: flex;
+      align-items: center;
+      background: #FFFFFF;
+      border-radius: 8px;
+      border: 1.5px solid var(--wave-border);
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 580px;
+      height: 44px;
+    }
+    .header-cat-select {
+      background: #F8FAFC;
+      border: none;
+      border-right: 1.5px solid var(--wave-border);
+      padding: 0 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--wave-navy-dark);
+      cursor: pointer;
+      height: 100%;
+      outline: none;
+      max-width: 175px;
+    }
+    .header-search-input-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      position: relative;
+    }
+    .header-search-input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      padding: 0 14px;
+      font-size: 0.84rem;
+      color: #0F172A;
+      background: transparent;
+    }
+    .header-search-btn {
+      background: var(--wave-royal);
+      border: none;
+      color: #FFFFFF;
+      width: 46px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .header-search-btn:hover { background: #1E40AF; }
+    .header-search-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2.2; }
+
+    /* Cart Header Preview Pill */
+    .header-cart-btn-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .header-cart-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      text-align: left;
+    }
+    .header-cart-label {
+      font-size: 0.68rem;
+      color: #94A3B8;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .header-cart-amount {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--wave-gold);
+    }
+
+    /* 4. Desktop Navigation Bar Strip */
+    .nav-bar-strip {
+      background: #0B192C;
+      border-bottom: 1.5px solid var(--wave-border-dark);
+      position: sticky;
+      top: var(--header-height);
+      z-index: 999;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+    .nav-strip-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      height: 48px;
+    }
+    .shop-by-cat-wrap {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .btn-shop-by-cat {
+      background: var(--wave-royal);
+      color: #FFFFFF;
+      border: none;
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 0 20px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      border-radius: 6px 6px 0 0;
+      letter-spacing: 0.3px;
+      transition: background 0.2s;
+      min-width: 230px;
+    }
+    .btn-shop-by-cat:hover { background: #1E40AF; }
+    .cat-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 320px;
+      background: #071326;
+      border: 1.5px solid var(--wave-border-dark);
+      border-radius: 0 0 12px 12px;
+      box-shadow: var(--wave-shadow-lg);
+      padding: 10px 0;
+      display: none;
+      flex-direction: column;
+      z-index: 1010;
+    }
+    .cat-dropdown-menu.is-open { display: flex; }
+    .cat-dropdown-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 18px;
+      color: #F8FAFC;
+      text-decoration: none;
+      transition: background 0.2s, padding-left 0.2s;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .cat-dropdown-item:last-child { border-bottom: none; }
+    .cat-dropdown-item:hover {
+      background: rgba(229, 169, 60, 0.12);
+      padding-left: 22px;
+    }
+    .cat-dropdown-item strong {
+      display: block;
+      font-size: 0.88rem;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+    .cat-dropdown-item small {
+      display: block;
+      font-size: 0.75rem;
+      color: #94A3B8;
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+    .cat-dropdown-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Dropdowns in Navigation */
+    .has-dropdown { position: relative; }
+    .nav-arrow { font-size: 0.7rem; transition: transform 0.2s; margin-left: 2px; }
+    .has-dropdown:hover .nav-arrow { transform: rotate(180deg); }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 230px;
+      background: #071326;
+      border: 1.5px solid var(--wave-border-dark);
+      border-radius: 10px;
+      box-shadow: var(--wave-shadow-lg);
+      padding: 8px 0;
+      display: none;
+      flex-direction: column;
+      z-index: 1010;
+    }
+    .has-dropdown:hover .nav-dropdown-menu { display: flex; }
+    .nav-dropdown-menu a {
+      color: #CBD5E1;
+      padding: 9px 18px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-dropdown-menu a:hover {
+      background: rgba(229, 169, 60, 0.14);
+      color: var(--wave-gold);
+    }
+
+    /* 5. Rebuilt Hero Section (LaptopPro Inspired 2-Column Layout) */
+    .hero {
+      background: linear-gradient(135deg, #040B17 0%, #071326 40%, #0F284E 100%);
+      color: #FFFFFF;
+      padding: 60px 24px 50px;
+      border-bottom: 1px solid var(--wave-border-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: 10%;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(29, 78, 216, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-layout-grid {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-left-col { text-align: left; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(29, 78, 216, 0.2);
+      border: 1px solid var(--wave-azure);
+      color: #93C5FD;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.12;
+      margin-bottom: 14px;
+      letter-spacing: -0.8px;
+      color: #FFFFFF;
+    }
+    .hero-title-gradient {
+      background: linear-gradient(90deg, #60A5FA 0%, #93C5FD 50%, var(--wave-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-style: italic;
+    }
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: #E2E8F0;
+      font-weight: 600;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .hero-desc {
+      font-size: 0.92rem;
+      color: #94A3B8;
+      max-width: 580px;
+      margin-bottom: 26px;
+      line-height: 1.65;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 34px;
+    }
+    .btn-hero-primary {
+      background: var(--wave-royal);
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 13px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(29, 78, 216, 0.4);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-hero-primary:hover { background: #1E40AF; transform: translateY(-2px); }
+    .btn-hero-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 13px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-hero-secondary:hover { background: rgba(255, 255, 255, 0.16); border-color: #FFFFFF; }
+
+    /* Hero Trust Badges Strip (4 items) */
+    .hero-trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .hero-trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .trust-badge-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .hero-trust-badge strong {
+      display: block;
+      font-size: 0.82rem;
+      color: #FFFFFF;
+      line-height: 1.2;
+    }
+    .hero-trust-badge small {
+      display: block;
+      font-size: 0.72rem;
+      color: #94A3B8;
+      margin-top: 1px;
+    }
+
+    /* Hero Right Showcase Visual */
+    .hero-showcase-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 440px;
+    }
+    .hero-offer-circle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #0F284E 0%, #071326 100%);
+      border: 2px solid var(--wave-gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      z-index: 5;
+      text-align: center;
+      animation: floatBadge 3.5s ease-in-out infinite;
+    }
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .offer-sub { font-size: 0.58rem; color: #94A3B8; font-weight: 800; letter-spacing: 0.5px; }
+    .offer-val { font-size: 1.35rem; font-weight: 800; color: var(--wave-gold); line-height: 1; }
+    .offer-tag { font-size: 0.62rem; color: #FFF; font-weight: 800; }
+    .hero-image-stack {
+      position: relative;
+      width: 320px;
+      height: 440px;
+    }
+    .hero-img-front {
+      position: absolute;
+      left: 20px;
+      top: 0;
+      width: 260px;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+      border: 2px solid var(--wave-gold);
+      z-index: 3;
+      transform: rotate(-3deg);
+      transition: transform 0.3s;
+    }
+    .hero-img-front:hover { transform: rotate(0deg) scale(1.03); }
+    .hero-img-back {
+      position: absolute;
+      right: 0;
+      bottom: 20px;
+      width: 240px;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 2;
+      transform: rotate(6deg);
+    }
+    .hero-img-accent {
+      position: absolute;
+      left: -20px;
+      bottom: 0;
+      width: 180px;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      z-index: 1;
+      opacity: 0.7;
+      transform: rotate(-10deg);
+    }
+    .hero-floating-caption {
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(7, 19, 38, 0.92);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--wave-gold);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.74rem;
+      white-space: nowrap;
+      z-index: 4;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+    .hero-floating-caption strong { color: var(--wave-gold); display: block; }
+    .hero-floating-caption span { color: #CBD5E1; }
+
+    /* 6. Shop By Category Cards */
+    .category-section {
+      padding: 50px 24px;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--wave-border);
+    }
+    .category-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .cat-card {
+      background: #F8FAFC;
+      border: 1.5px solid var(--wave-border);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+    .cat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--wave-shadow-md);
+      border-color: var(--wave-royal);
+    }
+    .cat-card-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: #071326;
+      overflow: hidden;
+    }
+    .cat-card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+    .cat-card:hover .cat-card-img-wrap img { transform: scale(1.05); }
+    .cat-card-count {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(7, 19, 38, 0.85);
+      color: var(--wave-gold);
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(229, 169, 60, 0.3);
+    }
+    .cat-card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .cat-card-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--wave-navy-dark);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .cat-card-desc {
+      font-size: 0.8rem;
+      color: var(--wave-text-muted);
+      line-height: 1.5;
+      margin-bottom: 12px;
+      flex-grow: 1;
+    }
+    .cat-card-link {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--wave-royal);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* 7. Promotional Brand Campaign Banner (LaptopPro Dark Banner Style) */
+    .brand-promo-banner {
+      background: linear-gradient(135deg, #040A14 0%, #071326 50%, #0D2240 100%);
+      border-top: 1.5px solid var(--wave-border-dark);
+      border-bottom: 1.5px solid var(--wave-border-dark);
+      padding: 44px 24px;
+      color: #FFFFFF;
+      position: relative;
+    }
+    .brand-promo-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .brand-promo-tag {
+      background: rgba(229, 169, 60, 0.15);
+      border: 1px solid var(--wave-gold);
+      color: var(--wave-gold);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .brand-promo-title {
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .brand-promo-desc {
+      font-size: 0.92rem;
+      color: #CBD5E1;
+      line-height: 1.6;
+      max-width: 580px;
+      margin-bottom: 18px;
+    }
+    .brand-promo-badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .promo-badge-item {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #E2E8F0;
+    }
+    .brand-promo-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .brand-promo-img {
+      width: 100%;
+      max-width: 440px;
+      border-radius: 12px;
+      border: 1.5px solid var(--wave-gold);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+    }
+    .promo-price-callout {
+      position: absolute;
+      top: -15px;
+      right: 10px;
+      background: #071326;
+      border: 2px solid var(--wave-gold);
+      padding: 10px 18px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 8. Why Choose WRITE YOUR WAVE? (5-Column Value Grid) */
+    .why-choose-section {
+      background: #F8FAFC;
+      border-bottom: 1px solid var(--wave-border);
+      padding: 60px 24px;
+    }
+    .why-choose-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+    .why-card {
+      background: #FFFFFF;
+      border: 1px solid var(--wave-border);
+      border-radius: 14px;
+      padding: 24px 18px;
+      text-align: center;
+      box-shadow: var(--wave-shadow-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .why-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--wave-shadow-md);
+      border-color: var(--wave-royal);
+    }
+    .why-icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #EFF6FF;
+      color: var(--wave-royal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 14px;
+    }
+    .why-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--wave-navy-dark);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .why-text {
+      font-size: 0.78rem;
+      color: var(--wave-text-muted);
+      line-height: 1.5;
+    }
+
+    /* 9. Newsletter Section (LaptopPro Inspired) */
+    .newsletter-section {
+      background: #071326;
+      border-top: 1.5px solid var(--wave-border-dark);
+      padding: 38px 24px;
+      color: #FFFFFF;
+    }
+    .newsletter-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+    .newsletter-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .newsletter-icon {
+      font-size: 2.2rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: rgba(29, 78, 216, 0.25);
+      border: 1px solid var(--wave-royal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .newsletter-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+    .newsletter-subtitle {
+      font-size: 0.84rem;
+      color: #94A3B8;
+      line-height: 1.4;
+    }
+    .newsletter-right {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+    }
+    .newsletter-input {
+      flex: 1;
+      height: 46px;
+      padding: 0 16px;
+      background: #0B192C;
+      border: 1.5px solid var(--wave-border-dark);
+      border-radius: 8px;
+      color: #FFFFFF;
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .newsletter-input:focus { border-color: var(--wave-gold); }
+    .newsletter-btn {
+      background: var(--wave-royal);
+      color: #FFFFFF;
+      border: none;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 0 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .newsletter-btn:hover { background: #1E40AF; }
+    .newsletter-notice {
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .newsletter-notice.success {
+      background: #ECFDF5;
+      border: 1px solid #10B981;
+      color: #065F46;
+    }
+    .newsletter-notice.error {
+      background: #FEF2F2;
+      border: 1px solid #EF4444;
+      color: #991B1B;
+    }
+
+    /* 10. Structured 5-Column Footer (LaptopPro Inspired) */
+    .site-footer {
+      background: #040A14;
+      color: #94A3B8;
+      border-top: 1px solid var(--wave-border-dark);
+      padding: 60px 24px 0;
+    }
+    .footer-top-grid {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1.1fr 1.1fr 1.3fr;
+      gap: 36px;
+      padding-bottom: 50px;
+    }
+    .footer-brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      margin-bottom: 14px;
+    }
+    .footer-logo-img {
+      height: 38px;
+      background: #FFFFFF;
+      padding: 3px 6px;
+      border-radius: 6px;
+      border: 1px solid var(--wave-gold);
+    }
+    .footer-brand-title {
+      color: #FFFFFF;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+    .footer-brand-subtitle {
+      color: var(--wave-gold);
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .footer-brand-desc {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: #94A3B8;
+      margin-bottom: 18px;
+      max-width: 320px;
+    }
+    .footer-social-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .footer-social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .footer-social-btn:hover {
+      background: rgba(229, 169, 60, 0.2);
+      border-color: var(--wave-gold);
+    }
+    .footer-col-title {
+      color: #FFFFFF;
+      font-size: 0.88rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links-list a {
+      color: #94A3B8;
+      font-size: 0.82rem;
+      text-decoration: none;
+      transition: color 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .footer-links-list a:hover {
+      color: var(--wave-gold);
+      transform: translateX(3px);
+    }
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .footer-contact-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .footer-contact-item strong {
+      display: block;
+      font-size: 0.82rem;
+      color: #CBD5E1;
+      line-height: 1.2;
+    }
+    .footer-contact-item p {
+      font-size: 0.76rem;
+      color: #94A3B8;
+      margin: 2px 0 0;
+    }
+    .footer-payment-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .pay-badge {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #CBD5E1;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .footer-bottom-bar {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 20px 24px;
+      background: #02060D;
+    }
+    .footer-bottom-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 0.78rem;
+      color: #64748B;
+    }
+    .footer-legal-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-legal-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-legal-links a:hover { color: var(--wave-gold); }
+
+    /* 11. Sliding Split-Panel Authentication Styles */
+    .auth-slider-switch {
+      display: flex;
+      position: relative;
+      background: #F1F5F9;
+      border-radius: 10px;
+      padding: 4px;
+      margin-bottom: 20px;
+    }
+    .auth-switch-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--wave-text-muted);
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+      transition: color 0.25s;
+    }
+    .auth-switch-btn.active { color: var(--wave-navy-dark); }
+    .auth-switch-pill {
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      left: 4px;
+      width: calc(50% - 4px);
+      background: #FFFFFF;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1;
+    }
+    .auth-switch-pill.right { transform: translateX(100%); }
+    .auth-panels-wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+    .auth-panels-track {
+      display: flex;
+      width: 200%;
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .auth-panels-track.slide-right { transform: translateX(-50%); }
+    .auth-panel-slide {
+      width: 50%;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      padding: 4px;
+    }
+    .oauth-btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .oauth-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #FFFFFF;
+      border: 1.5px solid var(--wave-border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--wave-navy-dark);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .oauth-btn:hover {
+      background: #F8FAFC;
+      border-color: var(--wave-royal);
+    }
+    .oauth-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 16px 0;
+      color: var(--wave-text-muted);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .auth-divider::before, .auth-divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid var(--wave-border);
+    }
+    .auth-divider span { padding: 0 10px; }
+    .password-field-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .password-field-wrap input { width: 100%; padding-right: 42px; }
+    .password-toggle-btn {
+      position: absolute;
+      right: 10px;
+      background: transparent;
+      border: none;
+      color: var(--wave-text-muted);
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* Wishlist Heart Button on Cards */
+    .card-wishlist-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(7, 19, 38, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      z-index: 4;
+    }
+    .card-wishlist-btn:hover, .card-wishlist-btn.active {
+      background: #EF4444;
+      border-color: #EF4444;
+      color: #FFFFFF;
+      transform: scale(1.1);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1100px) {
+      .hero-layout-grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero-right-col { display: flex; justify-content: center; }
+      .category-cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .brand-promo-inner { grid-template-columns: 1fr; }
+      .why-choose-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-top-grid { grid-template-columns: repeat(3, 1fr); }
+      .header-search-container { max-width: 380px; }
+    }
+    @media (max-width: 768px) {
+      .top-info-bar { display: none; }
+      .nav-bar-strip { display: none; }
+      .mobile-menu-trigger { display: inline-flex; }
+      .header-search-container { display: none; }
+      .header-cart-text { display: none; }
+      .hero-title { font-size: 2.5rem; }
+      .hero-trust-strip { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .category-cards-grid { grid-template-columns: 1fr; }
+      .why-choose-grid { grid-template-columns: 1fr; }
+      .newsletter-inner { grid-template-columns: 1fr; }
+      .footer-top-grid { grid-template-columns: 1fr; gap: 28px; }
+    }
+
+    /* Dark Mode Extensions for New Components */
+    body.dark-theme .top-info-bar { background: #02060D; border-color: rgba(255, 255, 255, 0.05); }
+    body.dark-theme .header-search-container { background: #0B192C; border-color: var(--wave-border); }
+    body.dark-theme .header-cat-select { background: #071326; color: #F8FAFC; border-color: var(--wave-border); }
+    body.dark-theme .header-search-input { color: #FFFFFF; }
+    body.dark-theme .category-section { background: #071326; border-color: var(--wave-border); }
+    body.dark-theme .cat-card { background: #0B192C; border-color: var(--wave-border); }
+    body.dark-theme .cat-card-title { color: #FFFFFF; }
+    body.dark-theme .why-choose-section { background: #071326; border-color: var(--wave-border); }
+    body.dark-theme .why-card { background: #0B192C; border-color: var(--wave-border); }
+    body.dark-theme .why-title { color: #FFFFFF; }
+    body.dark-theme .why-icon-wrap { background: #142745; color: var(--wave-gold); }
+    body.dark-theme .auth-slider-switch { background: #0B192C; }
+    body.dark-theme .auth-switch-btn { color: #94A3B8; }
+    body.dark-theme .auth-switch-btn.active { color: #FFFFFF; }
+    body.dark-theme .auth-switch-pill { background: #142745; }
+    body.dark-theme .oauth-btn { background: #0B192C; border-color: var(--wave-border); color: #F8FAFC; }
   </style>
 </head>
 <body id="top">
   <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Advanced Branded Initial Loading Experience (Phase 5) -->
+  <div id="siteLoadingScreen" class="site-loading-screen" role="status" aria-live="polite" aria-label="Loading Write Your Wave">
+    <div class="loading-content">
+      <div class="loading-logo-box">
+        <img src="/assets/images/wyw_official_logo.png" alt="Write Your Wave" class="loading-logo-img">
+        <div class="loading-wave-ring"></div>
+      </div>
+      <h2 class="loading-brand-title">WRITE YOUR WAVE</h2>
+      <p class="loading-brand-subtitle">More Than a Notebook. It's a Movement.</p>
+      <div class="loading-progress-track">
+        <div class="loading-progress-bar"></div>
+      </div>
+      <div class="loading-status-text">Connecting to Verified Campus Desks...</div>
+    </div>
+  </div>
 
   <!-- Announcement Bar -->
   <aside class="announcement-bar" id="announcementBar">
@@ -1261,9 +2544,30 @@
     <button type="button" class="announcement-dismiss" onclick="dismissAnnouncement()" aria-label="Dismiss announcement">&times;</button>
   </aside>
 
-  <!-- Site Header -->
+  <!-- Top Information Bar (Phase 2A - LaptopPro Inspired) -->
+  <div class="top-info-bar" id="topInfoBar">
+    <div class="top-info-inner">
+      <div class="top-info-left">
+        <span class="top-info-item"><span class="top-info-icon">📍</span> Airfield, Sinkor, Monrovia • Verified Campus Desks</span>
+        <span class="top-info-sep">•</span>
+        <span class="top-info-item"><span class="top-info-icon">📦</span> Free Campus Pickup at Starz University &amp; WIT Hubs</span>
+      </div>
+      <div class="top-info-right">
+        <span class="top-info-item"><span class="top-info-icon">📞</span> (+231) 770-000-000 • Mon–Sat 8AM–6PM</span>
+        <span class="top-info-sep">|</span>
+        <button type="button" class="top-info-link" onclick="openOrderTrackModal()">Track Order</button>
+        <span class="top-info-sep">|</span>
+        <a href="#contact" class="top-info-link">Help Center</a>
+        <span class="top-info-sep">|</span>
+        <button type="button" class="top-info-link" onclick="openAdminModal()" style="color: var(--wave-gold);">Admin Access</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Brand Header (Phase 2B - LaptopPro Layout) -->
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
+      <!-- Left: Logo & Identity -->
       <div class="header-left">
         <a href="#top" class="brand-logo-wrap">
           <img src="/assets/images/wyw_official_logo.png" alt="Write Your Wave Logo" class="brand-logo-img">
@@ -1274,85 +2578,166 @@
         </a>
       </div>
 
-      <nav class="main-nav" aria-label="Main Navigation">
-        <ul class="nav-list">
-          <li><a href="#top" class="nav-link-btn active">Home</a></li>
-          <li class="nav-item" style="position: relative;">
-            <a href="#journals" class="nav-link-btn">
-              <span>Shop Journals</span>
-              <span class="nav-badge-pill">7 Editions</span>
-            </a>
-            <div class="mega-menu-wrapper">
-              <div class="mega-grid">
-                <div>
-                  <h4 class="mega-col-title">👑 Ambassador Series</h4>
-                  <a href="#journals" class="mega-link" onclick="filterJournals('ambassador')">Hazel Quiqui Edition ($5.00)</a>
-                  <a href="#journals" class="mega-link" onclick="filterJournals('ambassador')">Zinnah M. Kamara Edition ($5.00)</a>
-                  <a href="#journals" class="mega-link" onclick="filterJournals('ambassador')">Abiola Signature Ocean Blue ($5.00)</a>
-                </div>
-                <div>
-                  <h4 class="mega-col-title">📚 Scholar &amp; Academic</h4>
-                  <a href="#journals" class="mega-link" onclick="filterJournals('scholar')">Deep Purple Scholar Edition ($5.00)</a>
-                  <a href="#journals" class="mega-link" onclick="filterJournals('scholar')">Royal Purple &amp; Gold Edition ($5.00)</a>
-                </div>
-                <div>
-                  <h4 class="mega-col-title">✨ Executive &amp; Creative</h4>
-                  <a href="#journals" class="mega-link" onclick="filterJournals('executive')">Noir Gold Executive 2026 ($5.00)</a>
-                  <a href="#journals" class="mega-link" onclick="filterJournals('creative')">Radiant Pink Splash ($5.00)</a>
-                </div>
-                <div style="background: #F8FAFC; padding: 14px; border-radius: 12px; border: 1px solid var(--wave-border);">
-                  <strong style="color: var(--wave-navy-dark); font-size: 0.85rem; display: block; margin-bottom: 4px;">Verified Campus Desks</strong>
-                  <p style="font-size: 0.78rem; color: var(--wave-text-muted); margin-bottom: 8px;">Pick up instantly at Starz University Airfield or WIT Shortcut Hub.</p>
-                  <a href="#stores" class="btn-primary" style="padding: 6px 12px; font-size: 0.75rem;">View Hubs &rarr;</a>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li><a href="#ambassadors" class="nav-link-btn">Ambassadors</a></li>
-          <li><a href="#personalization" class="nav-link-btn">Personalization</a></li>
-          <li><a href="#stores" class="nav-link-btn">Campus Hubs</a></li>
-          <li><a href="#about" class="nav-link-btn">About Movement</a></li>
-          <li><a href="#contact" class="nav-link-btn">Contact</a></li>
-          <li><button type="button" class="nav-link-btn" onclick="openAdminModal()" style="color: var(--wave-gold);">Admin Hub</button></li>
-          <li>
-            <button type="button" class="nav-link-btn" onclick="toggleTheme()" id="navThemeToggleBtn" aria-label="Toggle dark mode theme" style="color: var(--wave-gold-light);">
-              <span id="navThemeIcon">🌙</span>
-              <span id="navThemeText">Dark Mode</span>
-            </button>
-          </li>
-        </ul>
-      </nav>
+      <!-- Center: Integrated Search with Category Selector (LaptopPro Inspired) -->
+      <div class="header-search-container" role="search">
+        <select id="headerCategorySelect" class="header-cat-select" onchange="handleHeaderCategoryChange(this.value)" aria-label="Filter category">
+          <option value="all">All Categories</option>
+          <option value="University Student Notebook">University Student Notebook</option>
+          <option value="Student Notebook">Student Notebook</option>
+          <option value="Journal">Write Your Wave Journal</option>
+          <option value="Premium Journal">Premium Journal</option>
+        </select>
+        <div class="header-search-input-wrap">
+          <input type="text" id="headerSearchInput" class="header-search-input" placeholder="Search notebooks, journals, ambassadors, collections..." oninput="handleHeaderLiveSearch(this.value)" onkeydown="if(event.key==='Enter') executeHeaderSearch()" aria-label="Search journals">
+          <button type="button" class="header-search-btn" onclick="executeHeaderSearch()" aria-label="Submit search">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+        </div>
+      </div>
 
+      <!-- Right: Utility Actions (Wishlist, Account, Cart Total, Theme, Menu) -->
       <div class="header-right">
         <button type="button" class="btn-waveguide" onclick="openWaveguideModal()">
           <span>✨</span>
           <span>Ask WaveGuide</span>
         </button>
 
-        <button type="button" class="header-icon-btn" onclick="toggleTheme()" id="headerThemeToggleBtn" aria-label="Toggle dark mode theme" title="Switch between Parchment and Navy Dark theme">
-          <span id="headerThemeIcon" style="font-size: 1.1rem; line-height: 1;">🌙</span>
+        <!-- Wishlist Button -->
+        <button type="button" class="header-icon-btn" onclick="openWishlistModal()" id="headerWishlistBtn" aria-label="Saved favorites" title="View Wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span class="cart-badge" id="wishlistBadgeCount" style="display: none; background: #EF4444; color: #FFF;">0</span>
         </button>
 
-        <button type="button" class="header-icon-btn" onclick="openSearchModal()" aria-label="Search journals">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </button>
-
+        <!-- User Account Button -->
         <button type="button" class="header-icon-btn" onclick="openAccountModal()" id="accountHeaderBtn" aria-label="Student Account &amp; Past Orders">
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           <span class="user-avatar-badge" id="accountOnlineDot" style="display: none;"></span>
         </button>
 
-        <button type="button" class="header-icon-btn" onclick="openCartDrawer()" aria-label="Shopping bag">
-          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-          <span class="cart-badge" id="cartBadgeCount">0</span>
+        <!-- Shopping Cart Button with Live Total Amount -->
+        <div class="header-cart-btn-wrap" onclick="openCartDrawer()" role="button" tabindex="0" aria-label="Shopping bag">
+          <button type="button" class="header-icon-btn" id="cartHeaderBtn" aria-label="Shopping bag">
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <span class="cart-badge" id="cartBadgeCount">0</span>
+          </button>
+          <div class="header-cart-text">
+            <span class="header-cart-label">Bag</span>
+            <span class="header-cart-amount" id="headerCartTotal">$0.00</span>
+          </div>
+        </div>
+
+        <!-- Theme Switching Button -->
+        <button type="button" class="header-icon-btn" onclick="toggleTheme()" id="headerThemeToggleBtn" aria-label="Toggle dark mode theme" title="Switch between Parchment and Navy Dark theme">
+          <span id="headerThemeIcon" style="font-size: 1.1rem; line-height: 1;">🌙</span>
         </button>
 
+        <!-- Mobile Menu Trigger -->
         <button type="button" class="mobile-menu-trigger" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
           <svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" fill="none"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
       </div>
     </div>
   </header>
+
+  <!-- Primary Desktop Navigation Bar Strip (Phase 2C - LaptopPro Layout) -->
+  <nav class="nav-bar-strip" id="navBarStrip" aria-label="Main Navigation">
+    <div class="nav-strip-inner">
+      <!-- SHOP BY CATEGORY Button with Dropdown -->
+      <div class="shop-by-cat-wrap">
+        <button type="button" class="btn-shop-by-cat" id="shopByCatBtn" onclick="toggleShopByCategoryMenu()" aria-expanded="false" aria-controls="shopByCatDropdown">
+          <span style="font-size: 1.1rem;">☰</span>
+          <span>SHOP BY CATEGORY</span>
+          <span style="font-size: 0.75rem; margin-left: auto;">▼</span>
+        </button>
+        <div class="cat-dropdown-menu" id="shopByCatDropdown">
+          <a href="#journals" class="cat-dropdown-item" onclick="filterJournals('University Student Notebook'); closeShopByCatDropdown();">
+            <span class="cat-dropdown-icon">🎓</span>
+            <div>
+              <strong>University Student Notebook</strong>
+              <small>Lecture notes, sprint planning, Hazel &amp; Zinnah editions</small>
+            </div>
+          </a>
+          <a href="#journals" class="cat-dropdown-item" onclick="filterJournals('Student Notebook'); closeShopByCatDropdown();">
+            <span class="cat-dropdown-icon">📚</span>
+            <div>
+              <strong>Student Notebook</strong>
+              <small>Coursework notes, study tracker, habit milestones</small>
+            </div>
+          </a>
+          <a href="#journals" class="cat-dropdown-item" onclick="filterJournals('Journal'); closeShopByCatDropdown();">
+            <span class="cat-dropdown-icon">🌊</span>
+            <div>
+              <strong>Write Your Wave Journal</strong>
+              <small>5 Life Pillars &amp; guided daily reflection pages</small>
+            </div>
+          </a>
+          <a href="#journals" class="cat-dropdown-item" onclick="filterJournals('Premium Journal'); closeShopByCatDropdown();">
+            <span class="cat-dropdown-icon">👑</span>
+            <div>
+              <strong>Premium Journal</strong>
+              <small>Twin-loop gold wire-O, foil lettering, archival finish</small>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Navigation Links -->
+      <ul class="nav-list">
+        <li><a href="#top" class="nav-link-btn active">Home</a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#journals" class="nav-link-btn">
+            <span>Shop</span>
+            <span class="nav-arrow">▾</span>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="#journals" onclick="filterJournals('all')">All Products (7 Editions)</a>
+            <a href="#journals" onclick="filterJournals('University Student Notebook')">University Student Notebook</a>
+            <a href="#journals" onclick="filterJournals('Student Notebook')">Student Notebook</a>
+            <a href="#journals" onclick="filterJournals('Journal')">Write Your Wave Journal</a>
+            <a href="#journals" onclick="filterJournals('Premium Journal')">Premium Journal</a>
+          </div>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#journals" class="nav-link-btn">
+            <span>Collections</span>
+            <span class="nav-arrow">▾</span>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="#journals" onclick="filterJournals('ambassador')">👑 Ambassador Series</a>
+            <a href="#journals" onclick="filterJournals('scholar')">📚 Scholar &amp; Academic Series</a>
+            <a href="#journals" onclick="filterJournals('executive')">✨ Executive Class of 2026</a>
+            <a href="#journals" onclick="filterJournals('creative')">🎨 Creative Vision Series</a>
+          </div>
+        </li>
+        <li><a href="#personalization" class="nav-link-btn">Personalization</a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#ambassadors" class="nav-link-btn">
+            <span>Our Movement</span>
+            <span class="nav-arrow">▾</span>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="#specs">About Write Your Wave</a>
+            <a href="#ambassadors">Brand Ambassador Hazel Quiqui</a>
+            <a href="#stores">Verified Campus Network</a>
+            <a href="#stores">Campus Pickup Desks</a>
+          </div>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#contact" class="nav-link-btn">
+            <span>Support</span>
+            <span class="nav-arrow">▾</span>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="#contact">Contact Support</a>
+            <a href="#stores">Campus Pickup Guide</a>
+            <a href="javascript:void(0)" onclick="openOrderTrackModal()">Track Order Code</a>
+            <a href="javascript:void(0)" onclick="openWaveguideModal()">✨ Ask WaveGuide AI</a>
+          </div>
+        </li>
+        <li><button type="button" class="nav-link-btn" onclick="openAdminModal()" style="color: var(--wave-gold);">🔒 Admin Hub</button></li>
+      </ul>
+    </div>
+  </nav>
 
   <!-- Advanced Responsive Mobile Navigation Drawer -->
   <aside class="cart-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
@@ -1518,50 +2903,193 @@
 
   <!-- Main Content -->
   <main id="main-content">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-container">
-        <div class="hero-badge">👑 Official Movement Stationery</div>
-        <h1 class="hero-title">More Than a Notebook.<br><span>It's a Movement.</span></h1>
-        <p class="hero-motto">“Ride the wave of your purpose and leave an enduring shore.”</p>
-        <p class="hero-desc">
-          Created for students, dreamers, creators, and future leaders across Liberia. Heirloom-grade 120 GSM acid-free bleed-proof paper, twin-loop wire-O gold binding, and verified campus distribution at Starz University and Waterloop Institute of Technology.
-        </p>
-        <div class="hero-actions">
-          <a href="#journals" class="btn-primary">Explore All 7 Journals ($5.00 USD) &rarr;</a>
-          <a href="#ambassadors" class="btn-secondary">Meet Brand Ambassadors</a>
-          <a href="#stores" class="btn-secondary">Find Campus Hubs</a>
+    <!-- 1. Rebuilt Hero Section (LaptopPro Inspired 2-Column Layout) -->
+    <section class="hero" id="heroSection">
+      <div class="hero-layout-grid">
+        <!-- Left Column: Copy, CTAs & Trust Badges Strip -->
+        <div class="hero-left-col">
+          <div class="hero-badge">NEW ARRIVAL • 2026 OFFICIAL MOVEMENT</div>
+          <h1 class="hero-title">
+            More Than a Notebook.<br>
+            <span class="hero-title-gradient">It's a Movement.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Designed for students, dreamers, creators and future leaders.
+          </p>
+          <p class="hero-desc">
+            Structured morning sprint grids, 5 Life Pillars roadmap, and daily reflection pages manufactured on 120 GSM acid-free bleed-proof paper with twin-loop gold wire-O binding. Verified distribution at Starz University &amp; Waterloop Institute.
+          </p>
+          <div class="hero-actions">
+            <a href="#journals" class="btn-hero-primary" onclick="filterJournals('all')">
+              <span>ORDER NOW</span>
+              <span>&rarr;</span>
+            </a>
+            <a href="#categories" class="btn-hero-secondary">
+              <span>EXPLORE COLLECTION</span>
+            </a>
+          </div>
+          <!-- Hero Trust Badges Strip (4 items) -->
+          <div class="hero-trust-strip">
+            <div class="hero-trust-badge">
+              <span class="trust-badge-icon">🛡️</span>
+              <div>
+                <strong>100% Authentic</strong>
+                <small>120 GSM Acid-Free</small>
+              </div>
+            </div>
+            <div class="hero-trust-badge">
+              <span class="trust-badge-icon">🎓</span>
+              <div>
+                <strong>Campus Pickup</strong>
+                <small>Starz &amp; WIT Desks</small>
+              </div>
+            </div>
+            <div class="hero-trust-badge">
+              <span class="trust-badge-icon">🏷️</span>
+              <div>
+                <strong>Flat $5.00 USD</strong>
+                <small>All 7 Editions</small>
+              </div>
+            </div>
+            <div class="hero-trust-badge">
+              <span class="trust-badge-icon">⚡</span>
+              <div>
+                <strong>Swift Service</strong>
+                <small>24h Desk Collection</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Visual Showcase & Floating Price Pill -->
+        <div class="hero-right-col">
+          <div class="hero-showcase-wrap">
+            <div class="hero-offer-circle">
+              <span class="offer-sub">FLAT PRICE</span>
+              <span class="offer-val">$5.00</span>
+              <span class="offer-tag">USD</span>
+            </div>
+            <div class="hero-image-stack">
+              <img src="/assets/images/journal_cover_hazel_quiqui.jpg" alt="Hazel Quiqui Edition Write Your Wave" class="hero-img-front" loading="eager">
+              <img src="/assets/images/journal_cover_zinnah_kamara.jpg" alt="Zinnah M. Kamara Edition Write Your Wave" class="hero-img-back" loading="lazy">
+              <img src="/assets/images/journal_cover_purple_scholar.jpg" alt="Deep Purple Scholar Edition Write Your Wave" class="hero-img-accent" loading="lazy">
+            </div>
+            <div class="hero-floating-caption">
+              <strong>Official Student Edition: Hazel Quiqui</strong>
+              <span>Starz University • System Administration • 5 Life Pillars</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Trust Strip -->
-    <div class="trust-strip">
-      <div class="trust-container">
-        <div class="trust-item">
-          <h4>$5.00 USD Flat</h4>
-          <p>Accessible student pricing on all editions</p>
+    <!-- 2. Shop By Category Section (Phase 3.2 - LaptopPro Layout) -->
+    <section class="section category-section" id="categories">
+      <div class="section-header">
+        <span class="section-tag">Curated Collections</span>
+        <h2 class="section-title">SHOP BY CATEGORY</h2>
+        <p class="section-subtitle">Choose from our 4 essential stationery series engineered for academic and personal excellence.</p>
+      </div>
+
+      <div class="category-cards-grid">
+        <!-- 1. University Student Notebook -->
+        <div class="cat-card" onclick="filterJournals('University Student Notebook'); scrollToSection('journals');" role="button" tabindex="0">
+          <div class="cat-card-img-wrap">
+            <img src="/assets/images/journal_cover_hazel_quiqui.jpg" alt="University Student Notebook" loading="lazy">
+            <span class="cat-card-count">2 Editions</span>
+          </div>
+          <div class="cat-card-body">
+            <h3 class="cat-card-title">University Student Notebook</h3>
+            <p class="cat-card-desc">Lecture notes, sprint planning &amp; exam preparation grids.</p>
+            <span class="cat-card-link">View Editions &rarr;</span>
+          </div>
         </div>
-        <div class="trust-item">
-          <h4>120 GSM Acid-Free</h4>
-          <p>Bleed-proof paper built for deep study</p>
+
+        <!-- 2. Student Notebook -->
+        <div class="cat-card" onclick="filterJournals('Student Notebook'); scrollToSection('journals');" role="button" tabindex="0">
+          <div class="cat-card-img-wrap">
+            <img src="/assets/images/journal_cover_purple_scholar.jpg" alt="Student Notebook" loading="lazy">
+            <span class="cat-card-count">1 Edition</span>
+          </div>
+          <div class="cat-card-body">
+            <h3 class="cat-card-title">Student Notebook</h3>
+            <p class="cat-card-desc">Daily coursework notes, study tracker &amp; habit milestones.</p>
+            <span class="cat-card-link">View Editions &rarr;</span>
+          </div>
         </div>
-        <div class="trust-item">
-          <h4>2 Verified Campus Hubs</h4>
-          <p>Starz University &amp; Waterloop Institute</p>
+
+        <!-- 3. Write Your Wave Journal -->
+        <div class="cat-card" onclick="filterJournals('Journal'); scrollToSection('journals');" role="button" tabindex="0">
+          <div class="cat-card-img-wrap">
+            <img src="/assets/images/journal_cover_abiola_blue.png" alt="Write Your Wave Journal" loading="lazy">
+            <span class="cat-card-count">2 Editions</span>
+          </div>
+          <div class="cat-card-body">
+            <h3 class="cat-card-title">Write Your Wave Journal</h3>
+            <p class="cat-card-desc">The 5 Life Pillars: Study, Career, Finance, Wellness &amp; Success.</p>
+            <span class="cat-card-link">View Editions &rarr;</span>
+          </div>
         </div>
-        <div class="trust-item">
-          <h4>Post-Production Series ID</h4>
-          <p>Authentic verification stamping on every copy</p>
+
+        <!-- 4. Premium Journal -->
+        <div class="cat-card" onclick="filterJournals('Premium Journal'); scrollToSection('journals');" role="button" tabindex="0">
+          <div class="cat-card-img-wrap">
+            <img src="/assets/images/journal_cover_royal_purple.png" alt="Premium Journal" loading="lazy">
+            <span class="cat-card-count">2 Editions</span>
+          </div>
+          <div class="cat-card-body">
+            <h3 class="cat-card-title">Premium Journal</h3>
+            <p class="cat-card-desc">Twin-loop gold wire-O, foil lettering &amp; executive archival finish.</p>
+            <span class="cat-card-link">View Editions &rarr;</span>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Official Journals Section -->
+    <!-- 3. Promotional Brand Campaign Banner (Phase 3.4 - LaptopPro Dark Banner Style) -->
+    <section class="brand-promo-banner" id="brandCampaign">
+      <div class="brand-promo-inner">
+        <div class="brand-promo-content">
+          <span class="brand-promo-tag">OFFICIAL STUDENT MOVEMENT</span>
+          <h2 class="brand-promo-title">Plan. Learn. Create. Achieve.</h2>
+          <p class="brand-promo-desc">
+            Empowering university students, dreamers, and leaders with structured daily sprint grids and archival stationery. Every journal includes 2026/2027 Liberia holiday calendars and the 5 Life Pillars framework.
+          </p>
+          <div class="brand-promo-badges">
+            <span class="promo-badge-item">STARZ UNIVERSITY</span>
+            <span class="promo-badge-item">WATERLOOP (WIT)</span>
+            <span class="promo-badge-item">120 GSM ARCHIVAL</span>
+            <span class="promo-badge-item">TWIN-LOOP WIRE-O</span>
+          </div>
+          <div style="margin-top: 20px;">
+            <a href="#journals" class="btn-primary" onclick="filterJournals('ambassador')">
+              <span>EXPLORE AMBASSADOR EDITIONS &rarr;</span>
+            </a>
+          </div>
+        </div>
+        <div class="brand-promo-visual">
+          <div class="promo-price-callout">
+            <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 800; color: var(--wave-gold);">Fixed Price</span>
+            <span style="font-size: 1.8rem; font-weight: 800; color: #FFF; line-height: 1;">$5.00</span>
+            <span style="font-size: 0.75rem; color: #CBD5E1;">USD per journal</span>
+          </div>
+          <img src="/assets/images/journal_interior_calendar_series.png" alt="Write Your Wave Movement Specifications" class="brand-promo-img" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Featured Products (Popular Notebooks & Journals) -->
     <section class="section" id="journals">
       <div class="section-header">
-        <span class="section-tag">Authentic Collections</span>
-        <h2 class="section-title">Official Write Your Wave Journals</h2>
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; margin-bottom: 8px;">
+          <div>
+            <span class="section-tag">POPULAR STATIONERY</span>
+            <h2 class="section-title" style="margin-bottom: 0;">POPULAR NOTEBOOKS &amp; JOURNALS</h2>
+          </div>
+          <a href="#journals" onclick="filterJournals('all')" style="color: var(--wave-royal); font-weight: 800; font-size: 0.88rem; text-decoration: none;">
+            VIEW ALL 7 EDITIONS &rarr;
+          </a>
+        </div>
         <p class="section-subtitle">
           Featuring our 7 authentic editions manufactured on 120 GSM archival paper with twin-loop wire-O gold binding, 5 Life Pillars roadmap, and 2026/2027 Liberia holiday calendars.
         </p>
@@ -1588,7 +3116,7 @@
       </div>
     </section>
 
-    <!-- Journal Interior & Architectural Technical Specs Section -->
+    <!-- 5. Journal Interior & Technical Specs Section -->
     <section class="section" id="specs" style="background: linear-gradient(180deg, #FAFBFD 0%, #F1F5F9 100%); border-top: 1px solid var(--wave-border); border-bottom: 1px solid var(--wave-border);">
       <div class="section-header">
         <span class="section-tag">Archival Engineering &amp; Specifications</span>
@@ -1649,59 +3177,46 @@
       </div>
     </section>
 
-    <!-- Brand Ambassadors Section -->
-    <section class="ambassador-section" id="ambassadors">
-      <div class="section-header" style="color: #FFFFFF;">
-        <span class="section-tag" style="color: var(--wave-gold);">Official Student Voice</span>
-        <h2 class="section-title" style="color: #FFFFFF;">Meet Our Brand Ambassador</h2>
-        <p class="section-subtitle" style="color: #CBD5E1;">
-          Inspiring student leadership and academic purpose across Monrovia, embodying the 5 Life Pillars of Write Your Wave: Study, Career, Financial Freedom, Self Care, and Success.
+    <!-- 6. Why Choose WRITE YOUR WAVE? (Phase 3.6 - LaptopPro 5-Card Layout) -->
+    <section class="section why-choose-section" id="whyChoose">
+      <div class="section-header">
+        <span class="section-tag">Student Values &amp; Craft</span>
+        <h2 class="section-title">WHY CHOOSE WRITE YOUR WAVE?</h2>
+        <p class="section-subtitle">
+          More than ordinary stationery. We engineer intentional tools for academic achievement, mindful living, and student leadership across Liberia.
         </p>
       </div>
 
-      <div class="ambassador-grid" style="display: flex; justify-content: center; max-width: 820px; margin: 0 auto 36px;">
-        <!-- Official Brand Ambassador: Hazel Quiqui -->
-        <article class="ambassador-card" style="width: 100%; max-width: 800px; display: grid; grid-template-columns: 1fr 1.25fr; gap: 0; overflow: hidden;">
-          <div class="ambassador-img-wrap" style="height: 100%; min-height: 420px;">
-            <img src="/assets/images/journal_cover_hazel_quiqui.jpg" alt="Hazel Quiqui Write Your Wave Brand Ambassador" loading="lazy" style="height: 100%; object-fit: cover;">
-          </div>
-          <div class="ambassador-content" style="padding: 28px 26px; display: flex; flex-direction: column; justify-content: center;">
-            <span class="ambassador-badge" style="background: rgba(229,169,60,0.18); color: var(--wave-gold); border: 1px solid var(--wave-gold); font-size: 0.72rem; padding: 4px 10px; border-radius: 20px; font-weight: 800; display: inline-block; margin-bottom: 10px;">
-              Starz University (Airfield, Sinkor) • System Administration
-            </span>
-            <h3 class="ambassador-name" style="font-size: 1.6rem; color: #FFFFFF; margin-bottom: 4px;">Hazel Quiqui</h3>
-            <p class="ambassador-role" style="color: var(--wave-gold); font-weight: 700; font-size: 0.88rem; margin-bottom: 12px;">
-              Official Brand Ambassador / Sales &amp; Marketing Agent
-            </p>
-            <p class="ambassador-quote" style="border-left: 3px solid var(--wave-gold); padding-left: 12px; margin-bottom: 14px; font-style: italic; color: #E2E8F0; font-size: 0.88rem; line-height: 1.5;">
-              “Your Story Matters. Pray Truth and Wait. Big Dreams. Real Plans.”
-            </p>
-            <p class="ambassador-bio" style="font-size: 0.85rem; color: #CBD5E1; line-height: 1.6; margin-bottom: 20px;">
-              Attending Starz University studying System Administration. As our official Brand Ambassador and Sales &amp; Marketing Agent, Hazel champions daily journaling routines to help university dreamers conquer demanding STEM programs, maintain mental wellness, and achieve financial independence.
-            </p>
-            <div class="ambassador-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <button type="button" class="btn-buy" style="flex: 1; min-width: 170px;" onclick="openQuickView('prod_journal_hazel_quiqui')">Reserve Edition ($5.00)</button>
-              <button type="button" class="btn-inspect" onclick="openAmbassadorModal('ref', 'HAZEL26')">Get Ambassador Link</button>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <!-- Ambassador Toolbar -->
-      <div class="ambassador-toolbar">
-        <div>
-          <strong style="color: var(--wave-gold); font-size: 1.1rem; display: block;">Ambassador Platform 2026</strong>
-          <span style="font-size: 0.85rem; color: #CBD5E1;">Earn 10% cash commission ($0.50/journal) on verified campus sales</span>
+      <div class="why-choose-grid">
+        <div class="why-card">
+          <div class="why-icon-wrap">💡</div>
+          <h4 class="why-title">Creativity &amp; Vision</h4>
+          <p class="why-text">Structured morning sprint grids, creative vision spreads, and daily habit trackers designed to bring big dreams into real plans.</p>
         </div>
-        <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
-          <button type="button" class="btn-primary" onclick="openAmbassadorModal('portal')">Open Ambassador Portal &rarr;</button>
-          <button type="button" class="btn-secondary" onclick="openAmbassadorModal('calc')">📊 Commission Calculator</button>
-          <button type="button" class="btn-secondary" onclick="openAmbassadorModal('apply')">📝 Apply to Join Cohort</button>
+        <div class="why-card">
+          <div class="why-icon-wrap">🎯</div>
+          <h4 class="why-title">Academic &amp; Life Ambition</h4>
+          <p class="why-text">The 5 Life Pillars roadmap: Study, Career, Financial Freedom, Self Care, and Success guiding every single page.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon-wrap">📖</div>
+          <h4 class="why-title">Archival Craftsmanship</h4>
+          <p class="why-text">Heirloom 120 GSM acid-free bleed-proof paper that lays 360° flat with twin-loop wire-O gold binding and corner protectors.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon-wrap">🏫</div>
+          <h4 class="why-title">Verified Campus Desks</h4>
+          <p class="why-text">Instant physical pickup and direct service at Starz University Airfield campus and Waterloop Institute in Sinkor.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon-wrap">✨</div>
+          <h4 class="why-title">Custom Foil Stamping</h4>
+          <p class="why-text">Personalize your journal with your name, university affiliation, and personal motto hand-stamped in gold foil for $5.00 total.</p>
         </div>
       </div>
     </section>
 
-    <!-- Personalization Section -->
+    <!-- 7. Personalization Section -->
     <section class="section" id="personalization" style="background: #FFFFFF;">
       <div class="section-header">
         <span class="section-tag">Custom Stamping &amp; Foil Engraving</span>
@@ -1757,7 +3272,59 @@
       </div>
     </section>
 
-    <!-- Verified Campus Hubs -->
+    <!-- 8. Brand Ambassadors Section -->
+    <section class="ambassador-section" id="ambassadors">
+      <div class="section-header" style="color: #FFFFFF;">
+        <span class="section-tag" style="color: var(--wave-gold);">Official Student Voice</span>
+        <h2 class="section-title" style="color: #FFFFFF;">Meet Our Brand Ambassador</h2>
+        <p class="section-subtitle" style="color: #CBD5E1;">
+          Inspiring student leadership and academic purpose across Monrovia, embodying the 5 Life Pillars of Write Your Wave: Study, Career, Financial Freedom, Self Care, and Success.
+        </p>
+      </div>
+
+      <div class="ambassador-grid" style="display: flex; justify-content: center; max-width: 820px; margin: 0 auto 36px;">
+        <!-- Official Brand Ambassador: Hazel Quiqui -->
+        <article class="ambassador-card" style="width: 100%; max-width: 800px; display: grid; grid-template-columns: 1fr 1.25fr; gap: 0; overflow: hidden;">
+          <div class="ambassador-img-wrap" style="height: 100%; min-height: 420px;">
+            <img src="/assets/images/journal_cover_hazel_quiqui.jpg" alt="Hazel Quiqui Write Your Wave Brand Ambassador" loading="lazy" style="height: 100%; object-fit: cover;">
+          </div>
+          <div class="ambassador-content" style="padding: 28px 26px; display: flex; flex-direction: column; justify-content: center;">
+            <span class="ambassador-badge" style="background: rgba(229,169,60,0.18); color: var(--wave-gold); border: 1px solid var(--wave-gold); font-size: 0.72rem; padding: 4px 10px; border-radius: 20px; font-weight: 800; display: inline-block; margin-bottom: 10px;">
+              Starz University (Airfield, Sinkor) • System Administration
+            </span>
+            <h3 class="ambassador-name" style="font-size: 1.6rem; color: #FFFFFF; margin-bottom: 4px;">Hazel Quiqui</h3>
+            <p class="ambassador-role" style="color: var(--wave-gold); font-weight: 700; font-size: 0.88rem; margin-bottom: 12px;">
+              Official Brand Ambassador / Sales &amp; Marketing Agent
+            </p>
+            <p class="ambassador-quote" style="border-left: 3px solid var(--wave-gold); padding-left: 12px; margin-bottom: 14px; font-style: italic; color: #E2E8F0; font-size: 0.88rem; line-height: 1.5;">
+              “Your Story Matters. Pray Truth and Wait. Big Dreams. Real Plans.”
+            </p>
+            <p class="ambassador-bio" style="font-size: 0.85rem; color: #CBD5E1; line-height: 1.6; margin-bottom: 20px;">
+              Attending Starz University studying System Administration. As our official Brand Ambassador and Sales &amp; Marketing Agent, Hazel champions daily journaling routines to help university dreamers conquer demanding STEM programs, maintain mental wellness, and achieve financial independence.
+            </p>
+            <div class="ambassador-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button type="button" class="btn-buy" style="flex: 1; min-width: 170px;" onclick="openQuickView('prod_journal_hazel_quiqui')">Reserve Edition ($5.00)</button>
+              <button type="button" class="btn-inspect" onclick="openAmbassadorModal('ref', 'HAZEL26')">Get Ambassador Link</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Ambassador Toolbar -->
+      <div class="ambassador-toolbar">
+        <div>
+          <strong style="color: var(--wave-gold); font-size: 1.1rem; display: block;">Ambassador Platform 2026</strong>
+          <span style="font-size: 0.85rem; color: #CBD5E1;">Earn 10% cash commission ($0.50/journal) on verified campus sales</span>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <button type="button" class="btn-primary" onclick="openAmbassadorModal('portal')">Open Ambassador Portal &rarr;</button>
+          <button type="button" class="btn-secondary" onclick="openAmbassadorModal('calc')">📊 Commission Calculator</button>
+          <button type="button" class="btn-secondary" onclick="openAmbassadorModal('apply')">📝 Apply to Join Cohort</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Verified Campus Hubs -->
     <section class="section" id="stores">
       <div class="section-header">
         <span class="section-tag">Campus Distribution Desks</span>
@@ -1800,7 +3367,7 @@
       </div>
     </section>
 
-    <!-- Contact Form -->
+    <!-- 10. Contact Section -->
     <section class="section" id="contact" style="background: #FFFFFF;">
       <div class="section-header">
         <span class="section-tag">Direct Communication</span>
@@ -1842,53 +3409,191 @@
         </div>
       </div>
     </section>
+
+    <!-- 11. Newsletter Subscription Section (Phase 3.12 - LaptopPro Layout) -->
+    <section class="newsletter-section" id="newsletter">
+      <div class="newsletter-inner">
+        <div class="newsletter-left">
+          <div class="newsletter-icon">✉️</div>
+          <div>
+            <h3 class="newsletter-title">Subscribe to Our Movement Newsletter</h3>
+            <p class="newsletter-subtitle">Get the latest campus releases, ambassador drops, and student workshops.</p>
+          </div>
+        </div>
+        <div class="newsletter-right">
+          <form class="newsletter-form" id="newsletterForm" onsubmit="handleNewsletterSubmit(event)">
+            <input type="email" id="newsletterEmailInput" class="newsletter-input" placeholder="Enter your university email address..." required aria-label="University email">
+            <button type="submit" class="newsletter-btn" id="newsletterSubmitBtn">SUBSCRIBE</button>
+          </form>
+          <div id="newsletterNotice" class="newsletter-notice" style="display: none;"></div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Footer -->
-  <footer style="background: var(--wave-navy-dark); color: #94A3B8; padding: 50px 24px 30px; border-top: 1px solid var(--wave-border-dark);">
-    <div style="max-width: 1360px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px;">
-      <div>
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-          <img src="/assets/images/wyw_official_logo.png" alt="" style="height: 36px; background: #fff; padding: 2px 6px; border-radius: 6px;">
-          <span style="font-weight: 800; font-size: 1.1rem; color: #fff;">WRITE YOUR WAVE</span>
-        </div>
-        <p style="font-size: 0.84rem; line-height: 1.6; max-width: 380px;">
+  <!-- 12. Structured 5-Column E-Commerce Footer (Phase 3.13 - LaptopPro Inspired) -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="footer-top-grid">
+      <!-- Col 1: Brand & Mission -->
+      <div class="footer-col footer-col-brand">
+        <a href="#top" class="footer-brand-wrap">
+          <img src="/assets/images/wyw_official_logo.png" alt="Write Your Wave" class="footer-logo-img">
+          <div>
+            <div class="footer-brand-title">WRITE YOUR WAVE</div>
+            <div class="footer-brand-subtitle">Stationery &amp; Journals</div>
+          </div>
+        </a>
+        <p class="footer-brand-desc">
           The official stationery movement designed for students, dreamers, and future leaders across Liberia. Engineered with 120 GSM bleed-proof paper and manufactured in Sinkor.
         </p>
+        <div class="footer-social-links">
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Instagram">📸</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Facebook">📘</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="X / Twitter">🐦</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="footer-social-btn" aria-label="LinkedIn">💼</a>
+          <a href="https://wa.me/231770000000" target="_blank" rel="noopener" class="footer-social-btn" aria-label="WhatsApp">💬</a>
+        </div>
       </div>
-      <div>
-        <h4 style="color: #fff; font-size: 0.9rem; margin-bottom: 12px; font-weight: 800;">Authentic Editions</h4>
-        <ul style="list-style: none; font-size: 0.82rem; display: flex; flex-direction: column; gap: 6px;">
-          <li><a href="#journals" style="color: inherit; text-decoration: none;">Hazel Quiqui Edition</a></li>
-          <li><a href="#journals" style="color: inherit; text-decoration: none;">Zinnah M. Kamara Edition</a></li>
-          <li><a href="#journals" style="color: inherit; text-decoration: none;">Deep Purple Scholar</a></li>
-          <li><a href="#journals" style="color: inherit; text-decoration: none;">Signature Ocean Blue</a></li>
-          <li><a href="#journals" style="color: inherit; text-decoration: none;">Noir Gold Executive</a></li>
+
+      <!-- Col 2: Quick Links -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">QUICK LINKS</h4>
+        <ul class="footer-links-list">
+          <li><a href="#top">Home</a></li>
+          <li><a href="#journals" onclick="filterJournals('all')">Shop All 7 Journals</a></li>
+          <li><a href="#categories">Categories &amp; Series</a></li>
+          <li><a href="#specs">About the Movement</a></li>
+          <li><a href="#ambassadors">Brand Ambassadors</a></li>
+          <li><a href="#stores">Campus Network</a></li>
+          <li><a href="#contact">Contact Movement Desk</a></li>
         </ul>
       </div>
-      <div>
-        <h4 style="color: #fff; font-size: 0.9rem; margin-bottom: 12px; font-weight: 800;">Campus Desks</h4>
-        <ul style="list-style: none; font-size: 0.82rem; display: flex; flex-direction: column; gap: 6px;">
-          <li>Starz University (Airfield)</li>
-          <li>Waterloop Institute (WIT)</li>
-          <li>Sinkor Production Center</li>
-          <li><a href="#stores" style="color: var(--wave-gold); text-decoration: none;">View Desk Hours &rarr;</a></li>
+
+      <!-- Col 3: Customer Service -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">CUSTOMER SERVICE</h4>
+        <ul class="footer-links-list">
+          <li><a href="javascript:void(0)" onclick="openOrderTrackModal()">Track Order Code</a></li>
+          <li><a href="#stores">Campus Pickup Desks</a></li>
+          <li><a href="#personalization">Customization Requests</a></li>
+          <li><a href="javascript:void(0)" onclick="openWaveguideModal()">✨ Ask WaveGuide AI</a></li>
+          <li><a href="#contact">Help Center &amp; Inquiries</a></li>
+          <li><a href="javascript:void(0)" onclick="openAdminModal()">Admin Control Hub</a></li>
         </ul>
       </div>
-      <div>
-        <h4 style="color: #fff; font-size: 0.9rem; margin-bottom: 12px; font-weight: 800;">Ambassador Hub</h4>
-        <ul style="list-style: none; font-size: 0.82rem; display: flex; flex-direction: column; gap: 6px;">
-          <li><a href="#ambassadors" style="color: inherit; text-decoration: none;" onclick="openAmbassadorModal('portal')">Ambassador Portal</a></li>
-          <li><a href="#ambassadors" style="color: inherit; text-decoration: none;" onclick="openAmbassadorModal('calc')">10% Commissions</a></li>
-          <li><a href="#ambassadors" style="color: inherit; text-decoration: none;" onclick="openAmbassadorModal('apply')">Apply for Cohort 2026</a></li>
+
+      <!-- Col 4: Shop By Category -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">SHOP BY CATEGORY</h4>
+        <ul class="footer-links-list">
+          <li><a href="#journals" onclick="filterJournals('University Student Notebook')">University Student Notebook</a></li>
+          <li><a href="#journals" onclick="filterJournals('Student Notebook')">Student Notebook</a></li>
+          <li><a href="#journals" onclick="filterJournals('Journal')">Write Your Wave Journal</a></li>
+          <li><a href="#journals" onclick="filterJournals('Premium Journal')">Premium Journal</a></li>
+          <li><a href="#journals" onclick="filterJournals('ambassador')">Ambassador Editions</a></li>
+          <li><a href="#personalization">Personalized Gold Foil Covers</a></li>
         </ul>
+      </div>
+
+      <!-- Col 5: Contact & Pickup Desks -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">CONTACT &amp; PICKUP</h4>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">📍</span>
+          <div>
+            <strong>Starz University Campus Desk</strong>
+            <p>Airfield, Sinkor, Monrovia</p>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">📍</span>
+          <div>
+            <strong>Waterloop Institute (WIT)</strong>
+            <p>Airfield Shortcut, Sinkor, Monrovia</p>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">📞</span>
+          <div>
+            <strong>Phone / WhatsApp Support</strong>
+            <p>+231 77 000 0000 (Mon–Sat 8AM–6PM)</p>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">✉️</span>
+          <div>
+            <strong>Email Support</strong>
+            <p>support@writeyourwave.com</p>
+          </div>
+        </div>
+        <!-- In-Country Badges -->
+        <div class="footer-payment-badges">
+          <span class="pay-badge">✓ Campus Desk Pickup</span>
+          <span class="pay-badge">✓ Cash on Collection</span>
+          <span class="pay-badge">✓ Mobile Money</span>
+          <span class="pay-badge">✓ $5.00 Flat USD</span>
+        </div>
       </div>
     </div>
-    <div style="max-width: 1360px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; font-size: 0.78rem; flex-wrap: wrap; gap: 10px;">
-      <span>&copy; 2026 WRITE YOUR WAVE. All rights reserved. Manufactured at Waterloop Institute of Technology.</span>
-      <span>Flat $5.00 USD Student Pricing Across Liberia</span>
+
+    <!-- Footer Bottom Strip -->
+    <div class="footer-bottom-bar">
+      <div class="footer-bottom-inner">
+        <div>
+          &copy; 2026 WRITE YOUR WAVE. All Rights Reserved. • In-Country Stationery &amp; Student Movement
+        </div>
+        <div class="footer-legal-links">
+          <a href="#top" onclick="alert('Write Your Wave Privacy Policy: We safeguard student records and order details strictly for verified campus fulfillment.')">Privacy Policy</a>
+          <span>•</span>
+          <a href="#top" onclick="alert('Write Your Wave Terms: All authentic journal editions are priced at $5.00 USD with free campus pickup at Starz University and Waterloop Institute.')">Terms &amp; Conditions</a>
+          <span>•</span>
+          <a href="#stores">Campus Service Points</a>
+        </div>
+      </div>
     </div>
   </footer>
+
+  <!-- Wishlist Modal -->
+  <div class="modal-backdrop" id="wishlistModal" role="dialog" aria-modal="true" aria-labelledby="wishlistModalHeading">
+    <div class="modal-box" style="max-width: 580px;">
+      <div class="modal-header">
+        <h3 id="wishlistModalHeading" style="font-size: 1.25rem; font-weight: 800; color: var(--wave-navy-dark);">
+          <span>❤️</span> Saved Favorites &amp; Wishlist
+        </h3>
+        <button type="button" class="modal-close-btn" onclick="closeWishlistModal()" aria-label="Close wishlist">&times;</button>
+      </div>
+      <div id="wishlistModalBody" style="padding: 20px; max-height: 440px; overflow-y: auto;">
+        <!-- Injected via renderWishlistModal() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Track Modal -->
+  <div class="modal-backdrop" id="orderTrackModal" role="dialog" aria-modal="true" aria-labelledby="orderTrackHeading">
+    <div class="modal-box" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3 id="orderTrackHeading" style="font-size: 1.25rem; font-weight: 800; color: var(--wave-navy-dark);">
+          <span>📦</span> Track Your Campus Order Code
+        </h3>
+        <button type="button" class="modal-close-btn" onclick="closeOrderTrackModal()" aria-label="Close tracker">&times;</button>
+      </div>
+      <div style="padding: 24px;">
+        <p style="font-size: 0.88rem; color: var(--wave-text-muted); margin-bottom: 16px;">
+          Enter your 5-digit order reference (e.g. <strong>WYW-2026-10492</strong> or just numbers) to verify your pickup status at Starz University or Waterloop Institute.
+        </p>
+        <form onsubmit="handleQuickTrackOrder(event)">
+          <div class="form-group">
+            <label class="form-label">Order Reference / Tracking Code</label>
+            <input type="text" id="quickTrackInput" class="form-input" placeholder="e.g. WYW-2026-XXXXX" required>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+            <span>🔍</span> Verify Pickup Status &rarr;
+          </button>
+        </form>
+        <div id="quickTrackResultBanner" style="display: none; margin-top: 16px; padding: 14px; border-radius: 10px;"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- ==========================================================================
        MODAL 1: QUICK VIEW & JOURNAL INSPECTION MODAL
@@ -2423,22 +4128,76 @@
     // State Variables
     let currentUser = null;
     let cart = [];
+    let wishlist = [];
     let userReservations = [];
     let currentFilter = 'all';
     let currentAuthPortal = 'student'; // 'student' | 'ambassador' | 'admin'
     let currentStudentAuthTab = 'login'; // 'login' | 'register'
+    let currentCurrency = localStorage.getItem('wyw_currency') || 'USD'; // 'USD' | 'LRD'
+
+    // Currency Formatting (USD / LRD with 1:198 exchange rate)
+    function formatPrice(usd) {
+      const num = Number(usd) || 0;
+      if (currentCurrency === 'LRD') {
+        const lrd = Math.round(num * 198);
+        return `L$${lrd.toLocaleString()} LRD`;
+      }
+      return `$${num.toFixed(2)} USD`;
+    }
+
+    function handleCurrencyChange(currency) {
+      currentCurrency = currency;
+      localStorage.setItem('wyw_currency', currency);
+      const sel = document.getElementById('currencySelect');
+      if (sel) sel.value = currency;
+      renderJournals(JOURNALS);
+      updateCartBadge();
+      renderWishlistModal();
+      if (document.getElementById('cartDrawer') && document.getElementById('cartDrawer').classList.contains('is-open')) {
+        renderCart();
+      }
+      showToast(`💱 Currency switched to ${currency} (Rate: 1 USD = 198 LRD)`);
+    }
+
+    function initCurrencySelector() {
+      const sel = document.getElementById('currencySelect');
+      if (sel) {
+        sel.value = currentCurrency;
+        sel.addEventListener('change', (e) => {
+          handleCurrencyChange(e.target.value);
+        });
+      }
+    }
 
     // --- 2. INITIALIZATION ---
     document.addEventListener('DOMContentLoaded', () => {
+      initLoadingScreen();
       loadStorageData();
       initTheme();
+      initWishlist();
+      initCurrencySelector();
       renderJournals(JOURNALS);
       updateHeaderUserBadge();
       updateCartBadge();
       renderAdminReservations();
       initModalAndDrawerTransitions();
       initMobileNavSystem();
+      initShopByCategoryDropdown();
     });
+
+    function initLoadingScreen() {
+      const screen = document.getElementById('siteLoadingScreen');
+      if (!screen) return;
+      window.addEventListener('load', () => {
+        setTimeout(() => screen.classList.add('is-loaded'), 250);
+      });
+      // Fallback safeguard in case window load already fired
+      setTimeout(() => {
+        if (screen && !screen.classList.contains('is-loaded')) {
+          screen.classList.add('is-loaded');
+        }
+      }, 500);
+    }
 
     function initModalAndDrawerTransitions() {
       // Backdrop click dismiss for all modals
@@ -2458,6 +4217,9 @@
             modal.classList.remove('is-open');
           });
           closeCartDrawer();
+          closeWishlistModal();
+          closeOrderTrackModal();
+          closeShopByCatDropdown();
           document.body.style.overflow = '';
         }
       });
@@ -2470,6 +4232,11 @@
 
         const savedCart = localStorage.getItem('wyw_cart');
         if (savedCart) cart = JSON.parse(savedCart);
+
+        const savedWishlist = localStorage.getItem('wyw_wishlist');
+        if (savedWishlist) {
+          try { wishlist = JSON.parse(savedWishlist); } catch (e) { wishlist = []; }
+        }
 
         const savedOrders = localStorage.getItem('wyw_reservations');
         if (savedOrders) {
@@ -2492,6 +4259,113 @@
       }
     }
 
+    // --- WISHLIST CONTROLLER ---
+    function initWishlist() {
+      updateWishlistBadge();
+    }
+
+    function saveWishlist() {
+      localStorage.setItem('wyw_wishlist', JSON.stringify(wishlist));
+      updateWishlistBadge();
+    }
+
+    function updateWishlistBadge() {
+      const badge = document.getElementById('wishlistBadgeCount');
+      if (badge) badge.textContent = wishlist.length;
+      const modalCount = document.getElementById('wishlistModalCount');
+      if (modalCount) modalCount.textContent = `(${wishlist.length})`;
+    }
+
+    function toggleWishlist(journalId, event) {
+      if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
+      const item = JOURNALS.find(j => j.id === journalId);
+      if (!item) return;
+
+      const idx = wishlist.findIndex(w => w.id === journalId);
+      if (idx > -1) {
+        wishlist.splice(idx, 1);
+        showToast(`Removed from Wishlist: ${item.title}`);
+      } else {
+        wishlist.push({
+          id: item.id,
+          title: item.title,
+          price: item.price,
+          image: item.image,
+          edition: item.edition
+        });
+        showToast(`❤️ Added to Wishlist: ${item.title}`);
+      }
+      saveWishlist();
+      renderJournals(JOURNALS);
+      if (document.getElementById('wishlistModal') && document.getElementById('wishlistModal').classList.contains('is-open')) {
+        renderWishlistModal();
+      }
+    }
+
+    function openWishlistModal() {
+      renderWishlistModal();
+      const modal = document.getElementById('wishlistModal');
+      if (modal) modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeWishlistModal() {
+      const modal = document.getElementById('wishlistModal');
+      if (modal) modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    function clearWishlist() {
+      wishlist = [];
+      saveWishlist();
+      renderWishlistModal();
+      renderJournals(JOURNALS);
+      showToast('Wishlist cleared.');
+    }
+
+    function renderWishlistModal() {
+      const body = document.getElementById('wishlistModalBody');
+      if (!body) return;
+
+      if (wishlist.length === 0) {
+        body.innerHTML = `
+          <div style="text-align: center; padding: 48px 20px;">
+            <div style="font-size: 2.8rem; margin-bottom: 12px;">🤍</div>
+            <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--wave-navy-dark); margin-bottom: 6px;">Your Wishlist is Empty</h4>
+            <p style="font-size: 0.86rem; color: var(--wave-text-muted); margin-bottom: 20px;">Tap the heart icon on any journal cover to save it for quick review.</p>
+            <button type="button" class="btn-primary" onclick="closeWishlistModal()" style="display: inline-flex;">Explore Collection &rarr;</button>
+          </div>
+        `;
+        return;
+      }
+
+      body.innerHTML = `
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;">
+          ${wishlist.map(w => `
+            <div style="display: flex; gap: 14px; padding: 14px; background: #FAFBFD; border: 1px solid var(--wave-border); border-radius: 12px; align-items: center;">
+              <img src="${w.image}" alt="${w.title}" style="width: 58px; height: 84px; object-fit: cover; border-radius: 8px; border: 1.5px solid var(--wave-gold); box-shadow: var(--wave-shadow-sm);">
+              <div style="flex: 1; min-width: 0;">
+                <span style="font-size: 0.72rem; color: var(--wave-purple); font-weight: 800; text-transform: uppercase; display: block;">${w.edition}</span>
+                <strong style="font-size: 0.9rem; color: var(--wave-navy-dark); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${w.title}</strong>
+                <div style="font-size: 0.88rem; font-weight: 800; color: var(--wave-royal); margin: 4px 0 8px;">${formatPrice(w.price)}</div>
+                <div style="display: flex; gap: 8px;">
+                  <button type="button" class="btn-buy" style="padding: 5px 12px; font-size: 0.75rem;" onclick="addToCart('${w.id}', '${w.title}', ${w.price}, '${w.image}')">
+                    Add to Bag
+                  </button>
+                  <button type="button" onclick="toggleWishlist('${w.id}', event)" style="background: none; border: 1px solid var(--wave-border); border-radius: 6px; padding: 4px 8px; font-size: 0.75rem; cursor: pointer; color: #EF4444;" title="Remove">
+                    ✕
+                  </button>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
     // --- 3. JOURNAL RENDERING & FILTERING ---
     function renderJournals(list) {
       const grid = document.getElementById('journalCardsGrid');
@@ -2509,27 +4383,37 @@
         return;
       }
 
-      grid.innerHTML = list.map(item => `
-        <article class="journal-card" id="card-${item.id}">
-          <div class="journal-img-wrap">
-            <img src="${item.image}" alt="${item.title}" loading="lazy">
-            <span class="journal-badge-tag">${item.badge}</span>
-            <div class="price-pill">$5.00 USD</div>
-          </div>
-          <div class="journal-info">
-            <span class="journal-edition">${item.edition}</span>
-            <h3 class="journal-name">${item.title}</h3>
-            <p class="journal-motto">${item.motto}</p>
-            <p class="journal-desc">${item.desc}</p>
-            <div class="journal-footer">
-              <button type="button" class="btn-inspect" onclick="openQuickView('${item.id}')">Quick View</button>
-              <button type="button" class="btn-buy" onclick="addToCart('${item.id}', '${item.title}', 5.0, '${item.image}')">
-                <span>🛍️</span> Add to Bag
+      grid.innerHTML = list.map(item => {
+        const isFav = wishlist.some(w => w.id === item.id);
+        return `
+          <article class="journal-card" id="card-${item.id}">
+            <div class="journal-img-wrap">
+              <img src="${item.image}" alt="${item.title}" loading="lazy">
+              <span class="journal-badge-tag">${item.badge}</span>
+              <button type="button" class="card-wishlist-btn ${isFav ? 'active' : ''}" onclick="toggleWishlist('${item.id}', event)" aria-label="Add ${item.title} to wishlist">
+                ${isFav ? '❤️' : '🤍'}
               </button>
+              <div class="price-pill">${formatPrice(item.price)}</div>
             </div>
-          </div>
-        </article>
-      `).join('');
+            <div class="journal-info">
+              <span class="journal-edition">${item.edition}</span>
+              <h3 class="journal-name">${item.title}</h3>
+              <div style="display: flex; align-items: center; gap: 6px; margin: 4px 0 8px;">
+                <div style="color: #F59E0B; font-size: 0.82rem; letter-spacing: 1px;">★★★★★</div>
+                <span style="font-size: 0.75rem; color: var(--wave-text-muted); font-weight: 600;">(5.0)</span>
+              </div>
+              <p class="journal-motto">${item.motto}</p>
+              <p class="journal-desc">${item.desc}</p>
+              <div class="journal-footer">
+                <button type="button" class="btn-inspect" onclick="openQuickView('${item.id}')">Quick View</button>
+                <button type="button" class="btn-buy" onclick="addToCart('${item.id}', '${item.title}', 5.0, '${item.image}')">
+                  <span>🛍️</span> Add to Bag
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
     }
 
     function filterJournals(category, buttonEl) {
@@ -2565,6 +4449,66 @@
       renderJournals(filtered);
     }
 
+    // --- HEADER SEARCH & CATEGORY CONTROLLERS ---
+    function handleHeaderCategoryChange(category) {
+      if (!category || category === 'all') {
+        filterJournals('all');
+      } else {
+        filterJournals(category);
+      }
+      const section = document.getElementById('journals');
+      if (section) section.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function handleHeaderLiveSearch(query) {
+      const selectEl = document.getElementById('headerCategorySelect');
+      const selectedCat = selectEl ? selectEl.value : 'all';
+      let results = JOURNALS;
+      if (selectedCat && selectedCat !== 'all') {
+        results = results.filter(j => j.collectionCategory === selectedCat || j.category === selectedCat);
+      }
+      const q = (query || '').trim().toLowerCase();
+      if (q) {
+        results = results.filter(j => 
+          j.title.toLowerCase().includes(q) ||
+          j.edition.toLowerCase().includes(q) ||
+          j.motto.toLowerCase().includes(q) ||
+          j.desc.toLowerCase().includes(q) ||
+          j.ambassador.toLowerCase().includes(q)
+        );
+      }
+      renderJournals(results);
+    }
+
+    function executeHeaderSearch() {
+      const input = document.getElementById('headerSearchInput');
+      const q = input ? input.value : '';
+      handleHeaderLiveSearch(q);
+      const section = document.getElementById('journals');
+      if (section) section.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // --- SHOP BY CATEGORY DROPDOWN ---
+    function toggleShopByCategoryMenu() {
+      const dd = document.getElementById('shopByCatDropdown');
+      if (dd) dd.classList.toggle('is-open');
+    }
+
+    function closeShopByCatDropdown() {
+      const dd = document.getElementById('shopByCatDropdown');
+      if (dd) dd.classList.remove('is-open');
+    }
+
+    function initShopByCategoryDropdown() {
+      document.addEventListener('click', (e) => {
+        const btn = document.getElementById('shopByCatBtn');
+        const dd = document.getElementById('shopByCatDropdown');
+        if (btn && dd && !btn.contains(e.target) && !dd.contains(e.target)) {
+          dd.classList.remove('is-open');
+        }
+      });
+    }
+
     // --- 4. QUICK VIEW MODAL ---
     function openQuickView(journalId) {
       const item = JOURNALS.find(j => j.id === journalId);
@@ -2590,7 +4534,7 @@
           <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--wave-navy-dark); margin-bottom: 6px;">${item.title}</h3>
           <p style="font-size: 0.95rem; font-style: italic; color: var(--wave-purple); font-weight: 700; margin-bottom: 14px;">${item.motto}</p>
           <div style="font-size: 1.5rem; font-weight: 800; color: var(--wave-navy-dark); margin-bottom: 14px;">
-            $5.00 <span style="font-size: 0.85rem; color: var(--wave-text-muted); font-weight: 600;">USD Flat Student Pricing</span>
+            ${formatPrice(item.price)} <span style="font-size: 0.85rem; color: var(--wave-text-muted); font-weight: 600;">Flat Student Pricing</span>
           </div>
           <p style="font-size: 0.88rem; color: var(--wave-text-muted); line-height: 1.6; margin-bottom: 16px;">${item.desc}</p>
           
@@ -2607,7 +4551,7 @@
 
           <div style="display: flex; gap: 12px;">
             <button type="button" class="btn-primary" style="flex: 1; justify-content: center;" onclick="addToCart('${item.id}', '${item.title}', 5.0, '${item.image}'); closeQuickView();">
-              <span>🛍️</span> Add to Bag &amp; Reserve ($5.00)
+              <span>🛍️</span> Add to Bag &amp; Reserve (${formatPrice(item.price)})
             </button>
           </div>
         </div>
@@ -2670,6 +4614,11 @@
         btmBadge.textContent = count;
         btmBadge.style.display = count > 0 ? 'flex' : 'none';
       }
+      const headerTotal = document.getElementById('headerCartTotal');
+      if (headerTotal) {
+        const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        headerTotal.textContent = formatPrice(total);
+      }
     }
 
     function openCartDrawer() {
@@ -2699,8 +4648,8 @@
           <div style="text-align: center; padding: 60px 20px; color: var(--wave-text-muted);">
             <div style="font-size: 3rem; margin-bottom: 12px;">🛍️</div>
             <h4 style="color: var(--wave-navy-dark); font-size: 1.1rem; font-weight: 800; margin-bottom: 4px;">Your Bag is Empty</h4>
-            <p style="font-size: 0.85rem; margin-bottom: 20px;">Reserve your authentic $5.00 Write Your Wave journal for campus pickup.</p>
-            <a href="#journals" class="btn-primary" onclick="closeCartDrawer()" style="display: inline-flex;">Browse Journals ($5.00) &rarr;</a>
+            <p style="font-size: 0.85rem; margin-bottom: 20px;">Reserve your authentic Write Your Wave journal for campus pickup.</p>
+            <a href="#journals" class="btn-primary" onclick="closeCartDrawer()" style="display: inline-flex;">Browse Journals (${formatPrice(5.0)}) &rarr;</a>
           </div>
         `;
         footer.innerHTML = '';
@@ -2712,7 +4661,7 @@
           <img src="${item.image}" alt="" style="width: 50px; height: 75px; object-fit: cover; border-radius: 6px; border: 1px solid var(--wave-border);">
           <div style="flex-grow: 1;">
             <strong style="display: block; font-size: 0.88rem; color: var(--wave-navy-dark);">${item.title}</strong>
-            <span style="font-size: 0.8rem; color: var(--wave-royal); font-weight: 700;">$${Number(item.price).toFixed(2)} USD</span>
+            <span style="font-size: 0.8rem; color: var(--wave-royal); font-weight: 700;">${formatPrice(item.price)}</span>
             <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
               <button type="button" onclick="updateCartQty('${item.id}', -1)" style="width: 24px; height: 24px; border-radius: 4px; border: 1px solid var(--wave-border); background: #fff; cursor: pointer;">-</button>
               <span style="font-size: 0.85rem; font-weight: 700;">${item.qty}</span>
@@ -2750,14 +4699,14 @@
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 1rem;">
           <span style="font-weight: 700; color: var(--wave-navy-dark);">Total (${totalItems} items):</span>
-          <strong style="color: var(--wave-navy-dark); font-size: 1.3rem;">$${subtotal.toFixed(2)} USD</strong>
+          <strong style="color: var(--wave-navy-dark); font-size: 1.3rem;">${formatPrice(subtotal)}</strong>
         </div>
 
         <button type="button" class="btn-primary" style="width: 100%; justify-content: center;" onclick="confirmReservation()">
           <span>✓</span> Complete Campus Reservation
         </button>
         <span style="font-size: 0.72rem; color: var(--wave-text-muted); display: block; text-align: center; margin-top: 8px;">
-          Pay flat $5.00 USD cash or Mobile Money upon collection at the desk.
+          Pay flat ${formatPrice(subtotal)} cash or Mobile Money upon collection at the desk.
         </span>
       `;
     }
@@ -2843,7 +4792,7 @@
             <div><strong>Items:</strong> ${titles}</div>
             <div style="margin-top: 4px;"><strong>Pickup Desk:</strong> ${campus}</div>
             <div style="margin-top: 4px;"><strong>Student:</strong> ${name} (${phone})</div>
-            <div style="margin-top: 4px;"><strong>Amount Due:</strong> $${subtotal.toFixed(2)} USD (Cash or MoMo)</div>
+            <div style="margin-top: 4px;"><strong>Amount Due:</strong> ${formatPrice(subtotal)} (Cash or MoMo)</div>
           </div>
 
           <button type="button" class="btn-primary" style="width: 100%; justify-content: center;" onclick="copyOrderRef('${code}')">📋 Copy Reference Code</button>
@@ -2952,16 +4901,47 @@
       renderAccountModal();
     }
 
-    function switchStudentAuthTab(tab) {
+    function switchStudentSlide(tab) {
       currentStudentAuthTab = tab;
-      const tabLogin = document.getElementById('tabStudentLogin');
-      const tabReg = document.getElementById('tabStudentRegister');
-      const panelLogin = document.getElementById('studentPanelLogin');
-      const panelReg = document.getElementById('studentPanelRegister');
-      if (tabLogin) tabLogin.classList.toggle('active', tab === 'login');
-      if (tabReg) tabReg.classList.toggle('active', tab === 'register');
-      if (panelLogin) panelLogin.style.display = tab === 'login' ? 'block' : 'none';
-      if (panelReg) panelReg.style.display = tab === 'register' ? 'block' : 'none';
+      const glider = document.getElementById('studentSlideGlider');
+      const track = document.getElementById('studentPanelsTrack');
+      const btnLogin = document.getElementById('btnSlideLogin');
+      const btnReg = document.getElementById('btnSlideRegister');
+      if (glider) glider.style.transform = tab === 'register' ? 'translateX(100%)' : 'translateX(0)';
+      if (track) track.classList.toggle('slide-right', tab === 'register');
+      if (btnLogin) btnLogin.classList.toggle('active', tab === 'login');
+      if (btnReg) btnReg.classList.toggle('active', tab === 'register');
+    }
+
+    function switchStudentAuthTab(tab) {
+      switchStudentSlide(tab);
+    }
+
+    function togglePasswordVisibility(inputId, btnEl) {
+      const input = document.getElementById(inputId);
+      if (!input) return;
+      if (input.type === 'password') {
+        input.type = 'text';
+        if (btnEl) btnEl.textContent = '🙈';
+      } else {
+        input.type = 'password';
+        if (btnEl) btnEl.textContent = '👁️';
+      }
+    }
+
+    function handleOAuthSignIn(provider) {
+      const displayName = provider === 'Google' ? 'Student Scholar (Google)' : 'Student Scholar (Facebook)';
+      currentUser = {
+        name: displayName,
+        email: provider.toLowerCase() + '.scholar@starz.edu.lr',
+        campus: 'Starz University (Airfield, Sinkor)',
+        role: 'VERIFIED STUDENT',
+        authProvider: provider
+      };
+      localStorage.setItem('wyw_current_user', JSON.stringify(currentUser));
+      updateHeaderUserBadge();
+      renderAccountModal();
+      showToast(`✓ Signed in with ${provider}! Welcome, ${currentUser.name}.`);
     }
 
     function renderAccountModal() {
@@ -2986,81 +4966,117 @@
             </button>
           </div>
 
-          <!-- PORTAL 1: STUDENT / CUSTOMER -->
+          <!-- PORTAL 1: STUDENT / CUSTOMER (Split-Panel Sliding Switch & OAuth) -->
           <div id="portalSectionStudent" style="display: ${currentAuthPortal === 'student' ? 'block' : 'none'};">
-            <div style="display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 1px solid var(--wave-border); padding-bottom: 10px;">
-              <button type="button" id="tabStudentLogin" class="filter-pill ${currentStudentAuthTab === 'login' ? 'active' : ''}" onclick="switchStudentAuthTab('login')">
-                Sign In to Account
+            <!-- Sliding Switcher Controls -->
+            <div class="auth-slider-switch" id="studentAuthSlider" style="margin-bottom: 16px;">
+              <div class="auth-switch-pill" id="studentSlideGlider" style="transform: ${currentStudentAuthTab === 'register' ? 'translateX(100%)' : 'translateX(0)'};"></div>
+              <button type="button" class="auth-switch-btn ${currentStudentAuthTab === 'login' ? 'active' : ''}" id="btnSlideLogin" onclick="switchStudentSlide('login')">
+                Sign In
               </button>
-              <button type="button" id="tabStudentRegister" class="filter-pill ${currentStudentAuthTab === 'register' ? 'active' : ''}" onclick="switchStudentAuthTab('register')">
-                Register Student Account
+              <button type="button" class="auth-switch-btn ${currentStudentAuthTab === 'register' ? 'active' : ''}" id="btnSlideRegister" onclick="switchStudentSlide('register')">
+                Create Account
               </button>
             </div>
 
-            <!-- Student Login -->
-            <div id="studentPanelLogin" style="display: ${currentStudentAuthTab === 'login' ? 'block' : 'none'};">
-              <p style="font-size: 0.85rem; color: var(--wave-text-muted); margin-bottom: 16px;">
-                Access your past Write Your Wave journal reservations, pickup reference codes, and student orders.
-              </p>
-              <form onsubmit="handleStudentSignIn(event)">
-                <div class="form-group">
-                  <label class="form-label">Student Email Address or Student ID</label>
-                  <input type="text" id="studentLoginEmail" class="form-input" placeholder="e.g. name@starz.edu.lr or WIT-2026-081" required>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Password</label>
-                  <input type="password" id="studentLoginPassword" class="form-input" placeholder="••••••••" required>
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
-                  Sign In to Student Account &rarr;
-                </button>
-              </form>
+            <!-- Fast Social Sign In -->
+            <div class="oauth-btn-group">
+              <button type="button" class="oauth-btn" onclick="handleOAuthSignIn('Google')">
+                <svg viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                </svg>
+                <span>Google</span>
+              </button>
+              <button type="button" class="oauth-btn" onclick="handleOAuthSignIn('Facebook')">
+                <svg viewBox="0 0 24 24" fill="#1877F2">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                <span>Facebook</span>
+              </button>
             </div>
+            <div class="auth-divider"><span>or continue with email</span></div>
 
-            <!-- Student Registration -->
-            <div id="studentPanelRegister" style="display: ${currentStudentAuthTab === 'register' ? 'block' : 'none'};">
-              <p style="font-size: 0.85rem; color: var(--wave-text-muted); margin-bottom: 16px;">
-                Create your student account to record your journal reservations for $5.00 pickup at Starz University or WIT.
-              </p>
-              <form onsubmit="handleStudentRegister(event)">
-                <div class="form-group">
-                  <label class="form-label">Full Name</label>
-                  <input type="text" id="regStudentName" class="form-input" placeholder="e.g. Hazel Quiqui" required>
+            <!-- Sliding Panels Track (Smooth transition between Login and Registration) -->
+            <div style="overflow: hidden; width: 100%;">
+              <div class="auth-panels-track ${currentStudentAuthTab === 'register' ? 'slide-right' : ''}" id="studentPanelsTrack">
+                <!-- Panel 1: Sign In -->
+                <div class="auth-panel-slide">
+                  <p style="font-size: 0.85rem; color: var(--wave-text-muted); margin-bottom: 14px;">
+                    Access your journal reservations, pickup passes, and Starz / WIT campus desk orders.
+                  </p>
+                  <form onsubmit="handleStudentSignIn(event)">
+                    <div class="form-group">
+                      <label class="form-label">Student Email or ID</label>
+                      <input type="text" id="studentLoginEmail" class="form-input" placeholder="e.g. name@starz.edu.lr or WIT-2026-081" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Password</label>
+                      <div class="password-field-wrap">
+                        <input type="password" id="studentLoginPassword" class="form-input" placeholder="••••••••" required>
+                        <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('studentLoginPassword', this)" aria-label="Toggle password">👁️</button>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                      Sign In to Student Account &rarr;
+                    </button>
+                  </form>
                 </div>
-                <div class="form-group">
-                  <label class="form-label">Campus / University</label>
-                  <select id="regStudentCampus" class="form-select">
-                    <option value="Starz University (Airfield, Sinkor)">Starz University (Airfield, Sinkor)</option>
-                    <option value="Waterloop Institute of Technology (WIT)">Waterloop Institute of Technology (WIT)</option>
-                    <option value="University of Liberia">University of Liberia (Capitol Hill / Fendall)</option>
-                    <option value="African Methodist Episcopal University (AMEU)">AME University</option>
-                    <option value="Independent Scholar">Independent Scholar / Creator</option>
-                  </select>
+
+                <!-- Panel 2: Register -->
+                <div class="auth-panel-slide">
+                  <p style="font-size: 0.85rem; color: var(--wave-text-muted); margin-bottom: 14px;">
+                    Create your student account to record your journal reservations for $5.00 pickup at Starz University or WIT.
+                  </p>
+                  <form onsubmit="handleStudentRegister(event)">
+                    <div class="form-group">
+                      <label class="form-label">Full Name</label>
+                      <input type="text" id="regStudentName" class="form-input" placeholder="e.g. Hazel Quiqui" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Campus / University</label>
+                      <select id="regStudentCampus" class="form-select">
+                        <option value="Starz University (Airfield, Sinkor)">Starz University (Airfield, Sinkor)</option>
+                        <option value="Waterloop Institute of Technology (WIT)">Waterloop Institute of Technology (WIT)</option>
+                        <option value="University of Liberia">University of Liberia (Capitol Hill / Fendall)</option>
+                        <option value="African Methodist Episcopal University (AMEU)">AME University</option>
+                        <option value="Independent Scholar">Independent Scholar / Creator</option>
+                      </select>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                      <div class="form-group">
+                        <label class="form-label">Student Email</label>
+                        <input type="email" id="regStudentEmail" class="form-input" placeholder="name@starz.edu.lr" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">WhatsApp Number</label>
+                        <input type="tel" id="regStudentPhone" class="form-input" placeholder="+231 77 000 0000" required>
+                      </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                      <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <div class="password-field-wrap">
+                          <input type="password" id="regStudentPass" class="form-input" placeholder="••••••••" required>
+                          <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('regStudentPass', this)" aria-label="Toggle password">👁️</button>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <div class="password-field-wrap">
+                          <input type="password" id="regStudentPassConfirm" class="form-input" placeholder="••••••••" required>
+                          <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('regStudentPassConfirm', this)" aria-label="Toggle password">👁️</button>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                      Create Student Account &rarr;
+                    </button>
+                  </form>
                 </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                  <div class="form-group">
-                    <label class="form-label">Student Email Address</label>
-                    <input type="email" id="regStudentEmail" class="form-input" placeholder="name@starz.edu.lr" required>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">WhatsApp Phone Number</label>
-                    <input type="tel" id="regStudentPhone" class="form-input" placeholder="+231 77 000 0000" required>
-                  </div>
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                  <div class="form-group">
-                    <label class="form-label">Password</label>
-                    <input type="password" id="regStudentPass" class="form-input" placeholder="••••••••" required>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Confirm Password</label>
-                    <input type="password" id="regStudentPassConfirm" class="form-input" placeholder="••••••••" required>
-                  </div>
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
-                  Create Student Account &rarr;
-                </button>
-              </form>
+              </div>
             </div>
           </div>
 
@@ -3478,7 +5494,117 @@
 
 ${campus}
 
-Please present your reference code or student ID. Flat $5.00 USD cash or Mobile Money.`);
+Please present your reference code or student ID. Flat $5.00 USD (or equivalent in LRD) cash or Mobile Money.`);
+    }
+
+    // --- QUICK ORDER TRACKING MODAL ---
+    function openOrderTrackModal() {
+      const modal = document.getElementById('orderTrackModal');
+      if (!modal) return;
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      const input = document.getElementById('quickTrackInput');
+      if (input) {
+        input.value = '';
+        setTimeout(() => input.focus(), 60);
+      }
+      const banner = document.getElementById('quickTrackResultBanner');
+      if (banner) banner.style.display = 'none';
+    }
+
+    function closeOrderTrackModal() {
+      const modal = document.getElementById('orderTrackModal');
+      if (modal) {
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function handleQuickTrackOrder(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('quickTrackInput');
+      const banner = document.getElementById('quickTrackResultBanner');
+      if (!input || !banner) return;
+
+      const rawCode = input.value.trim().toUpperCase();
+      if (!rawCode) {
+        showToast('Please enter an order reference code.');
+        return;
+      }
+
+      // Check user reservations first
+      const found = userReservations.find(r => 
+        r.reference.toUpperCase().includes(rawCode) || 
+        rawCode.includes(r.reference.toUpperCase())
+      );
+
+      banner.style.display = 'block';
+      if (found) {
+        banner.style.background = '#ECFDF5';
+        banner.style.border = '1.5px solid #10B981';
+        banner.style.color = '#065F46';
+        banner.innerHTML = `
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <strong style="font-size: 1.05rem; font-family: monospace; color: var(--wave-navy-dark);">${found.reference}</strong>
+            <span style="background: #10B981; color: #FFF; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px;">${found.status}</span>
+          </div>
+          <div style="font-size: 0.84rem; line-height: 1.5; color: #064E3B;">
+            <strong>Items:</strong> ${found.title}<br>
+            <strong>Customer:</strong> ${found.studentName || found.customerName || 'Student Scholar'} (${found.phone || found.customerPhone || 'Verified'})<br>
+            <strong>Pickup Station:</strong> ${found.campus}<br>
+            <strong>Amount Due:</strong> ${formatPrice(found.totalAmount)}
+          </div>
+          <div style="margin-top: 12px; display: flex; gap: 8px;">
+            <button type="button" class="btn-primary" style="padding: 6px 12px; font-size: 0.78rem;" onclick="copyOrderRef('${found.reference}')">📋 Copy Code</button>
+            <button type="button" class="btn-buy" style="padding: 6px 12px; font-size: 0.78rem; background: #6D28D9; color: #FFF;" onclick="closeOrderTrackModal(); showQrPassModal('${found.reference}', '${found.title.replace(/'/g, "\\'")}', '${found.campus.replace(/'/g, "\\'")}')">📱 Show QR Pass</button>
+          </div>
+        `;
+      } else {
+        // Active desk verification pass
+        banner.style.background = '#F0FDF4';
+        banner.style.border = '1.5px solid #22C55E';
+        banner.style.color = '#15803D';
+        banner.innerHTML = `
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <strong style="font-size: 1rem; font-family: monospace; color: var(--wave-navy-dark);">${rawCode}</strong>
+            <span style="background: #22C55E; color: #FFF; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px;">READY FOR PICKUP</span>
+          </div>
+          <div style="font-size: 0.84rem; line-height: 1.5; color: #166534;">
+            <strong>Pickup Desk:</strong> Starz University Student Service Desk, Sinkor.<br>
+            <strong>Product:</strong> Write Your Wave Student Journal (${formatPrice(5.0)}).<br>
+            Present this tracking code or your student ID upon arrival to collect.
+          </div>
+        `;
+      }
+    }
+
+    // --- FOOTER NEWSLETTER SUBSCRIPTION ---
+    function handleNewsletterSubmit(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('newsletterEmailInput');
+      if (!input) return;
+      const email = input.value.trim().toLowerCase();
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        showToast('Please enter a valid student email address.');
+        return;
+      }
+
+      let subscribers = [];
+      try {
+        const saved = localStorage.getItem('wyw_newsletter_subscribers');
+        if (saved) subscribers = JSON.parse(saved);
+      } catch (err) {
+        subscribers = [];
+      }
+
+      if (subscribers.includes(email)) {
+        showToast(`✓ You are already subscribed (${email})!`);
+      } else {
+        subscribers.push(email);
+        localStorage.setItem('wyw_newsletter_subscribers', JSON.stringify(subscribers));
+        showToast(`🎉 Subscribed! Welcome to the Class of 2026 Movement (${email})`);
+      }
+      input.value = '';
     }
 
     // --- 7. AMBASSADOR PLATFORM & REVENUE PORTAL ---
